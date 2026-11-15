@@ -21,7 +21,7 @@ def main(grant_source_territories=False, warehouse_database=None, source_databas
     with engine('master', 'admin').connect().execution_options(isolation_level='AUTOCOMMIT') as conn:
         if conn.execute(text('SELECT DB_ID(:db)'), {'db': db}).scalar() is None:
             conn.exec_driver_sql(f'CREATE DATABASE {ident(db)}')
-        for prefix in ('ETL', 'API'):
+        for prefix in ('ETL', 'API', 'APP'):
             user, password = os.environ[f'{prefix}_USER'], os.environ[f'{prefix}_PASSWORD']
             if not password:
                 raise ValueError('Falta contraseña técnica local')
@@ -30,11 +30,11 @@ def main(grant_source_territories=False, warehouse_database=None, source_databas
                 literal = password.replace("'", "''")
                 conn.exec_driver_sql(f"CREATE LOGIN {ident(user)} WITH PASSWORD=N'{literal}', CHECK_POLICY=ON")
     with engine(db, 'admin').begin() as conn:
-        for filename in ('001_schema.sql','004_incremental.sql','007_read_views.sql','008_ml.sql'):
+        for filename in ('001_schema.sql','004_incremental.sql','007_read_views.sql','008_ml.sql','009_chat.sql'):
             for batch in re.split(r'^GO\s*$', (ROOT/'database'/filename).read_text(encoding='utf-8'), flags=re.M|re.I):
                 if batch.strip():
                     conn.exec_driver_sql(batch)
-        for prefix in ('ETL', 'API'):
+        for prefix in ('ETL', 'API', 'APP'):
             user = os.environ[f'{prefix}_USER']
             if conn.execute(text('SELECT USER_ID(:name)'), {'name': user}).scalar() is None:
                 conn.exec_driver_sql(f'CREATE USER {ident(user)} FOR LOGIN {ident(user)}')
@@ -43,8 +43,9 @@ def main(grant_source_territories=False, warehouse_database=None, source_databas
         for schema in ('clean','dw','audit','ml'):
             conn.exec_driver_sql(f'GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA::{schema} TO {loader}')
         for view in ('dw.vSalesKpi','dw.vSalesRead','dw.vProductFilters','dw.vCategoryFilters',
-                     'audit.vExecutions','audit.vRejections','audit.vWatermarks','ml.vActiveModel','ml.vPredictions'):
+                     'audit.vExecutions','audit.vRejections','audit.vWatermarks','ml.vActiveModel','ml.vPredictions','audit.vChatHealth'):
             conn.exec_driver_sql(f'GRANT SELECT ON OBJECT::{view} TO {reader}')
+        conn.exec_driver_sql(f"GRANT INSERT ON OBJECT::audit.ChatRequest TO {ident(os.environ['APP_USER'])}")
     with engine(source, 'admin').begin() as conn:
         user = os.environ['ETL_USER']
         if conn.execute(text('SELECT USER_ID(:name)'), {'name':user}).scalar() is None:
@@ -77,7 +78,7 @@ if __name__ == '__main__':
         main(args.grant_source_territories)
     except SQLAlchemyError as exc:
         detail = str(getattr(exc, 'orig', type(exc).__name__))
-        for name in ('MSSQL_SA_PASSWORD','ETL_PASSWORD','API_PASSWORD','DEMO_API_KEY'):
+        for name in ('MSSQL_SA_PASSWORD','ETL_PASSWORD','API_PASSWORD','APP_PASSWORD','DEMO_API_KEY'):
             secret = os.getenv(name)
             if secret:
                 detail = detail.replace(secret, '[REDACTED]')

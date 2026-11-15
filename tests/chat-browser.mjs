@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import {writeFile} from 'node:fs/promises';
+import {withBrowser,delay} from './browser-driver.mjs';
+process.loadEnvFile('.env');
+await withBrowser(async({call,evaluate,wait,click,setValue,screenshot,errors})=>{
+ await call('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+ await call('Page.navigate',{url:'http://127.0.0.1:5173/'});
+ await wait('!!document.querySelector("#demo-key")','acceso');
+ await setValue('#demo-key',process.env.DEMO_API_KEY);await click('#access-form button');
+ await wait('!!document.querySelector("[data-tab=chat]")','navegación');await click('[data-tab=chat]');
+ await wait('!!document.querySelector("#chat-question")','chat');
+ await setValue('#chat-question','Ventas de marzo de 2016');await click('#chat-form button');
+ await wait('!!document.querySelector("[data-chat-response]")','respuesta real');
+ assert(await evaluate('document.querySelector(".chat-facts").innerText.includes("4,645,254")'));
+ await setValue('#chat-question','Ventas de 2030');await click('#chat-form button');
+ await wait('!!document.querySelector("[data-chat-response=insufficient_data]")','falta de información');
+ await screenshot('day3-chat.png');
+ await call('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await delay(300);
+ assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth+1'));
+ await screenshot('day3-chat-mobile.png',false);assert.equal(errors.length,0,errors.join('\n'));
+ await writeFile('documentation/evidence/chat-browser.json',JSON.stringify({status:'passed',checks:['Proveedor real desde React y API','Importe contrastado','Sin información reconocido','Móvil sin desbordamiento'],javascript_errors:errors},null,2));
+ console.log('Asistente validado en navegador.');
+});

@@ -3,6 +3,7 @@ import {number, money, businessDate, timestamp} from './format.js';
 import Empty from './EmptyState.jsx';
 import {request, query} from './api.js';
 const Forecast = lazy(() => import('./Forecast.jsx'));
+const Chat = lazy(() => import('./Chat.jsx'));
 const Summary = lazy(() => import('./Summary.jsx'));
 
 
@@ -100,8 +101,8 @@ export default function App() {
   function apply(next) { setDraft(next); setApplied({...next}); setPage(1); }
   function drill(dimension, id) { apply({...applied, [dimension === 'product' ? 'product_id' : 'category_id']: String(id)}); setTab('detail'); }
   const latest = (tab === 'operations' ? operations?.latest_success : dashboard?.kpis) ?? meta;
-  const nav = [['summary', '◴', 'Resumen'], ['detail', '▤', 'Detalle de ventas'], ['forecast', '↝', 'Pronóstico'], ['operations', '⌁', 'Operación y calidad']];
-  const heading = {summary: ['VENTAS FACTURADAS','Una vista clara de tus ventas.','Explora resultados históricos respaldados por facturas de la muestra.'], detail: ['VENTAS FACTURADAS','Cada línea cuenta.','Consulta las líneas que respaldan el conjunto filtrado.'], forecast: ['MODELO PREDICTIVO','Una mirada a las próximas semanas.','Predicciones versionadas y evaluación cronológica sobre la muestra histórica.'], operations: ['CONFIABILIDAD DEL DATO','Del origen al indicador.','Consulta ejecuciones, rechazos y progreso confirmado de las cargas.']}[tab];
+  const nav = [['summary', '◴', 'Resumen'], ['detail', '▤', 'Detalle de ventas'], ['forecast', '↝', 'Pronóstico'], ['chat', '◇', 'Asistente'], ['operations', '⌁', 'Operación y calidad']];
+  const heading = {chat: ['ASISTENTE LOCAL','Pregunta con datos a la vista.','Interpretaciones generadas con medidas y periodos verificables.'], summary: ['VENTAS FACTURADAS','Una vista clara de tus ventas.','Explora resultados históricos respaldados por facturas de la muestra.'], detail: ['VENTAS FACTURADAS','Cada línea cuenta.','Consulta las líneas que respaldan el conjunto filtrado.'], forecast: ['MODELO PREDICTIVO','Una mirada a las próximas semanas.','Predicciones versionadas y evaluación cronológica sobre la muestra histórica.'], operations: ['CONFIABILIDAD DEL DATO','Del origen al indicador.','Consulta ejecuciones, rechazos y progreso confirmado de las cargas.']}[tab];
   return <div className={`app-shell text-slate-100 ${connected ? '' : 'signed-out'}`}>
     <aside className="sidebar"><div className="brand"><Mark/><div><strong>Ventas</strong><span>ANALÍTICA INTELIGENTE</span></div></div>{connected && <nav aria-label="Navegación principal">{nav.map(([id, icon, label]) => <button key={id} data-tab={id} aria-current={tab === id ? 'page' : undefined} onClick={() => setTab(id)}><span aria-hidden="true">{icon}</span>{label}{tab === id && <i/>}</button>)}</nav>}<div className="sidebar-foot"><span className="source-dot"/>Muestra de Microsoft<p>Wide World Importers<br/>Histórico 2013–2016</p><span className="local-label">Entorno local</span></div></aside>
     <main className="workspace"><header className="topbar"><div className="breadcrumbs">Analítica de ventas <span>/</span> {connected ? nav.find(row => row[0] === tab)[2] : 'Acceso'}</div>{connected && <div className="topbar-actions"><span className="connection"><i/>Sesión activa</span><button className="text-action" onClick={() => {setConnected(false); setKey(''); setDashboard(null); setDetail(null); setOperations(null);}}>Salir</button></div>}</header>
@@ -112,6 +113,7 @@ export default function App() {
         {tab === 'summary' && <div data-testid="summary-panel">{dashboardStatus === 'loading' && <Loading/>}{dashboardError && <Failure message={dashboardError} retry={retry}/>} {dashboardStatus === 'ready' && dashboard && <Suspense fallback={<Loading label="Cargando visualizaciones?"/>}><Summary data={dashboard} grain={grain} setGrain={setGrain} drill={drill}/></Suspense>}</div>}
         {tab === 'detail' && <>{detailStatus === 'loading' && <Loading label="Consultando líneas de factura…"/>}{detailError && <Failure message={detailError} retry={retry}/>} {detailStatus === 'ready' && detail && <Detail data={detail} page={page} setPage={setPage}/>}</>}
         {tab === 'forecast' && <Suspense fallback={<Loading label="Cargando pronóstico…"/>}><Forecast apiKey={key} revision={revision}/></Suspense>}
+        {tab === 'chat' && <Suspense fallback={<Loading label="Cargando asistente…"/>}><Chat apiKey={key}/></Suspense>}
         {tab === 'operations' && <>{opsStatus === 'loading' && <Loading label="Consultando ejecuciones y calidad…"/>}{opsError && <Failure message={opsError} retry={retry}/>} {opsStatus === 'ready' && operations && <Operations data={operations} inspect={id => {setRejectRun(id); setRejectPage(1);}} rejects={rejects} rejectStatus={rejectStatus} rejectError={rejectError} rejectPage={rejectPage} setRejectPage={setRejectPage} rejectRun={rejectRun}/>}</>}
         <footer className="app-footer"><span>Wide World Importers · Datos de ejemplo de Microsoft · Proyecto académico</span><span>Importes sin impuestos · Moneda de origen sin código disponible</span></footer>
       </>}

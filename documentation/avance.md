@@ -133,3 +133,9 @@ Video debe grabarse con ejecución real; solo se prepara guion automáticamente.
 - Proveedor candidato local probado: Ollama 0.40.16, Qwen2.5 1.5B Q4_K_M, CPU, sin API paga.
   Prueba técnica en español ~3,94 s y ~1,11 GB, contexto 2048; quedan preguntas analíticas reales.
 - Pendientes: quinto commit ML; asistente con controles y evaluación; alertas/outbox tras carga y panel.
+
+- Quinto commit ML registrado: d18eb3a.
+- Asistente integrado: 14 preguntas, 9 llamadas reales, 7 explicaciones aceptadas y 2 bloqueadas;
+  tres casos sin informaci?n, aclaraci?n e intento SQL controlados sin modelo.
+- React/API/Ollama comprobados en navegador y m?vil; importes contrastados con OLTP.
+- Pendiente del cierre: alertas autom?ticas, pruebas de recuperaci?n e integraci?n final.

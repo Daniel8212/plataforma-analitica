@@ -15,6 +15,8 @@ def engine(database=None, role='etl'):
         user, password = 'sa', os.environ['MSSQL_SA_PASSWORD']
     elif role == 'api':
         user, password = os.environ['API_USER'], os.environ['API_PASSWORD']
+    elif role == 'app':
+        user, password = os.environ['APP_USER'], os.environ['APP_PASSWORD']
     else:
         user, password = os.environ['ETL_USER'], os.environ['ETL_PASSWORD']
     return create_engine(URL.create(

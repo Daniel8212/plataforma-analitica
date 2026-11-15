@@ -119,7 +119,7 @@ el servidor web no ejecuta pickles. Reentrenar tras cambios materiales o nueva s
 .\.venv\Scripts\python.exe -m pytest tests/test_incremental_integration.py -q
 ```
 
-Orden SQL administrativo: 001_schema.sql → 004_incremental.sql → 007_read_views.sql (bootstrap lo aplica).
+Orden SQL administrativo: 001 → 004 → 007 → 008 → 009 (bootstrap lo aplica).
 Ejecución: extraer delta → 006_validate_batch.sql → 005_publish.sql → reconciliar →
 confirmar DW, auditoría y watermark. 002_transform.sql queda como referencia del primer flujo.
 `etl.run_initial` ahora usa el mismo motor en modo completo, sin duplicar lógica de carga.
@@ -141,3 +141,9 @@ Swagger: http://127.0.0.1:8000/docs. Revisión de la etapa:
 Para detener la aplicación: Ctrl+C en ambas terminales. SQL Server puede permanecer activo
 o detenerse con Compose; los datos permanecen en el volumen. La reconstrucción desde cero
 y la restauración del entorno completo se volverán a validar en la etapa final.
+
+## Asistente local
+
+Ollama + Qwen2.5 1.5B, sin API de pago. Inicio, permisos, herramientas y l?mites:
+[GENAI.md](generative-ai/GENAI.md). Las cifras proceden de consultas controladas;
+las explicaciones que no superan la verificaci?n se bloquean.

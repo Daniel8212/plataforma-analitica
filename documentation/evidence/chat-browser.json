@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checks": [
+    "Proveedor real desde React y API",
+    "Importe contrastado",
+    "Sin información reconocido",
+    "Móvil sin desbordamiento"
+  ],
+  "javascript_errors": []
+}

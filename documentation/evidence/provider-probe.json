@@ -1,0 +1,38 @@
+{
+  "provider": "Ollama",
+  "model": "qwen2.5:1.5b",
+  "elapsed_seconds": 3.94,
+  "response": "{\n  \"resumen\": \"Ventas aumentaron en comparación con el periodo anterior\"\n}",
+  "prompt_tokens": 83,
+  "generated_tokens": 21,
+  "generation_seconds": 0.929093,
+  "loaded_models": {
+    "models": [
+      {
+        "name": "qwen2.5:1.5b",
+        "model": "qwen2.5:1.5b",
+        "size": 1112318934,
+        "digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "1.5B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-11-15T13:25:36.4520078-06:00",
+        "size_vram": 0,
+        "context_length": 2048,
+        "runner": "llamacpp"
+      }
+    ]
+  },
+  "runtime_version": {
+    "version": "0.40.16"
+  },
+  "simulated_data": true,
+  "purpose": "Prueba tecnica de recursos y espanol; el texto de entrada es una condicion de prueba, no una consulta de negocio."
+}
