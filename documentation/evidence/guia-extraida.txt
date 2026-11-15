@@ -1,0 +1,807 @@
+PAGINA 1
+GUÍA DEL PROYECTO
+ Plataforma Integral de
+Ingeniería de Datos y Analítica Inteligente
+ Data Engineering · Data Warehouse · Business Intelligence
+ Machine Learning · Generative AI · Automatización
+Propósito: diseñar, construir, documentar y demostrar una solución funcional de extremo a extremo que transforme datos
+operacionales en información confiable, análisis descriptivo, predicciones y alertas inteligentes.
+ Documento de orientación para estudiantes
+ Versión 1.0 · Noviembre de 2026
+Este documento define el alcance, las actividades, los entregables y los criterios mínimos de aceptación. Los equipos pueden proponer
+tecnologías equivalentes, siempre que justifiquen su elección y demuestren la integración.
+
+PAGINA 2
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 2
+Control del documento y cómo utilizar esta guía
+Audiencia: estudiantes que desarrollarán un proyecto académico de ingeniería de datos, analítica e inteligencia artificial.
+Resultado esperado: una plataforma ejecutable y reproducible, no únicamente notebooks, pantallas o diagramas.
+Regla general: las tecnologías indicadas son recomendaciones. Los requisitos funcionales, las pruebas y los resultados
+demostrables son obligatorios.
+Convención
+Significado
+Obligatorio
+Debe implementarse y presentarse evidencia verificable.
+Recomendado
+Opción sugerida; se permite una alternativa equivalente.
+Opcional / extensión
+Aporta valor, pero no sustituye requisitos obligatorios.
+Evidencia
+Log, consulta, prueba, archivo o demostración que comprueba el resultado.
+Contenido
+  1. Contexto, objetivos y resultados de aprendizaje
+  2. Alcance y arquitectura de referencia
+  3. Fuente de datos y ambiente
+  4. Extracción, staging y transformación
+  5. Modelo dimensional y Data Warehouse
+  6. Business Intelligence
+  7. Machine Learning
+  8. Generative AI
+  9. Automatización y notificaciones
+  10. Seguridad, calidad y monitoreo
+  11. Plan de trabajo y entregables
+  12. Pruebas y rúbrica
+  13. Demo final y video
+  14. Checklist de cierre
+
+1. Contexto, objetivos y resultados de aprendizaje
+Las organizaciones almacenan operaciones en bases de datos relacionales. Estas estructuras suelen estar optimizadas para
+registrar transacciones, pero no necesariamente para responder preguntas históricas, comparar períodos, analizar tendencias
+o entrenar modelos predictivos.
+El reto consiste en construir una plataforma que extraiga datos de una base relacional, los prepare en una zona intermedia
+(staging), los cargue en un Data Warehouse dimensional y habilite análisis descriptivo, predicción, explicaciones y
+notificaciones.
+Objetivo general
+Diseñar e implementar una solución integrada de ingeniería de datos y analítica inteligente que convierta datos operacionales
+en información histórica confiable para Business Intelligence, Machine Learning y Generative AI.
+Objetivos específicos
+ 1. Analizar una base relacional e identificar entidades, relaciones, reglas de negocio y oportunidades de análisis.
+ 2. Diseñar procesos de extracción inicial e incremental desde la fuente hacia staging.
+ 3. Aplicar perfilado, limpieza, estandarización, integración, validación y gestión de errores.
+ 4. Diseñar un modelo dimensional en SQL Server con hechos y dimensiones.
+ 5. Construir un dashboard web que consulte el Data Warehouse.
+
+PAGINA 3
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 3
+6. Entrenar y evaluar al menos un modelo de Machine Learning con Python, evitando data leakage.
+ 7. Integrar IA generativa para responder preguntas o producir explicaciones basadas en datos verificables.
+ 8. Implementar alertas automáticas basadas en reglas, predicciones o resultados analíticos.
+ 9. Documentar, probar, desplegar y demostrar la solución completa.
+
+Resultados de aprendizaje
+  Distinguir OLTP de OLAP y comprender la arquitectura por capas.
+  Aplicar ETL/ELT, staging, cargas incrementales y orquestación.
+  Diseñar granularidad, hechos, dimensiones, claves sustitutas y dimensiones históricas.
+  Medir y mejorar la calidad de datos con reglas reproducibles.
+  Construir aplicaciones que consuman servicios y datos analíticos.
+  Evaluar modelos predictivos con métricas adecuadas y conjuntos separados.
+  Diseñar integraciones de IA con controles de acceso y trazabilidad.
+  Comunicar decisiones técnicas mediante documentación, diagramas y demos.
+
+Principios de trabajo
+  Reproducibilidad: otro integrante debe poder ejecutar el proyecto siguiendo el README.
+  Trazabilidad: conocer el origen y las transformaciones de cada dato relevante.
+  Calidad: un proceso exitoso no implica automáticamente datos correctos.
+  Seguridad: mínimo privilegio; nunca publicar contraseñas, tokens ni datos sensibles.
+  Justificación: explicar por qué se eligió cada tecnología y diseño.
+  Integración: los componentes deben funcionar como una sola solución.
+
+2. Alcance y arquitectura de referencia
+La arquitectura se organiza por capas. Cada una tiene una responsabilidad y una interfaz definida con las demás.
+Capa
+Responsabilidad
+Resultado
+1. Fuente
+operacional
+Registrar transacciones.
+PostgreSQL o SQL Server.
+2. Extracción
+Leer datos completos o cambios.
+Carga de origen a staging con trazabilidad.
+3. Staging
+Conservar y preparar datos recibidos.
+Datos raw y datos depurados/validados.
+4. Data Warehouse
+Organizar datos para análisis dimensional.
+Facts y dimensions en SQL Server.
+5. BI / API
+Exponer métricas y consultas.
+Dashboard web conectado al DW.
+6. ML / GenAI
+Producir predicciones y explicaciones.
+Modelos y servicios trazables.
+7. Notificaciones
+Comunicar condiciones relevantes.
+Alertas en web o por otros canales.
+Flujo principal: Base relacional → extracción → staging raw → limpieza y validación → staging preparado → carga
+dimensional → Data Warehouse → BI / ML / GenAI → alertas.
+El monitoreo será transversal: registrar ejecuciones ETL, errores, tiempos, conteos, estado de cargas, versiones de modelos y
+entregas de notificaciones.
+Decisiones que deben documentarse
+  ¿La extracción será batch, incremental o basada en eventos? ¿Por qué?
+  ¿Staging separará datos originales de datos depurados?
+  ¿Qué herramienta ejecutará y programará los pipelines?
+  ¿Cómo se manejarán fallas, reintentos y registros tardíos?
+  ¿Cómo se actualizarán hechos y dimensiones?
+
+PAGINA 4
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 4
+ ¿Qué frecuencia necesita el dashboard?
+  ¿Qué significa 'tiempo real' en el caso de uso?
+  ¿Qué componentes se ejecutarán en contenedores?
+
+Límite recomendado del alcance
+Seleccionar un proceso principal (por ejemplo, ventas) y desarrollar el flujo completo. Se pueden agregar compras o
+inventario, pero no sacrificar la calidad del flujo principal por cubrir demasiadas áreas.
+3. Fuente de datos y preparación del entorno
+Base de datos sugerida
+WideWorldImporters es una alternativa recomendada para un escenario comercial en SQL Server. Incluye clientes,
+proveedores, productos, ventas, compras, inventario y operaciones de almacén; permite construir varios procesos
+dimensionales.
+Recursos: repositorio WideWorldImporters · documentación Microsoft.
+Dataset
+Ventaja
+Consideración
+AdventureWorks
+Escenario comercial amplio: ventas, productos y clientes.
+Buena alternativa para SQL Server.
+Pagila
+Base de ejemplo PostgreSQL: clientes, alquileres y pagos.
+Útil para origen PostgreSQL y destino SQL
+Server.
+Chinook
+Pequeña y fácil de comprender.
+Puede ser limitada para un proyecto avanzado.
+La elección debe justificarse por volumen, variedad de entidades, fechas disponibles, complejidad de relaciones y viabilidad
+del caso predictivo. Si faltan observaciones temporales, no se debe prometer un pronóstico robusto.
+Preparación del ambiente
+  Documentar versiones de motores, librerías y herramientas.
+  Crear bases o esquemas separados para fuente, staging y Data Warehouse.
+  Crear usuarios técnicos con permisos mínimos; evitar cuentas administradoras en la aplicación.
+  Mantener secretos en variables de entorno. Incluir .env.example sin credenciales reales.
+  Definir datos de prueba y procedimiento para reiniciar el ambiente.
+  Versionar scripts SQL, código, configuraciones y documentación.
+  Si se utiliza Docker Compose, documentar puertos, volúmenes, dependencias y comandos.
+
+Análisis inicial de la fuente
+Antes de programar ETL, elaborar inventario de tablas, columnas, tipos, claves, relaciones y volúmenes. Identificar tablas
+transaccionales, catálogos, campos de fecha, claves naturales y columnas de auditoría.
+  Diagrama entidad-relación (ERD) de las tablas relevantes.
+  Diccionario de datos.
+  Perfil de columnas: nulos, cardinalidad, rangos, formatos y valores frecuentes.
+  Identificación de claves primarias, foráneas y posibles duplicados.
+  Preguntas analíticas que la solución pretende responder.
+
+PAGINA 5
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 5
+4. Extracción, staging y transformación
+Herramientas ETL/ELT
+ Herramienta
+Uso sugerido
+Consideración
+Apache Hop
+Diseño visual de pipelines ETL.
+Open source; opción visual.
+Python
+Extracción y transformaciones especializadas.
+Código reutilizable y probado.
+Apache Airflow
+Orquestación, dependencias, reintentos y
+programación.
+No reemplaza la lógica ETL.
+dbt Core
+Transformaciones SQL, documentación y pruebas.
+Transforma datos dentro del motor.
+Apache NiFi
+Movimiento y enrutamiento de datos.
+Útil para flujos entre sistemas.
+SSIS
+Integración en ecosistema Microsoft.
+Revisar edición y licenciamiento.
+No es obligatorio combinar todas las herramientas. Python + SQL Server puede bastar para un proyecto pequeño. Apache
+Hop es una opción visual; Airflow se justifica cuando existen dependencias y programación complejas. La selección debe
+evitar complejidad innecesaria.
+Capas de staging
+ Zona
+Propósito
+Regla
+Landing / Raw
+Conservar lo recibido desde la fuente.
+No sobrescribir silenciosamente los datos originales.
+Clean / Validated
+Aplicar conversiones, limpieza y validaciones.
+Registrar reglas y registros rechazados.
+Ready / Integration
+Integrar entidades y preparar datos para el DW.
+Conservar claves de negocio y linaje.
+Transformaciones obligatorias
+ Actividad
+Guía y evidencia
+Data profiling
+Conteos, porcentajes nulos, valores distintos, mínimos, máximos y formatos.
+Limpieza
+Corregir espacios, caracteres inválidos y formatos según reglas documentadas.
+Nulos
+Clasificar causa; conservar, imputar, marcar, derivar o rechazar con justificación.
+Duplicados
+Definir clave de duplicidad y regla de supervivencia; no borrar sin justificar.
+Estandarización
+Unificar fechas, textos, códigos, unidades, monedas y zonas horarias.
+Tipos de datos
+Convertir explícitamente; manejar errores sin truncar ni perder precisión.
+Integridad referencial
+Detectar huérfanos y decidir corrección, cuarentena o miembro desconocido.
+Outliers
+Detectar por reglas estadísticas o de negocio; investigar antes de eliminar.
+Reglas de negocio
+Validar rangos, estados, fechas, cantidades y coherencia entre campos.
+Enriquecimiento
+Crear atributos derivados con lógica reproducible.
+Integración
+Combinar tablas y controlar joins uno-a-muchos para no multiplicar medidas.
+Históricos
+Preservar cambios cuando se requiera analizar el estado en el tiempo.
+Errores / cuarentena
+Guardar registro, fuente, fecha, ejecución, regla fallida y detalle.
+Linaje
+Registrar fuente, transformación y destino.
+Manejo de nulos: guía de decisión
+  No aplica: conservar NULL o un estado explícito si el modelo lo requiere.
+  Desconocido: categoría controlada como 'Desconocido'; no confundir con cero.
+  Pendiente: conservar el estado y permitir actualización posterior.
+  Error de captura: corregir solo con regla confiable; de lo contrario, cuarentena.
+  Medida numérica: no reemplazar automáticamente por cero; cero puede tener significado real.
+
+PAGINA 6
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 6
+Toda imputación debe documentar método, justificación, campo afectado e impacto potencial. En Machine Learning, los
+parámetros de imputación deben ajustarse solo con datos de entrenamiento.
+Carga inicial e incremental
+Implementar una carga inicial y otra incremental. Para incremental se puede utilizar UpdatedAt, watermark, CDC o estrategia
+equivalente. Explicar cómo se manejan actualizaciones, eliminaciones y registros tardíos.
+  Persistir watermark y actualizarlo solo cuando la carga termine correctamente.
+  Usar ventana de solapamiento si existen retrasos en la fuente.
+  Definir detección de eliminaciones si aplica.
+  Evitar duplicados mediante claves y upsert controlado.
+  Hacer que la reejecución no duplique resultados (idempotencia).
+  Registrar conteos leídos, transformados, cargados y rechazados.
+
+Auditoría mínima
+ Campo
+Descripción
+execution_id / pipeline_name
+Identificador de ejecución y nombre del proceso.
+start_time / end_time
+Inicio y finalización.
+source_object / target_object
+Objeto de origen y destino.
+rows_read / inserted / updated / rejected
+Conteos por etapa.
+status / error_detail
+Estado y contexto del error.
+watermark_start / watermark_end
+Rango incremental procesado.
+5. Modelo dimensional y Data Warehouse
+Star Schema y Snowflake Schema
+Star Schema (esquema estrella): una tabla de hechos se relaciona directamente con dimensiones generalmente
+desnormalizadas. Facilita comprensión y consultas.
+Snowflake Schema (esquema copo de nieve): algunas dimensiones se normalizan en subdimensiones. Puede reducir
+redundancia, pero aumenta la complejidad.
+Recomendación: comenzar con Star Schema. Normalizar una dimensión solo si existe una razón concreta, como
+reutilización, jerarquías o mantenimiento de atributos.
+Proceso de diseño
+ 1. Seleccionar el proceso de negocio: ventas, compras o inventario.
+ 2. Declarar el grano: exactamente qué representa una fila. Ejemplo: una línea de orden de venta.
+ 3. Identificar dimensiones: quién, qué, cuándo, dónde y bajo qué condiciones.
+ 4. Identificar hechos: cantidades, importes, descuentos, costos u otras medidas.
+ 5. Definir claves sustitutas y conservar claves naturales para trazabilidad.
+ 6. Definir cambios históricos: SCD Tipo 1, Tipo 2 u otra estrategia justificada.
+ 7. Implementar y probar relaciones, grano y agregaciones.
+
+PAGINA 7
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 7
+Ejemplo de modelo de ventas
+ Objeto
+Tipo
+Ejemplos de atributos
+FactSales
+Hechos
+DateKey, CustomerKey, ProductKey, Quantity, UnitPrice, Discount, SalesAmount.
+DimDate
+Dimensión
+DateKey, Date, Day, Month, Quarter, Year, IsWeekend.
+DimCustomer
+Dimensión
+CustomerKey, CustomerID, Name, Segment, City, ValidFrom, ValidTo, IsCurrent.
+DimProduct
+Dimensión
+ProductKey, ProductID, ProductName, Category, Brand.
+DimEmployee
+Dimensión
+EmployeeKey, EmployeeID, Name, Role.
+DimGeography
+Dimensión
+GeographyKey, City, Region, Country.
+Ejemplo conceptual: los campos definitivos deben corresponder al dataset y al grano elegido.
+Conceptos que deben demostrarse
+  Granularidad: no mezclar una fila por orden con una fila por línea de orden.
+  Medidas aditivas: sumables en todas las dimensiones, por ejemplo cantidad vendida.
+  Semi-aditivas: sumables en algunas dimensiones, pero no en el tiempo, como saldo de inventario.
+  No aditivas: ratios o porcentajes que deben recalcularse, no sumarse.
+  Dimensión fecha: calendario, períodos y atributos de análisis.
+  Dimensión desconocida: política para hechos sin dimensión correspondiente.
+  SCD Tipo 1: sobrescribe el valor; Tipo 2: crea una versión nueva para preservar historia.
+
+Carga y reconciliación
+Resolver las claves de dimensión antes de insertar hechos. Evitar joins uno-a-muchos que multipliquen importes. Comparar
+conteos y totales entre origen, staging y Data Warehouse, considerando filtros, rechazos y diferencias justificadas.
+Entregables de esta etapa
+  Diagrama dimensional editable.
+  Documento de grano y definición de medidas.
+  Diccionario de datos del Data Warehouse.
+  Scripts SQL de creación, índices, constraints y cargas.
+  Diseño de claves sustitutas y estrategia SCD.
+  Consultas de reconciliación y resultados.
+
+6. Business Intelligence y dashboard web
+El dashboard será una aplicación web para análisis histórico y descriptivo. Debe consultar el Data Warehouse mediante un
+backend o capa de servicios; el navegador no debe conectarse directamente a SQL Server.
+Componente
+Alternativas
+Frontend
+React o Angular.
+Backend
+FastAPI (Python), .NET o Node.js.
+Gráficos
+Apache ECharts, Chart.js o Recharts.
+Base analítica
+SQL Server Data Warehouse.
+Funcionalidades mínimas
+  Autenticación o mecanismo de acceso apropiado para la demo.
+  Panel principal con 4 a 6 KPIs relevantes.
+  Filtros por fecha y al menos dos dimensiones.
+  Tendencias históricas y comparaciones entre períodos.
+
+PAGINA 8
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 8
+ Visualizaciones por categoría, producto, cliente o región.
+  Tabla de detalle con paginación o límites razonables.
+  Drill-down o navegación desde resumen a detalle.
+  Fecha y hora de última actualización de datos.
+  Estados de carga, error y ausencia de datos.
+  Interfaz usable en escritorio y, preferiblemente, móvil.
+
+Definición y validación de KPIs
+Cada KPI debe tener nombre, propósito, fórmula, unidad, granularidad, filtros, fuente y responsable. Ejemplo: ventas netas =
+importe bruto − descuentos − devoluciones, si esa definición corresponde al dataset.
+  Comparar cada KPI con consulta SQL independiente.
+  Probar filtros combinados y períodos sin datos.
+  Verificar que los totales no se dupliquen por joins.
+  Comprobar permisos y que la interfaz no exponga credenciales.
+  Documentar tiempo de respuesta de consultas principales.
+ Regla: los indicadores descriptivos provienen del Data Warehouse. Si se muestra información predictiva, identificarla
+claramente como predicción y no como dato histórico.
+7. Machine Learning y modelo predictivo
+Desarrollar al menos un modelo con Python. Elegir un problema que pueda formularse con los datos disponibles, definir la
+variable objetivo y explicar qué decisión ayudará a tomar.
+Problema
+Tipo
+Métricas posibles
+Pronóstico de ventas/demanda
+Regresión / series temporales
+MAE, RMSE, MAPE o sMAPE.
+Riesgo de
+incumplimiento/abandono
+Clasificación
+Precision, Recall, F1, ROC-AUC, PR-AUC.
+Segmentación de clientes
+Clustering
+Silhouette y utilidad de negocio.
+Detección de anomalías
+Anomaly detection
+Precision/Recall con etiquetas o revisión experta.
+Flujo obligatorio
+ 1. Definir problema, usuario y decisión que apoyará el modelo.
+ 2. Extraer datos del Data Warehouse o una vista analítica controlada.
+ 3. Analizar distribución, calidad, faltantes y sesgos posibles.
+ 4. Construir variables (feature engineering) con lógica reproducible.
+ 5. Separar entrenamiento, validación y prueba; respetar el tiempo en predicción futura.
+ 6. Crear una línea base (baseline).
+ 7. Entrenar y ajustar sin utilizar el conjunto de prueba para tomar decisiones.
+ 8. Evaluar con métricas apropiadas y explicar limitaciones.
+ 9. Guardar modelo, parámetros, fecha, versión y métricas.
+ 10. Exponer predicciones mediante API o proceso programado.
+ 11. Guardar resultados con versión del modelo, fecha de predicción y horizonte.
+ 12. Mostrar predicciones y métricas en dashboard o módulo de resultados.
+
+Herramientas y buenas prácticas
+  Python, Pandas y NumPy para preparación; Scikit-learn para modelos clásicos.
+  Statsmodels u otras librerías para series temporales, si corresponde.
+
+PAGINA 9
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 9
+ XGBoost como alternativa justificada; MLflow como extensión.
+  Evitar data leakage: ninguna variable debe contener información que solo se conoce después del momento de predicción.
+  En series temporales, no dividir aleatoriamente si eso permite entrenar con el futuro y probar con el pasado.
+  Comparar con una predicción simple (baseline).
+  Documentar sesgos, frecuencia de reentrenamiento y monitoreo.
+  Si faltan datos, reducir alcance y explicar la limitación; no fabricar resultados.
+ Criterio de éxito: no se exige una cifra universal de precisión. Se exige formular bien el problema, evaluar correctamente,
+analizar la línea base y explicar la utilidad real del modelo.
+8. Inteligencia Artificial Generativa
+Implementar un componente generativo que utilice información del Data Warehouse para responder preguntas, resumir
+resultados o generar explicaciones. Caso sugerido: un asistente analítico de lenguaje natural.
+Ejemplos de preguntas
+  ¿Cuáles fueron las ventas del último trimestre?
+  ¿Qué categorías tuvieron mayor crecimiento?
+  Resume los principales cambios respecto al período anterior.
+  ¿Qué regiones presentan una disminución relevante?
+  Explica este indicador y señala qué datos respaldan la explicación.
+  ¿Qué análisis adicional convendría realizar?
+
+Arquitectura segura
+Usuario → chat web → backend/API → validación de identidad y permisos → servicio analítico o consultas controladas →
+resultados del Data Warehouse → modelo generativo → respuesta con contexto y fuentes.
+El modelo no debe tener acceso irrestricto ni ejecutar SQL arbitrario con privilegios elevados. Preferir consultas
+parametrizadas, vistas aprobadas o herramientas analíticas limitadas.
+Alternativa
+Uso y consideración
+OpenAI API
+Modelo alojado; revisar costos, cuotas y políticas de datos.
+Azure OpenAI
+Alternativa empresarial en Azure; depende de suscripción y disponibilidad.
+Ollama
+Ejecución local; requiere recursos de hardware.
+LangChain / LlamaIndex
+Frameworks opcionales para conectar modelos, herramientas y contexto.
+Requisitos de calidad y seguridad
+  Restringir consultas a datos autorizados.
+  Validar entradas y limitar tamaño y frecuencia de solicitudes.
+  No enviar datos personales o confidenciales a servicios externos sin autorización.
+  Mostrar fecha de actualización de los datos.
+  Distinguir hechos consultados, predicciones e interpretaciones generadas.
+  Exigir que respuestas incluyan métricas o períodos que las sustenten.
+  Responder que no hay datos suficientes cuando no exista respaldo.
+  Registrar consultas de forma compatible con privacidad y seguridad.
+  Probar preguntas ambiguas, fuera de alcance y con datos inexistentes.
+
+PAGINA 10
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 10
+Pruebas del asistente
+Crear al menos 10 preguntas de prueba. Registrar resultado esperado, consulta o métrica de respaldo, respuesta obtenida y
+presencia de afirmaciones no verificadas. Incluir al menos dos casos donde el sistema deba reconocer que no tiene
+información suficiente.
+9. Automatización, eventos y notificaciones
+Demostrar al menos un flujo de notificación de principio a fin. Se recomiendan tres tipos de disparadores:
+Tipo
+Ejemplo
+Resultado
+Regla de negocio
+Ventas caen más de 15% frente a referencia definida.
+Alerta con valor, umbral y período.
+Machine Learning
+Predicción de demanda por debajo de umbral.
+Alerta con predicción, horizonte y versión.
+Generative AI
+Anomalía detectada y se solicita resumen.
+Explicación y recomendación identificadas como
+generadas.
+Canales
+  Notificación dentro del dashboard.
+  Correo mediante SMTP o proveedor autorizado.
+  WebSockets para actualizar alertas visibles en la aplicación.
+  RabbitMQ o Redis si la arquitectura requiere mensajería.
+  Teams o Slack como extensión opcional.
+
+Contenido mínimo de una alerta
+  Identificador y fecha/hora del evento.
+  Tipo y severidad.
+  Indicador, entidad o proceso afectado.
+  Valor observado, umbral o predicción.
+  Período de referencia.
+  Origen: regla, modelo o IA.
+  Explicación y acción recomendada, si aplica.
+  Estado: nueva, atendida, descartada o resuelta.
+ Tiempo real: un ETL nocturno no produce alertas en tiempo real. Definir frecuencia medible. Para inmediatez, incorporar
+captura de eventos/CDC o procesamiento continuo. En demo se puede simular un evento, pero debe identificarse como
+simulación.
+Pruebas
+  Probar condición verdadera y falsa.
+  Evitar notificaciones duplicadas para el mismo evento sin control.
+  Verificar reintentos y fallas de envío.
+  Registrar generación y entrega.
+  Permitir consultar detalle y estado de alerta.
+
+10. Seguridad, calidad, operación y monitoreo
+Seguridad mínima
+  No almacenar contraseñas en el repositorio.
+  Aplicar mínimo privilegio en cuentas de base de datos y servicios.
+  Parametrizar consultas para reducir riesgo de inyección SQL.
+  Proteger endpoints y restringir acceso a información sensible.
+
+PAGINA 11
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 11
+ Usar datos de muestra o anonimizados cuando sea posible.
+  Documentar qué información se envía a servicios externos de IA.
+
+Monitoreo
+Crear una vista o reporte operativo con estado de ejecuciones ETL, hora de última carga exitosa, registros
+procesados/rechazados, duración, fallas recientes, versión del modelo y estado de notificaciones.
+Dimensión
+Ejemplo de medición
+Completitud
+Porcentaje de valores no nulos en campos obligatorios.
+Unicidad
+Número de claves duplicadas.
+Validez
+Porcentaje de valores que cumplen dominio y formato.
+Consistencia
+Porcentaje de reglas cruzadas correctas.
+Integridad
+Cantidad de registros huérfanos.
+Oportunidad
+Diferencia entre hora del evento y disponibilidad analítica.
+Continuidad y recuperación
+Documentar cómo reiniciar el pipeline, reintentar una carga fallida, restaurar la base de prueba y reconstruir el entorno. Incluir
+scripts en orden de ejecución. No se exige alta disponibilidad empresarial, pero sí recuperación reproducible.
+11. Plan de trabajo y entregables
+Plan sugerido de ocho fases. El docente puede ajustar semanas y fechas según la duración del curso.
+Fase
+Actividades
+Hito / evidencia
+1. Descubrimi
+ento
+Dataset, proceso, preguntas analíticas y requisitos.
+ERD, inventario, diccionario y alcance.
+2. Diseño
+Arquitectura, staging, grano, dimensiones y stack.
+Diagramas y decisiones técnicas.
+3. ETL y
+calidad
+Extracción, limpieza, auditoría y cuarentena.
+Pipelines y pruebas de calidad.
+4. Data
+Warehouse
+Modelo dimensional, cargas, SCD y reconciliación.
+Scripts, modelo y validaciones.
+5. BI
+API, dashboard, KPIs y validación.
+Aplicación conectada al DW.
+6. ML y GenAI
+Modelo Python, evaluación y asistente.
+Modelo/API, pruebas y casos.
+7. Automatiza
+ción
+Reglas, eventos, alertas y monitoreo.
+Notificación demostrable y logs.
+8. Integración
+Pruebas end-to-end, documentación y demo.
+Repositorio, manuales, video.
+Documentación obligatoria
+  Requerimientos funcionales y no funcionales.
+  Arquitectura de solución y diagrama general.
+  ERD de fuente y diccionario de datos.
+  Diagrama dimensional y diccionario del DW.
+  Diagramas de extracción, transformación, carga y orquestación.
+  Catálogo de reglas de calidad y transformación.
+  Documentación de APIs y contratos de datos.
+  Documento ML: problema, variables, experimentos, métricas y límites.
+  Documento GenAI: arquitectura, controles, pruebas y límites.
+  Documento de alertas y automatización.
+  Plan y resultados de pruebas.
+
+PAGINA 12
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 12
+ Manual de instalación, despliegue, operación y usuario.
+
+Software y código fuente
+  Código completo en repositorio Git.
+  Scripts de creación de bases, esquemas, tablas, vistas y procedimientos.
+  Pipelines ETL y configuración de orquestación.
+  Código frontend y backend.
+  Código de entrenamiento e inferencia.
+  Configuración del componente de IA generativa.
+  Código de notificaciones y reglas.
+  Datos de prueba o instrucciones para obtenerlos.
+  .env.example sin secretos y README con pasos exactos.
+
+Estructura sugerida del repositorio
+ data-platform/
+■■■ documentation/ (arquitectura, modelos, manuales, pruebas)
+■■■ database/ (source, staging, data-warehouse, scripts)
+■■■ etl/ (extraction, transformation, loading, orchestration)
+■■■ frontend/    ■■■ backend/
+■■■ machine-learning/ (notebooks, training, evaluation, models)
+■■■ generative-ai/    ■■■ notifications/
+■■■ tests/    ■■■ deployment/ (Docker, Compose)
+■■■ .env.example    ■■■ README.md
+Los notebooks sirven para exploración, pero la lógica necesaria para ejecutar el sistema debe estar organizada en módulos o
+scripts reutilizables. No depender exclusivamente de ejecutar celdas manualmente.
+12. Pruebas, criterios de aceptación y rúbrica
+ Prueba
+Qué debe demostrarse
+Carga inicial
+Se extrae y carga el conjunto acordado; se registran conteos.
+Carga incremental
+Se detectan cambios sin duplicar registros.
+Idempotencia
+Reejecutar el lote no duplica ni altera incorrectamente resultados.
+Nulos y duplicados
+Las reglas se aplican y los casos quedan documentados.
+Integridad
+Se identifican huérfanos y se aplica una política definida.
+Recuperación
+Una falla controlada puede reintentarse sin inconsistencias.
+Reconciliación
+Conteos y medidas se comparan entre capas.
+Dashboard
+KPIs coinciden con consultas SQL independientes.
+ML
+Baseline, evaluación en datos no usados para entrenar y limitaciones.
+GenAI
+Respuestas contrastadas con métricas reales; rechaza consultas no respaldadas.
+Alertas
+Se prueba disparo, no disparo, registro y entrega.
+End-to-end
+Flujo completo desde la fuente hasta el resultado visible.
+Evidencias aceptables
+  Logs con identificador de proceso.
+  Consultas SQL reproducibles y resultados.
+  Reportes de calidad antes y después.
+  Capturas de la aplicación con datos del entorno de prueba.
+  Resultados de pruebas automatizadas.
+  Métricas de evaluación y configuración del modelo.
+
+PAGINA 13
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 13
+ Registro de alertas y evidencia de entrega.
+  Video de ejecución y demostración en vivo.
+
+Rúbrica de evaluación sugerida
+ Criterio
+Peso
+Evaluación
+Análisis y arquitectura
+10%
+Comprensión del origen, alcance, decisiones y diagramas.
+ETL, staging y calidad
+20%
+Extracción, transformación, cargas, auditoría e idempotencia.
+Modelo dimensional
+15%
+Grano, hechos, dimensiones, SCD, integridad y reconciliación.
+Dashboard y API
+15%
+Usabilidad, KPIs correctos, filtros e integración.
+Machine Learning
+10%
+Problema, preparación, baseline, evaluación y servicio.
+Generative AI
+10%
+Datos verificables, seguridad y pruebas.
+Automatización
+5%
+Reglas, disparadores, registro y notificación.
+Pruebas y documentación
+10%
+Evidencias, manuales, instalación y recuperación.
+Demo y comunicación
+5%
+Claridad, ejecución real y tiempo.
+La rúbrica puede ajustarse por el docente. No otorgar puntuación completa a una interfaz visual si no se demuestra que
+consume datos o ejecuta el proceso.
+13. Demostración final y video
+Cada equipo entregará un video de cinco minutos y realizará una demostración funcional. Debe mostrar el sistema
+ejecutándose con datos de prueba y resultados trazables.
+Tiempo
+Contenido
+0:00–0:40
+Caso, arquitectura y tecnologías.
+0:40–1:30
+ETL: extracción, staging, transformación y controles.
+1:30–2:15
+Modelo dimensional, carga y consulta de validación.
+2:15–3:00
+Dashboard: KPIs, filtros y análisis histórico.
+3:00–3:45
+Modelo predictivo y explicación de una métrica.
+3:45–4:25
+Consulta al asistente generativo con respuesta respaldada.
+4:25–5:00
+Disparo y visualización de una alerta.
+Condiciones del video
+  Duración objetivo: cinco minutos; respetar límite del docente.
+  Audio claro y captura de pantalla legible.
+  Mostrar ejecución real, no solo diapositivas o imágenes estáticas.
+  No mostrar contraseñas, tokens ni datos sensibles.
+  Identificar eventos simulados para la demo.
+  Incluir una conclusión breve y señalar qué está funcionando.
+
+Condiciones de la demo en vivo
+  Tener ambiente preparado y conocer el procedimiento de inicio.
+  Ejecutar al menos un pipeline o lote de prueba.
+  Mostrar dashboard y una consulta analítica.
+  Ejecutar una predicción o consultar una con versión identificable.
+  Realizar una pregunta al componente generativo.
+  Disparar una alerta de prueba y mostrar registro o recepción.
+
+PAGINA 14
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 14
+ Explicar cómo se recuperaría una ejecución fallida.
+
+14. Recomendaciones finales y checklist
+Errores frecuentes que deben evitarse
+  Construir el dashboard antes de definir KPIs y modelo dimensional.
+  Copiar tablas al DW sin declarar granularidad ni dimensiones.
+  Reemplazar todos los nulos por cero sin entender su significado.
+  Eliminar duplicados sin regla de supervivencia.
+  Confundir un batch frecuente con tiempo real.
+  Evaluar un modelo con los mismos datos de entrenamiento.
+  Permitir que la IA genere cifras sin consultar una fuente autorizada.
+  Conectar el frontend directamente a SQL Server.
+  Entregar notebooks o diagramas sin scripts reproducibles.
+  Presentar componentes aislados sin integración.
+
+Checklist de entrega
+  ■ Alcance y preguntas analíticas documentados.
+  ■ Fuente identificada y ambiente reproducible.
+  ■ ERD y diccionario de datos completos.
+  ■ Staging conserva trazabilidad y separa raw de datos preparados.
+  ■ Reglas de calidad documentadas y probadas.
+  ■ Carga inicial e incremental, auditoría e idempotencia.
+  ■ Data Warehouse con grano, hechos, dimensiones y claves definidos.
+  ■ Resultados reconciliados con la fuente.
+  ■ Dashboard consulta el DW y KPIs validados.
+  ■ ML con baseline, métricas y prueba independiente.
+  ■ GenAI consulta datos autorizados y reconoce límites.
+  ■ Alertas disparadas y registradas.
+  ■ README permite ejecutar la solución.
+  ■ Repositorio libre de secretos.
+  ■ Diagramas, manuales y resultados de pruebas entregados.
+  ■ Video y demo funcional completos.
+
+PAGINA 15
+Guía del Proyecto · Ingeniería de Datos y Analítica Inteligente
+Página 15
+Stack de referencia
+ Componente
+Opción recomendada
+Origen
+WideWorldImporters (SQL Server) o Pagila (PostgreSQL).
+Staging y DW
+SQL Server.
+ETL
+Apache Hop o Python + SQL.
+Orquestación
+Airflow si la complejidad lo justifica.
+Backend / Frontend
+FastAPI / React.
+Visualización
+Apache ECharts.
+Machine Learning
+Python + Scikit-learn.
+Generative AI
+Ollama local u OpenAI API, según recursos y permisos.
+Notificaciones
+SMTP y notificaciones web; WebSockets si se requiere actualización inmediata.
+Versionamiento / despliegue
+Git y Docker Compose.
+Nota sobre costos: priorizar open source no significa que toda la solución sea gratuita. Los modelos alojados, infraestructura,
+correo y componentes empresariales pueden generar costos o requerir licencias. Identificar costos y proponer alternativa local
+o gratuita cuando sea viable.
+Mensaje final para los equipos: el éxito no se mide por la cantidad de herramientas utilizadas, sino por construir una
+solución coherente, confiable, documentada y reproducible. Cada decisión requiere justificación técnica y cada resultado
+importante debe contar con evidencia verificable.

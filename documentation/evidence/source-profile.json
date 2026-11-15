@@ -1,0 +1,2290 @@
+[
+  {
+    "query": "-- Ejecutar contra WideWorldImporters. Consultas de perfilado, sin modificar fuente.\nSELECT s.name AS schema_name,t.name AS table_name,p.rows AS row_count\nFROM sys.tables t JOIN sys.schemas s ON s.schema_id=t.schema_id\nJOIN sys.partitions p ON p.object_id=t.object_id AND p.index_id IN (0,1)\nORDER BY s.name,t.name;",
+    "rows": [
+      {
+        "schema_name": "Application",
+        "table_name": "Cities",
+        "row_count": 37940
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "Cities_Archive",
+        "row_count": 28
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "Countries",
+        "row_count": 190
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "Countries_Archive",
+        "row_count": 37
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "DeliveryMethods",
+        "row_count": 10
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "DeliveryMethods_Archive",
+        "row_count": 1
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "PaymentMethods",
+        "row_count": 4
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "PaymentMethods_Archive",
+        "row_count": 1
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "People",
+        "row_count": 1111
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "People_Archive",
+        "row_count": 961
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "StateProvinces",
+        "row_count": 53
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "StateProvinces_Archive",
+        "row_count": 104
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "SystemParameters",
+        "row_count": 1
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "TransactionTypes",
+        "row_count": 13
+      },
+      {
+        "schema_name": "Application",
+        "table_name": "TransactionTypes_Archive",
+        "row_count": 1
+      },
+      {
+        "schema_name": "Purchasing",
+        "table_name": "PurchaseOrderLines",
+        "row_count": 8367
+      },
+      {
+        "schema_name": "Purchasing",
+        "table_name": "PurchaseOrders",
+        "row_count": 2074
+      },
+      {
+        "schema_name": "Purchasing",
+        "table_name": "SupplierCategories",
+        "row_count": 9
+      },
+      {
+        "schema_name": "Purchasing",
+        "table_name": "SupplierCategories_Archive",
+        "row_count": 1
+      },
+      {
+        "schema_name": "Purchasing",
+        "table_name": "Suppliers",
+        "row_count": 13
+      },
+      {
+        "schema_name": "Purchasing",
+        "table_name": "Suppliers_Archive",
+        "row_count": 13
+      },
+      {
+        "schema_name": "Purchasing",
+        "table_name": "SupplierTransactions",
+        "row_count": 715
+      },
+      {
+        "schema_name": "Purchasing",
+        "table_name": "SupplierTransactions",
+        "row_count": 708
+      },
+      {
+        "schema_name": "Purchasing",
+        "table_name": "SupplierTransactions",
+        "row_count": 714
+      },
+      {
+        "schema_name": "Purchasing",
+        "table_name": "SupplierTransactions",
+        "row_count": 301
+      },
+      {
+        "schema_name": "Purchasing",
+        "table_name": "SupplierTransactions",
+        "row_count": 0
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "BuyingGroups",
+        "row_count": 2
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "BuyingGroups_Archive",
+        "row_count": 0
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerCategories",
+        "row_count": 8
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerCategories_Archive",
+        "row_count": 1
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "row_count": 663
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers_Archive",
+        "row_count": 51
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerTransactions",
+        "row_count": 25536
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerTransactions",
+        "row_count": 27917
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerTransactions",
+        "row_count": 30885
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerTransactions",
+        "row_count": 12809
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerTransactions",
+        "row_count": 0
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "row_count": 228265
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "row_count": 70510
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "OrderLines",
+        "row_count": 231412
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Orders",
+        "row_count": 73595
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "SpecialDeals",
+        "row_count": 2
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "ColdRoomTemperatures",
+        "row_count": 4
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "ColdRoomTemperatures_Archive",
+        "row_count": 3654736
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "Colors",
+        "row_count": 36
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "Colors_Archive",
+        "row_count": 1
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "PackageTypes",
+        "row_count": 14
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "PackageTypes_Archive",
+        "row_count": 0
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockGroups",
+        "row_count": 10
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockGroups_Archive",
+        "row_count": 1
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItemHoldings",
+        "row_count": 227
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "row_count": 227
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems_Archive",
+        "row_count": 444
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItemStockGroups",
+        "row_count": 442
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItemTransactions",
+        "row_count": 236667
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "VehicleTemperatures",
+        "row_count": 65998
+      }
+    ]
+  },
+  {
+    "query": "SELECT s.name AS schema_name,t.name AS table_name,c.column_id,c.name AS column_name,\n ty.name AS data_type,c.max_length,c.precision,c.scale,c.is_nullable,c.is_identity\nFROM sys.tables t JOIN sys.schemas s ON s.schema_id=t.schema_id\nJOIN sys.columns c ON c.object_id=t.object_id JOIN sys.types ty ON ty.user_type_id=c.user_type_id\nWHERE (s.name='Sales' AND t.name IN ('Invoices','InvoiceLines','Customers','CustomerCategories'))\nOR (s.name='Warehouse' AND t.name IN ('StockItems','StockGroups','StockItemStockGroups'))\nORDER BY s.name,t.name,c.column_id;",
+    "rows": [
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerCategories",
+        "column_id": 1,
+        "column_name": "CustomerCategoryID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerCategories",
+        "column_id": 2,
+        "column_name": "CustomerCategoryName",
+        "data_type": "nvarchar",
+        "max_length": 100,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerCategories",
+        "column_id": 3,
+        "column_name": "LastEditedBy",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerCategories",
+        "column_id": 4,
+        "column_name": "ValidFrom",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "CustomerCategories",
+        "column_id": 5,
+        "column_name": "ValidTo",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 1,
+        "column_name": "CustomerID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 2,
+        "column_name": "CustomerName",
+        "data_type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 3,
+        "column_name": "BillToCustomerID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 4,
+        "column_name": "CustomerCategoryID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 5,
+        "column_name": "BuyingGroupID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 6,
+        "column_name": "PrimaryContactPersonID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 7,
+        "column_name": "AlternateContactPersonID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 8,
+        "column_name": "DeliveryMethodID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 9,
+        "column_name": "DeliveryCityID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 10,
+        "column_name": "PostalCityID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 11,
+        "column_name": "CreditLimit",
+        "data_type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 12,
+        "column_name": "AccountOpenedDate",
+        "data_type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 13,
+        "column_name": "StandardDiscountPercentage",
+        "data_type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 3,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 14,
+        "column_name": "IsStatementSent",
+        "data_type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 15,
+        "column_name": "IsOnCreditHold",
+        "data_type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 16,
+        "column_name": "PaymentDays",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 17,
+        "column_name": "PhoneNumber",
+        "data_type": "nvarchar",
+        "max_length": 40,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 18,
+        "column_name": "FaxNumber",
+        "data_type": "nvarchar",
+        "max_length": 40,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 19,
+        "column_name": "DeliveryRun",
+        "data_type": "nvarchar",
+        "max_length": 10,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 20,
+        "column_name": "RunPosition",
+        "data_type": "nvarchar",
+        "max_length": 10,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 21,
+        "column_name": "WebsiteURL",
+        "data_type": "nvarchar",
+        "max_length": 512,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 22,
+        "column_name": "DeliveryAddressLine1",
+        "data_type": "nvarchar",
+        "max_length": 120,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 23,
+        "column_name": "DeliveryAddressLine2",
+        "data_type": "nvarchar",
+        "max_length": 120,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 24,
+        "column_name": "DeliveryPostalCode",
+        "data_type": "nvarchar",
+        "max_length": 20,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 25,
+        "column_name": "DeliveryLocation",
+        "data_type": "geography",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 26,
+        "column_name": "PostalAddressLine1",
+        "data_type": "nvarchar",
+        "max_length": 120,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 27,
+        "column_name": "PostalAddressLine2",
+        "data_type": "nvarchar",
+        "max_length": 120,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 28,
+        "column_name": "PostalPostalCode",
+        "data_type": "nvarchar",
+        "max_length": 20,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 29,
+        "column_name": "LastEditedBy",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 30,
+        "column_name": "ValidFrom",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Customers",
+        "column_id": 31,
+        "column_name": "ValidTo",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 1,
+        "column_name": "InvoiceLineID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 2,
+        "column_name": "InvoiceID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 3,
+        "column_name": "StockItemID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 4,
+        "column_name": "Description",
+        "data_type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 5,
+        "column_name": "PackageTypeID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 6,
+        "column_name": "Quantity",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 7,
+        "column_name": "UnitPrice",
+        "data_type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 8,
+        "column_name": "TaxRate",
+        "data_type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 3,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 9,
+        "column_name": "TaxAmount",
+        "data_type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 10,
+        "column_name": "LineProfit",
+        "data_type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 11,
+        "column_name": "ExtendedPrice",
+        "data_type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 12,
+        "column_name": "LastEditedBy",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "InvoiceLines",
+        "column_id": 13,
+        "column_name": "LastEditedWhen",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 1,
+        "column_name": "InvoiceID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 2,
+        "column_name": "CustomerID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 3,
+        "column_name": "BillToCustomerID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 4,
+        "column_name": "OrderID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 5,
+        "column_name": "DeliveryMethodID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 6,
+        "column_name": "ContactPersonID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 7,
+        "column_name": "AccountsPersonID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 8,
+        "column_name": "SalespersonPersonID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 9,
+        "column_name": "PackedByPersonID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 10,
+        "column_name": "InvoiceDate",
+        "data_type": "date",
+        "max_length": 3,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 11,
+        "column_name": "CustomerPurchaseOrderNumber",
+        "data_type": "nvarchar",
+        "max_length": 40,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 12,
+        "column_name": "IsCreditNote",
+        "data_type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 13,
+        "column_name": "CreditNoteReason",
+        "data_type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 14,
+        "column_name": "Comments",
+        "data_type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 15,
+        "column_name": "DeliveryInstructions",
+        "data_type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 16,
+        "column_name": "InternalComments",
+        "data_type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 17,
+        "column_name": "TotalDryItems",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 18,
+        "column_name": "TotalChillerItems",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 19,
+        "column_name": "DeliveryRun",
+        "data_type": "nvarchar",
+        "max_length": 10,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 20,
+        "column_name": "RunPosition",
+        "data_type": "nvarchar",
+        "max_length": 10,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 21,
+        "column_name": "ReturnedDeliveryData",
+        "data_type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 22,
+        "column_name": "ConfirmedDeliveryTime",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 23,
+        "column_name": "ConfirmedReceivedBy",
+        "data_type": "nvarchar",
+        "max_length": 8000,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 24,
+        "column_name": "LastEditedBy",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Sales",
+        "table_name": "Invoices",
+        "column_id": 25,
+        "column_name": "LastEditedWhen",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockGroups",
+        "column_id": 1,
+        "column_name": "StockGroupID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockGroups",
+        "column_id": 2,
+        "column_name": "StockGroupName",
+        "data_type": "nvarchar",
+        "max_length": 100,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockGroups",
+        "column_id": 3,
+        "column_name": "LastEditedBy",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockGroups",
+        "column_id": 4,
+        "column_name": "ValidFrom",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockGroups",
+        "column_id": 5,
+        "column_name": "ValidTo",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 1,
+        "column_name": "StockItemID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 2,
+        "column_name": "StockItemName",
+        "data_type": "nvarchar",
+        "max_length": 200,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 3,
+        "column_name": "SupplierID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 4,
+        "column_name": "ColorID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 5,
+        "column_name": "UnitPackageID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 6,
+        "column_name": "OuterPackageID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 7,
+        "column_name": "Brand",
+        "data_type": "nvarchar",
+        "max_length": 100,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 8,
+        "column_name": "Size",
+        "data_type": "nvarchar",
+        "max_length": 40,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 9,
+        "column_name": "LeadTimeDays",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 10,
+        "column_name": "QuantityPerOuter",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 11,
+        "column_name": "IsChillerStock",
+        "data_type": "bit",
+        "max_length": 1,
+        "precision": 1,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 12,
+        "column_name": "Barcode",
+        "data_type": "nvarchar",
+        "max_length": 100,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 13,
+        "column_name": "TaxRate",
+        "data_type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 3,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 14,
+        "column_name": "UnitPrice",
+        "data_type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 15,
+        "column_name": "RecommendedRetailPrice",
+        "data_type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 2,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 16,
+        "column_name": "TypicalWeightPerUnit",
+        "data_type": "decimal",
+        "max_length": 9,
+        "precision": 18,
+        "scale": 3,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 17,
+        "column_name": "MarketingComments",
+        "data_type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 18,
+        "column_name": "InternalComments",
+        "data_type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 19,
+        "column_name": "Photo",
+        "data_type": "varbinary",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 20,
+        "column_name": "CustomFields",
+        "data_type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 21,
+        "column_name": "Tags",
+        "data_type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": true,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 22,
+        "column_name": "SearchDetails",
+        "data_type": "nvarchar",
+        "max_length": -1,
+        "precision": 0,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 23,
+        "column_name": "LastEditedBy",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 24,
+        "column_name": "ValidFrom",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItems",
+        "column_id": 25,
+        "column_name": "ValidTo",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItemStockGroups",
+        "column_id": 1,
+        "column_name": "StockItemStockGroupID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItemStockGroups",
+        "column_id": 2,
+        "column_name": "StockItemID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItemStockGroups",
+        "column_id": 3,
+        "column_name": "StockGroupID",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItemStockGroups",
+        "column_id": 4,
+        "column_name": "LastEditedBy",
+        "data_type": "int",
+        "max_length": 4,
+        "precision": 10,
+        "scale": 0,
+        "is_nullable": false,
+        "is_identity": false
+      },
+      {
+        "schema_name": "Warehouse",
+        "table_name": "StockItemStockGroups",
+        "column_id": 5,
+        "column_name": "LastEditedWhen",
+        "data_type": "datetime2",
+        "max_length": 8,
+        "precision": 27,
+        "scale": 7,
+        "is_nullable": false,
+        "is_identity": false
+      }
+    ]
+  },
+  {
+    "query": "SELECT fk.name AS fk_name,OBJECT_SCHEMA_NAME(fk.parent_object_id) AS source_schema,\n OBJECT_NAME(fk.parent_object_id) AS source_table,pc.name AS source_column,\n OBJECT_SCHEMA_NAME(fk.referenced_object_id) AS target_schema,\n OBJECT_NAME(fk.referenced_object_id) AS target_table,rc.name AS target_column\nFROM sys.foreign_keys fk JOIN sys.foreign_key_columns fc ON fk.object_id=fc.constraint_object_id\nJOIN sys.columns pc ON pc.object_id=fc.parent_object_id AND pc.column_id=fc.parent_column_id\nJOIN sys.columns rc ON rc.object_id=fc.referenced_object_id AND rc.column_id=fc.referenced_column_id\nWHERE OBJECT_SCHEMA_NAME(fk.parent_object_id) IN ('Sales','Warehouse')\nORDER BY source_schema,source_table,fk.name;",
+    "rows": [
+      {
+        "fk_name": "FK_Sales_BuyingGroups_Application_People",
+        "source_schema": "Sales",
+        "source_table": "BuyingGroups",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_CustomerCategories_Application_People",
+        "source_schema": "Sales",
+        "source_table": "CustomerCategories",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_Customers_AlternateContactPersonID_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Customers",
+        "source_column": "AlternateContactPersonID",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_Customers_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Customers",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_Customers_BillToCustomerID_Sales_Customers",
+        "source_schema": "Sales",
+        "source_table": "Customers",
+        "source_column": "BillToCustomerID",
+        "target_schema": "Sales",
+        "target_table": "Customers",
+        "target_column": "CustomerID"
+      },
+      {
+        "fk_name": "FK_Sales_Customers_BuyingGroupID_Sales_BuyingGroups",
+        "source_schema": "Sales",
+        "source_table": "Customers",
+        "source_column": "BuyingGroupID",
+        "target_schema": "Sales",
+        "target_table": "BuyingGroups",
+        "target_column": "BuyingGroupID"
+      },
+      {
+        "fk_name": "FK_Sales_Customers_CustomerCategoryID_Sales_CustomerCategories",
+        "source_schema": "Sales",
+        "source_table": "Customers",
+        "source_column": "CustomerCategoryID",
+        "target_schema": "Sales",
+        "target_table": "CustomerCategories",
+        "target_column": "CustomerCategoryID"
+      },
+      {
+        "fk_name": "FK_Sales_Customers_DeliveryCityID_Application_Cities",
+        "source_schema": "Sales",
+        "source_table": "Customers",
+        "source_column": "DeliveryCityID",
+        "target_schema": "Application",
+        "target_table": "Cities",
+        "target_column": "CityID"
+      },
+      {
+        "fk_name": "FK_Sales_Customers_DeliveryMethodID_Application_DeliveryMethods",
+        "source_schema": "Sales",
+        "source_table": "Customers",
+        "source_column": "DeliveryMethodID",
+        "target_schema": "Application",
+        "target_table": "DeliveryMethods",
+        "target_column": "DeliveryMethodID"
+      },
+      {
+        "fk_name": "FK_Sales_Customers_PostalCityID_Application_Cities",
+        "source_schema": "Sales",
+        "source_table": "Customers",
+        "source_column": "PostalCityID",
+        "target_schema": "Application",
+        "target_table": "Cities",
+        "target_column": "CityID"
+      },
+      {
+        "fk_name": "FK_Sales_Customers_PrimaryContactPersonID_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Customers",
+        "source_column": "PrimaryContactPersonID",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_CustomerTransactions_Application_People",
+        "source_schema": "Sales",
+        "source_table": "CustomerTransactions",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_CustomerTransactions_CustomerID_Sales_Customers",
+        "source_schema": "Sales",
+        "source_table": "CustomerTransactions",
+        "source_column": "CustomerID",
+        "target_schema": "Sales",
+        "target_table": "Customers",
+        "target_column": "CustomerID"
+      },
+      {
+        "fk_name": "FK_Sales_CustomerTransactions_InvoiceID_Sales_Invoices",
+        "source_schema": "Sales",
+        "source_table": "CustomerTransactions",
+        "source_column": "InvoiceID",
+        "target_schema": "Sales",
+        "target_table": "Invoices",
+        "target_column": "InvoiceID"
+      },
+      {
+        "fk_name": "FK_Sales_CustomerTransactions_PaymentMethodID_Application_PaymentMethods",
+        "source_schema": "Sales",
+        "source_table": "CustomerTransactions",
+        "source_column": "PaymentMethodID",
+        "target_schema": "Application",
+        "target_table": "PaymentMethods",
+        "target_column": "PaymentMethodID"
+      },
+      {
+        "fk_name": "FK_Sales_CustomerTransactions_TransactionTypeID_Application_TransactionTypes",
+        "source_schema": "Sales",
+        "source_table": "CustomerTransactions",
+        "source_column": "TransactionTypeID",
+        "target_schema": "Application",
+        "target_table": "TransactionTypes",
+        "target_column": "TransactionTypeID"
+      },
+      {
+        "fk_name": "FK_Sales_InvoiceLines_Application_People",
+        "source_schema": "Sales",
+        "source_table": "InvoiceLines",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_InvoiceLines_InvoiceID_Sales_Invoices",
+        "source_schema": "Sales",
+        "source_table": "InvoiceLines",
+        "source_column": "InvoiceID",
+        "target_schema": "Sales",
+        "target_table": "Invoices",
+        "target_column": "InvoiceID"
+      },
+      {
+        "fk_name": "FK_Sales_InvoiceLines_PackageTypeID_Warehouse_PackageTypes",
+        "source_schema": "Sales",
+        "source_table": "InvoiceLines",
+        "source_column": "PackageTypeID",
+        "target_schema": "Warehouse",
+        "target_table": "PackageTypes",
+        "target_column": "PackageTypeID"
+      },
+      {
+        "fk_name": "FK_Sales_InvoiceLines_StockItemID_Warehouse_StockItems",
+        "source_schema": "Sales",
+        "source_table": "InvoiceLines",
+        "source_column": "StockItemID",
+        "target_schema": "Warehouse",
+        "target_table": "StockItems",
+        "target_column": "StockItemID"
+      },
+      {
+        "fk_name": "FK_Sales_Invoices_AccountsPersonID_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Invoices",
+        "source_column": "AccountsPersonID",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_Invoices_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Invoices",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_Invoices_BillToCustomerID_Sales_Customers",
+        "source_schema": "Sales",
+        "source_table": "Invoices",
+        "source_column": "BillToCustomerID",
+        "target_schema": "Sales",
+        "target_table": "Customers",
+        "target_column": "CustomerID"
+      },
+      {
+        "fk_name": "FK_Sales_Invoices_ContactPersonID_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Invoices",
+        "source_column": "ContactPersonID",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_Invoices_CustomerID_Sales_Customers",
+        "source_schema": "Sales",
+        "source_table": "Invoices",
+        "source_column": "CustomerID",
+        "target_schema": "Sales",
+        "target_table": "Customers",
+        "target_column": "CustomerID"
+      },
+      {
+        "fk_name": "FK_Sales_Invoices_DeliveryMethodID_Application_DeliveryMethods",
+        "source_schema": "Sales",
+        "source_table": "Invoices",
+        "source_column": "DeliveryMethodID",
+        "target_schema": "Application",
+        "target_table": "DeliveryMethods",
+        "target_column": "DeliveryMethodID"
+      },
+      {
+        "fk_name": "FK_Sales_Invoices_OrderID_Sales_Orders",
+        "source_schema": "Sales",
+        "source_table": "Invoices",
+        "source_column": "OrderID",
+        "target_schema": "Sales",
+        "target_table": "Orders",
+        "target_column": "OrderID"
+      },
+      {
+        "fk_name": "FK_Sales_Invoices_PackedByPersonID_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Invoices",
+        "source_column": "PackedByPersonID",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_Invoices_SalespersonPersonID_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Invoices",
+        "source_column": "SalespersonPersonID",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_OrderLines_Application_People",
+        "source_schema": "Sales",
+        "source_table": "OrderLines",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_OrderLines_OrderID_Sales_Orders",
+        "source_schema": "Sales",
+        "source_table": "OrderLines",
+        "source_column": "OrderID",
+        "target_schema": "Sales",
+        "target_table": "Orders",
+        "target_column": "OrderID"
+      },
+      {
+        "fk_name": "FK_Sales_OrderLines_PackageTypeID_Warehouse_PackageTypes",
+        "source_schema": "Sales",
+        "source_table": "OrderLines",
+        "source_column": "PackageTypeID",
+        "target_schema": "Warehouse",
+        "target_table": "PackageTypes",
+        "target_column": "PackageTypeID"
+      },
+      {
+        "fk_name": "FK_Sales_OrderLines_StockItemID_Warehouse_StockItems",
+        "source_schema": "Sales",
+        "source_table": "OrderLines",
+        "source_column": "StockItemID",
+        "target_schema": "Warehouse",
+        "target_table": "StockItems",
+        "target_column": "StockItemID"
+      },
+      {
+        "fk_name": "FK_Sales_Orders_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Orders",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_Orders_BackorderOrderID_Sales_Orders",
+        "source_schema": "Sales",
+        "source_table": "Orders",
+        "source_column": "BackorderOrderID",
+        "target_schema": "Sales",
+        "target_table": "Orders",
+        "target_column": "OrderID"
+      },
+      {
+        "fk_name": "FK_Sales_Orders_ContactPersonID_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Orders",
+        "source_column": "ContactPersonID",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_Orders_CustomerID_Sales_Customers",
+        "source_schema": "Sales",
+        "source_table": "Orders",
+        "source_column": "CustomerID",
+        "target_schema": "Sales",
+        "target_table": "Customers",
+        "target_column": "CustomerID"
+      },
+      {
+        "fk_name": "FK_Sales_Orders_PickedByPersonID_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Orders",
+        "source_column": "PickedByPersonID",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_Orders_SalespersonPersonID_Application_People",
+        "source_schema": "Sales",
+        "source_table": "Orders",
+        "source_column": "SalespersonPersonID",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_SpecialDeals_Application_People",
+        "source_schema": "Sales",
+        "source_table": "SpecialDeals",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Sales_SpecialDeals_BuyingGroupID_Sales_BuyingGroups",
+        "source_schema": "Sales",
+        "source_table": "SpecialDeals",
+        "source_column": "BuyingGroupID",
+        "target_schema": "Sales",
+        "target_table": "BuyingGroups",
+        "target_column": "BuyingGroupID"
+      },
+      {
+        "fk_name": "FK_Sales_SpecialDeals_CustomerCategoryID_Sales_CustomerCategories",
+        "source_schema": "Sales",
+        "source_table": "SpecialDeals",
+        "source_column": "CustomerCategoryID",
+        "target_schema": "Sales",
+        "target_table": "CustomerCategories",
+        "target_column": "CustomerCategoryID"
+      },
+      {
+        "fk_name": "FK_Sales_SpecialDeals_CustomerID_Sales_Customers",
+        "source_schema": "Sales",
+        "source_table": "SpecialDeals",
+        "source_column": "CustomerID",
+        "target_schema": "Sales",
+        "target_table": "Customers",
+        "target_column": "CustomerID"
+      },
+      {
+        "fk_name": "FK_Sales_SpecialDeals_StockGroupID_Warehouse_StockGroups",
+        "source_schema": "Sales",
+        "source_table": "SpecialDeals",
+        "source_column": "StockGroupID",
+        "target_schema": "Warehouse",
+        "target_table": "StockGroups",
+        "target_column": "StockGroupID"
+      },
+      {
+        "fk_name": "FK_Sales_SpecialDeals_StockItemID_Warehouse_StockItems",
+        "source_schema": "Sales",
+        "source_table": "SpecialDeals",
+        "source_column": "StockItemID",
+        "target_schema": "Warehouse",
+        "target_table": "StockItems",
+        "target_column": "StockItemID"
+      },
+      {
+        "fk_name": "FK_Warehouse_Colors_Application_People",
+        "source_schema": "Warehouse",
+        "source_table": "Colors",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Warehouse_PackageTypes_Application_People",
+        "source_schema": "Warehouse",
+        "source_table": "PackageTypes",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockGroups_Application_People",
+        "source_schema": "Warehouse",
+        "source_table": "StockGroups",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItemHoldings_Application_People",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemHoldings",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "PKFK_Warehouse_StockItemHoldings_StockItemID_Warehouse_StockItems",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemHoldings",
+        "source_column": "StockItemID",
+        "target_schema": "Warehouse",
+        "target_table": "StockItems",
+        "target_column": "StockItemID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItems_Application_People",
+        "source_schema": "Warehouse",
+        "source_table": "StockItems",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItems_ColorID_Warehouse_Colors",
+        "source_schema": "Warehouse",
+        "source_table": "StockItems",
+        "source_column": "ColorID",
+        "target_schema": "Warehouse",
+        "target_table": "Colors",
+        "target_column": "ColorID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItems_OuterPackageID_Warehouse_PackageTypes",
+        "source_schema": "Warehouse",
+        "source_table": "StockItems",
+        "source_column": "OuterPackageID",
+        "target_schema": "Warehouse",
+        "target_table": "PackageTypes",
+        "target_column": "PackageTypeID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItems_SupplierID_Purchasing_Suppliers",
+        "source_schema": "Warehouse",
+        "source_table": "StockItems",
+        "source_column": "SupplierID",
+        "target_schema": "Purchasing",
+        "target_table": "Suppliers",
+        "target_column": "SupplierID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItems_UnitPackageID_Warehouse_PackageTypes",
+        "source_schema": "Warehouse",
+        "source_table": "StockItems",
+        "source_column": "UnitPackageID",
+        "target_schema": "Warehouse",
+        "target_table": "PackageTypes",
+        "target_column": "PackageTypeID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItemStockGroups_Application_People",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemStockGroups",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItemStockGroups_StockGroupID_Warehouse_StockGroups",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemStockGroups",
+        "source_column": "StockGroupID",
+        "target_schema": "Warehouse",
+        "target_table": "StockGroups",
+        "target_column": "StockGroupID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItemStockGroups_StockItemID_Warehouse_StockItems",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemStockGroups",
+        "source_column": "StockItemID",
+        "target_schema": "Warehouse",
+        "target_table": "StockItems",
+        "target_column": "StockItemID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItemTransactions_Application_People",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemTransactions",
+        "source_column": "LastEditedBy",
+        "target_schema": "Application",
+        "target_table": "People",
+        "target_column": "PersonID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItemTransactions_CustomerID_Sales_Customers",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemTransactions",
+        "source_column": "CustomerID",
+        "target_schema": "Sales",
+        "target_table": "Customers",
+        "target_column": "CustomerID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItemTransactions_InvoiceID_Sales_Invoices",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemTransactions",
+        "source_column": "InvoiceID",
+        "target_schema": "Sales",
+        "target_table": "Invoices",
+        "target_column": "InvoiceID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItemTransactions_PurchaseOrderID_Purchasing_PurchaseOrders",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemTransactions",
+        "source_column": "PurchaseOrderID",
+        "target_schema": "Purchasing",
+        "target_table": "PurchaseOrders",
+        "target_column": "PurchaseOrderID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItemTransactions_StockItemID_Warehouse_StockItems",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemTransactions",
+        "source_column": "StockItemID",
+        "target_schema": "Warehouse",
+        "target_table": "StockItems",
+        "target_column": "StockItemID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItemTransactions_SupplierID_Purchasing_Suppliers",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemTransactions",
+        "source_column": "SupplierID",
+        "target_schema": "Purchasing",
+        "target_table": "Suppliers",
+        "target_column": "SupplierID"
+      },
+      {
+        "fk_name": "FK_Warehouse_StockItemTransactions_TransactionTypeID_Application_TransactionTypes",
+        "source_schema": "Warehouse",
+        "source_table": "StockItemTransactions",
+        "source_column": "TransactionTypeID",
+        "target_schema": "Application",
+        "target_table": "TransactionTypes",
+        "target_column": "TransactionTypeID"
+      }
+    ]
+  },
+  {
+    "query": "SELECT MIN(InvoiceDate) AS first_date,MAX(InvoiceDate) AS last_date,COUNT_BIG(*) AS invoices,\n COUNT(DISTINCT CustomerID) AS customers, SUM(CASE WHEN IsCreditNote=1 THEN 1 ELSE 0 END) AS credit_notes,\n MIN(LastEditedWhen) AS first_edit,MAX(LastEditedWhen) AS last_edit\nFROM Sales.Invoices;",
+    "rows": [
+      {
+        "first_date": "2013-01-01",
+        "last_date": "2016-05-31",
+        "invoices": 70510,
+        "customers": 663,
+        "credit_notes": 0,
+        "first_edit": "2013-01-02 07:00:00",
+        "last_edit": "2016-05-31 12:00:00"
+      }
+    ]
+  },
+  {
+    "query": "SELECT COUNT_BIG(*) AS lines,COUNT(DISTINCT InvoiceLineID) AS distinct_ids,\n MIN(Quantity) AS min_qty,MAX(Quantity) AS max_qty,MIN(UnitPrice) AS min_price,MAX(UnitPrice) AS max_price,\n SUM(ExtendedPrice) AS extended_total,SUM(TaxAmount) AS tax_total,\n SUM(CONVERT(decimal(19,2),Quantity*UnitPrice)) AS quantity_price_total,\n SUM(CASE WHEN ExtendedPrice<>ROUND(Quantity*UnitPrice,2)+TaxAmount THEN 1 ELSE 0 END) AS formula_mismatches,\n SUM(CASE WHEN Quantity<0 THEN 1 ELSE 0 END) AS negative_qty,\n SUM(CASE WHEN UnitPrice=0 THEN 1 ELSE 0 END) AS zero_price,\n MIN(LastEditedWhen) AS first_edit,MAX(LastEditedWhen) AS last_edit\nFROM Sales.InvoiceLines;",
+    "rows": [
+      {
+        "lines": 228265,
+        "distinct_ids": 228265,
+        "min_qty": 1,
+        "max_qty": 360,
+        "min_price": "0.66",
+        "max_price": "1899.00",
+        "extended_total": "198043439.45",
+        "tax_total": "25782098.25",
+        "quantity_price_total": "172261341.20",
+        "formula_mismatches": 0,
+        "negative_qty": 0,
+        "zero_price": 0,
+        "first_edit": "2013-01-01 12:00:00",
+        "last_edit": "2016-05-31 12:00:00"
+      }
+    ]
+  },
+  {
+    "query": "SELECT i.IsCreditNote,COUNT_BIG(*) AS lines,SUM(l.Quantity) AS quantity,\n SUM(l.ExtendedPrice) AS extended_total,SUM(l.TaxAmount) AS tax_total\nFROM Sales.InvoiceLines l JOIN Sales.Invoices i ON i.InvoiceID=l.InvoiceID GROUP BY i.IsCreditNote;",
+    "rows": [
+      {
+        "IsCreditNote": false,
+        "lines": 228265,
+        "quantity": 8950628,
+        "extended_total": "198043439.45",
+        "tax_total": "25782098.25"
+      }
+    ]
+  },
+  {
+    "query": "SELECT COUNT_BIG(*) AS orphan_invoices FROM Sales.InvoiceLines l\nLEFT JOIN Sales.Invoices i ON i.InvoiceID=l.InvoiceID WHERE i.InvoiceID IS NULL;",
+    "rows": [
+      {
+        "orphan_invoices": 0
+      }
+    ]
+  },
+  {
+    "query": "SELECT TOP (10) StockItemID,COUNT(*) AS groups_count FROM Warehouse.StockItemStockGroups\nGROUP BY StockItemID HAVING COUNT(*)>1 ORDER BY groups_count DESC;",
+    "rows": [
+      {
+        "StockItemID": 2,
+        "groups_count": 3
+      },
+      {
+        "StockItemID": 1,
+        "groups_count": 3
+      },
+      {
+        "StockItemID": 11,
+        "groups_count": 3
+      },
+      {
+        "StockItemID": 10,
+        "groups_count": 3
+      },
+      {
+        "StockItemID": 9,
+        "groups_count": 3
+      },
+      {
+        "StockItemID": 8,
+        "groups_count": 3
+      },
+      {
+        "StockItemID": 7,
+        "groups_count": 3
+      },
+      {
+        "StockItemID": 6,
+        "groups_count": 3
+      },
+      {
+        "StockItemID": 5,
+        "groups_count": 3
+      },
+      {
+        "StockItemID": 4,
+        "groups_count": 3
+      }
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+
+
+Algorithm : SHA256
+Hash      : E842BAD6CE02F74F166947E559DAB1B476EDD7EAAE3DA2AB9E3F522F1DD87124
+Path      : C:\Users\camba\Downloads\Workspace\Tecnologias
+            Emegentes\plataforma-analitica\data\backups\WideWorldImporters-Full.bak
