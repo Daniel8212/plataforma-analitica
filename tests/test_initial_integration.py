@@ -7,7 +7,7 @@ from etl.connection import engine
 @pytest.fixture(scope='module')
 def latest_run():
     with engine().connect() as conn:
-        run = conn.execute(text("SELECT TOP(1) CONVERT(varchar(36),ExecutionID) FROM audit.Execution WHERE Status='SUCCEEDED' ORDER BY EndTime DESC")).scalar()
+        run = conn.execute(text("SELECT TOP(1) CONVERT(varchar(36),ExecutionID) FROM audit.Execution WHERE Status='SUCCEEDED' AND LoadMode IN ('initial','full') ORDER BY EndTime DESC")).scalar()
     assert run, 'No hay carga exitosa; no se puede declarar el flujo validado'
     return {'id':run}
 
@@ -40,10 +40,11 @@ def test_kpi_and_api_match(latest_run):
     from backend.main import app
     with engine().connect() as conn:
         expected = conn.execute(text('SELECT SUM(SalesAmount) FROM dw.FactSales')).scalar_one()
+        latest = conn.execute(text("SELECT TOP(1) CONVERT(varchar(36),ExecutionID) FROM audit.Execution WHERE Status='SUCCEEDED' ORDER BY EndTime DESC")).scalar_one()
     with TestClient(app) as client:
         assert client.get('/api/kpis').status_code == 401
         response = client.get('/api/kpis',headers={'X-API-Key':os.environ['DEMO_API_KEY']})
         assert response.status_code == 200
         assert Decimal(response.json()['sales']) == expected
-        assert response.json()['execution_id'] == latest_run['id']
+        assert response.json()['execution_id'] == latest
         assert response.json()['loaded_at'].endswith('+00:00'), 'Auditoría debe identificar UTC'

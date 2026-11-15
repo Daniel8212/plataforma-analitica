@@ -1,3 +1,4 @@
+-- Referencia histórica del primer flujo. El pipeline actual usa 006_validate_batch.sql y 005_publish.sql.
 SET NOCOUNT ON;
 SET XACT_ABORT ON;
 INSERT audit.Quarantine(ExecutionID,SourceObject,SourceKey,RuleID,Detail,OriginalRecord)

@@ -11,11 +11,13 @@ def ident(value):
         raise ValueError('Identificador de configuración inválido')
     return '[' + value + ']'
 
-def main(grant_source_territories=False):
-    db = os.environ['DW_DATABASE']
-    source = os.environ['SOURCE_DATABASE']
-    if db != 'SalesAnalytics' or source != 'WideWorldImporters':
-        raise ValueError('Estos scripts se han preparado para SalesAnalytics y WideWorldImporters')
+def main(grant_source_territories=False, warehouse_database=None, source_database=None):
+    db = warehouse_database or os.environ['DW_DATABASE']
+    source = source_database or os.environ['SOURCE_DATABASE']
+    ident(db)
+    ident(source)
+    if db == source:
+        raise ValueError('Fuente y DW deben ser bases distintas')
     with engine('master', 'admin').connect().execution_options(isolation_level='AUTOCOMMIT') as conn:
         if conn.execute(text('SELECT DB_ID(:db)'), {'db': db}).scalar() is None:
             conn.exec_driver_sql(f'CREATE DATABASE {ident(db)}')
@@ -28,9 +30,10 @@ def main(grant_source_territories=False):
                 literal = password.replace("'", "''")
                 conn.exec_driver_sql(f"CREATE LOGIN {ident(user)} WITH PASSWORD=N'{literal}', CHECK_POLICY=ON")
     with engine(db, 'admin').begin() as conn:
-        for batch in re.split(r'^GO\s*$', (ROOT/'database/001_schema.sql').read_text(encoding='utf-8'), flags=re.M|re.I):
-            if batch.strip():
-                conn.exec_driver_sql(batch)
+        for filename in ('001_schema.sql','004_incremental.sql'):
+            for batch in re.split(r'^GO\s*$', (ROOT/'database'/filename).read_text(encoding='utf-8'), flags=re.M|re.I):
+                if batch.strip():
+                    conn.exec_driver_sql(batch)
         for prefix in ('ETL', 'API'):
             user = os.environ[f'{prefix}_USER']
             if conn.execute(text('SELECT USER_ID(:name)'), {'name': user}).scalar() is None:

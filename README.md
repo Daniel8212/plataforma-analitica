@@ -85,7 +85,26 @@ Usa perfil propio bajo data/ y no modifica el perfil habitual.
 Primer flujo cerrado: 228.265 líneas y 172.261.341,20 sin impuestos coinciden en las cuatro
 capas y en pantalla. Son datos de ejemplo oficiales de Microsoft (2013–2016), no ventas
 de una empresa real ni cifras hardcodeadas. Repetir la carga sin cambios inserta cero hechos.
-Incremental, SCD2, dashboard completo, ML, GenAI y alertas siguen pendientes.
+Incremental, watermark atómico, bajas lógicas y SCD2 observado están implementados;
+detalle y límites en [incremental-y-scd.md](documentation/incremental-y-scd.md).
+Dashboard completo, ML, GenAI y alertas siguen pendientes.
+
+## Cargas posteriores y recuperación
+
+```powershell
+.\.venv\Scripts\python.exe -m deployment.bootstrap
+.\.venv\Scripts\python.exe -m etl.run_incremental
+# Si se detecta un cambio fuera de la ventana de 48 horas:
+.\.venv\Scripts\python.exe -m etl.run_incremental --full
+# Pruebas de cambios simulados SOLO en bases Test separadas:
+.\.venv\Scripts\python.exe -m pytest tests/test_incremental_integration.py -q
+```
+
+Orden SQL administrativo: 001_schema.sql → 004_incremental.sql (bootstrap lo aplica).
+Ejecución: extraer delta → 006_validate_batch.sql → 005_publish.sql → reconciliar →
+confirmar DW, auditoría y watermark. 002_transform.sql queda como referencia del primer flujo.
+`etl.run_initial` ahora usa el mismo motor en modo completo, sin duplicar lógica de carga.
+No se conceden nuevos roles RLS al ejecutar bootstrap sin el flag territorial.
 
 Para detener la aplicación: Ctrl+C en ambas terminales. SQL Server puede permanecer activo
 o detenerse con Compose; los datos permanecen en el volumen. La reconstrucción desde cero

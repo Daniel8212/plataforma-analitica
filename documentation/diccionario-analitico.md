@@ -7,6 +7,10 @@ StageCount detalla lectura/inserción por objeto. EndTime/StartTime/RecordedAt u
 
 | Tabla | Columna | Tipo | Bytes | Precisión | Escala | Nullable | Identity |
 |---|---|---|---|---|---|---|---|
+| audit.Deletion | DeletionID | bigint | 8 | 19 | 0 | False | True |
+| audit.Deletion | ExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
+| audit.Deletion | InvoiceLineID | int | 4 | 10 | 0 | False | False |
+| audit.Deletion | DetectedAt | datetime2 | 8 | 27 | 7 | False | False |
 | audit.Execution | ExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
 | audit.Execution | PipelineName | varchar | 100 | 0 | 0 | False | False |
 | audit.Execution | StartTime | datetime2 | 8 | 27 | 7 | False | False |
@@ -17,6 +21,10 @@ StageCount detalla lectura/inserción por objeto. EndTime/StartTime/RecordedAt u
 | audit.Execution | RowsUpdated | bigint | 8 | 19 | 0 | False | False |
 | audit.Execution | RowsRejected | bigint | 8 | 19 | 0 | False | False |
 | audit.Execution | ErrorDetail | nvarchar | 2000 | 0 | 0 | True | False |
+| audit.Execution | LoadMode | varchar | 16 | 0 | 0 | False | False |
+| audit.Execution | IsSimulated | bit | 1 | 1 | 0 | False | False |
+| audit.Execution | WatermarkStart | datetime2 | 8 | 27 | 7 | True | False |
+| audit.Execution | WatermarkEnd | datetime2 | 8 | 27 | 7 | True | False |
 | audit.Quarantine | QuarantineID | bigint | 8 | 19 | 0 | False | True |
 | audit.Quarantine | ExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
 | audit.Quarantine | SourceObject | varchar | 100 | 0 | 0 | False | False |
@@ -37,6 +45,9 @@ StageCount detalla lectura/inserción por objeto. EndTime/StartTime/RecordedAt u
 | audit.StageCount | RowsInserted | bigint | 8 | 19 | 0 | False | False |
 | audit.StageCount | RowsUpdated | bigint | 8 | 19 | 0 | False | False |
 | audit.StageCount | RowsRejected | bigint | 8 | 19 | 0 | False | False |
+| audit.Watermark | PipelineName | varchar | 100 | 0 | 0 | False | False |
+| audit.Watermark | WatermarkValue | datetime2 | 8 | 27 | 7 | False | False |
+| audit.Watermark | ExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
 | clean.SalesLine | ExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
 | clean.SalesLine | InvoiceLineID | int | 4 | 10 | 0 | False | False |
 | clean.SalesLine | InvoiceID | int | 4 | 10 | 0 | False | False |
@@ -60,6 +71,9 @@ StageCount detalla lectura/inserción por objeto. EndTime/StartTime/RecordedAt u
 | dw.DimCustomer | CustomerName | nvarchar | 200 | 0 | 0 | False | False |
 | dw.DimCustomer | CustomerCategoryID | int | 4 | 10 | 0 | False | False |
 | dw.DimCustomer | CustomerCategory | nvarchar | 100 | 0 | 0 | False | False |
+| dw.DimCustomer | ObservedFrom | datetime2 | 8 | 27 | 7 | False | False |
+| dw.DimCustomer | ObservedTo | datetime2 | 8 | 27 | 7 | False | False |
+| dw.DimCustomer | IsCurrent | bit | 1 | 1 | 0 | False | False |
 | dw.DimDate | DateKey | int | 4 | 10 | 0 | False | False |
 | dw.DimDate | FullDate | date | 3 | 10 | 0 | True | False |
 | dw.DimDate | Year | int | 4 | 10 | 0 | True | False |
@@ -85,6 +99,7 @@ StageCount detalla lectura/inserción por objeto. EndTime/StartTime/RecordedAt u
 | dw.FactSales | ExtendedPrice | decimal | 9 | 18 | 2 | False | False |
 | dw.FactSales | LineProfit | decimal | 9 | 18 | 2 | False | False |
 | dw.FactSales | ExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
+| dw.FactSales | RecordStatus | varchar | 16 | 0 | 0 | False | False |
 | raw.CustomerCategories | ExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
 | raw.CustomerCategories | CustomerCategoryID | int | 4 | 10 | 0 | False | False |
 | raw.CustomerCategories | CustomerCategoryName | nvarchar | 100 | 0 | 0 | False | False |

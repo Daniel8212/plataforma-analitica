@@ -50,6 +50,9 @@ erDiagram
     int CustomerID
     string CustomerName
     string CustomerCategory
+    datetime ObservedFrom
+    datetime ObservedTo
+    boolean IsCurrent
   }
   DimProduct {
     int ProductKey PK
@@ -69,14 +72,16 @@ erDiagram
     decimal TaxAmount
     decimal ExtendedPrice
     uuid ExecutionID
+    string RecordStatus
   }
 ```
 
 Claves sustitutas en dimensiones; naturales conservadas; miembro 0 desconocido.
 Fecha con clave YYYYMMDD y miembro 0. La carga inicial representa atributos del snapshot actual,
-sin afirmar que reconstruye el estado histórico de cada factura. En fiabilidad se añadirá SCD2
-justificada para categoría de cliente, aprovechando las columnas temporales `ValidFrom/ValidTo`
-si el historial inspeccionado lo permite. No inventar historia anterior a la observación.
+sin afirmar que reconstruye el estado histórico de cada factura. La etapa de fiabilidad implementa
+SCD2 observado para nombre/categoría de cliente; los hechos conservan la versión conocida al ingresar.
+El historial temporal inspeccionado no cambiaba estos atributos y no se importaron versiones de
+atributos ajenos al alcance. Detalle en incremental-y-scd.md. No inventar historia anterior a la observación.
 
 La muestra proporciona más de tres años para evaluar viabilidad semanal; aún falta revisar
 semanas incompletas, cobertura y calidad. No hay modelo ni pronóstico validado todavía.

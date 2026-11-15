@@ -23,10 +23,9 @@
 
 ## Próximo punto de continuidad
 
-Esperar revisión y decisión de publicación del usuario. **No iniciar el día 2 hasta que el usuario lo indique.**
-El primer recorrido fuente → raw → clean → DW → API → React quedó probado.
-La siguiente etapa contemplará incremental, watermark, tardíos, actualizaciones/eliminaciones,
-SCD2, recuperación y dashboard completo, pero no está iniciada.
+El usuario autorizó iniciar día 2 el 2026-11-15. Repositorio publicado por el usuario en
+https://github.com/Daniel8212/plataforma-analitica; los dos primeros commits coinciden con origin/main.
+Incremental/SCD/recuperación implementados; cerrar sus pruebas y tercer commit, luego completar API/dashboard.
 
 ### Fuente confirmada
 
@@ -85,5 +84,22 @@ sin superar ocho commits ni reescribir historial publicado sin autorización.
 
 ## Pendientes posteriores
 
-Días 2–4 según cronograma del usuario y matriz de requisitos. GitHub requiere autorización
-para crear/publicar remoto. Video debe grabarse con ejecución real; solo se prepara guion automáticamente.
+Completar únicamente día 2 en esta etapa; no adelantar ML/GenAI/alertas del día 3.
+Video debe grabarse con ejecución real; solo se prepara guion automáticamente.
+
+## 2026-11-15 — Día 2 en curso
+
+- Árbol inicialmente limpio y main sincronizada con GitHub (dos commits).
+- Docker healthy; se inspeccionaron capacidades temporales y marcas de edición sin modificar OLTP.
+- Migración aditiva 004: watermark/auditoría, estado lógico de hechos e intervalos SCD2 observados.
+- Incremental de medidas con solapamiento 48 h, claves nuevas y cambios de cabecera; dimensiones pequeñas completas.
+- Publicación, SCD y watermark en una transacción. Raw y validación sobreviven a fallas de publicación.
+- Política de bajas: conservar hecho DELETED y excluirlo de métricas; invalidaciones QUARANTINED recuperables.
+- Tipo 2 de cliente conserva clasificación observada; producto Tipo 1. No se inventa historia comercial.
+- Reconciliación exhaustiva por filas en ambas direcciones detecta cambios fuera de ventana y exige --full.
+- Dos incrementales principales sin cambios conservaron 228.265 hechos y 172.261.341,20;
+  el primero extrajo 530 líneas solapadas y el siguiente 0 líneas. Fuente principal intacta.
+- Pruebas en bases Test aisladas, con IsSimulated=1: actualizaciones, tardíos, SCD2, cuarentena,
+  bajas/reaparición, tres puntos de falla y reparación completa. Evidencia en incremental-tests.json.
+- Pruebas originales: 3 passed tras la migración. Suite incremental: 11 passed, incluida protección
+  contra watermark futuro. Reportes JUnit y ejecuciones simuladas registrados. Pendiente API/dashboard.

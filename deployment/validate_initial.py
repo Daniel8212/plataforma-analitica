@@ -6,7 +6,7 @@ from etl.connection import engine, ROOT
 
 def main():
     with engine().connect() as conn:
-        run = conn.execute(text("SELECT TOP(1) CONVERT(varchar(36),ExecutionID) FROM audit.Execution WHERE Status='SUCCEEDED' ORDER BY EndTime DESC")).scalar_one()
+        run = conn.execute(text("SELECT TOP(1) CONVERT(varchar(36),ExecutionID) FROM audit.Execution WHERE Status='SUCCEEDED' AND LoadMode IN ('initial','full') ORDER BY EndTime DESC")).scalar_one()
         rows = [dict(r) for r in conn.execute(text((ROOT/'database/003_validate.sql').read_text(encoding='utf-8')), {'execution_id':run}).mappings()]
         values = [{k:v for k,v in row.items() if k!='layer'} for row in rows]
         if not values or not all(value == values[0] for value in values):

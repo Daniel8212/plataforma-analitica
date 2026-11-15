@@ -1,0 +1,42 @@
+{
+  "execution_id": "5b971a85-718c-4ce0-8ca6-750eec61d9c1",
+  "mode": "incremental",
+  "simulated": false,
+  "source_database": "WideWorldImporters",
+  "warehouse_database": "SalesAnalytics",
+  "watermark_before": "2026-11-15 06:25:39.263159",
+  "window_start": "2026-11-13 06:25:39.263159",
+  "window_end": "2026-11-15 06:31:56.684528",
+  "raw_counts": {
+    "Invoices": 0,
+    "InvoiceLines": 0,
+    "Customers": 663,
+    "CustomerCategories": 8,
+    "StockItems": 227
+  },
+  "source_delta": {
+    "rows": 0,
+    "sales": "0.00"
+  },
+  "raw_delta": {
+    "rows": 0,
+    "sales": "0.00"
+  },
+  "clean_delta": {
+    "rows": 0,
+    "sales": "0.00"
+  },
+  "quarantine": {
+    "rows": 0,
+    "sales": "0.00"
+  },
+  "status": "SUCCEEDED",
+  "inserted": 0,
+  "updated": 0,
+  "actions": {},
+  "dw": {
+    "rows": 228265,
+    "sales": "172261341.20"
+  },
+  "watermark_after": "2026-11-15 06:31:56.684528"
+}

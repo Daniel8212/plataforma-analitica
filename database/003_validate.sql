@@ -10,4 +10,4 @@ SELECT 'clean',COUNT_BIG(*),COUNT(DISTINCT InvoiceID),SUM(SalesAmount),SUM(CONVE
 FROM clean.SalesLine WHERE ExecutionID=:execution_id
 UNION ALL
 SELECT 'dw',COUNT_BIG(*),COUNT(DISTINCT InvoiceID),SUM(SalesAmount),SUM(CONVERT(bigint,Quantity))
-FROM dw.FactSales;
+FROM dw.FactSales WHERE RecordStatus='ACTIVE';
