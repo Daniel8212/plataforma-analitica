@@ -169,3 +169,13 @@ td small { display: block; color: #718ba7; font-size: 9px; margin-top: 4px; }
 @media(max-width:560px) { .sidebar nav button { min-height: 44px; } .filter-panel input, .filter-panel select { min-height: 42px; font-size: 12px; } .filter-panel label { font-size: 11px; } .kpi-card:first-child > strong { font-size: clamp(19px,5.3vw,23px); } }
 @media(max-width:360px) { .kpi-card:first-child { grid-column: 1 / -1; } }
 @media(prefers-reduced-motion:reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+.forecast-summary { margin-top: 20px; }
+.forecast-summary strong { font-size: 21px; }
+.forecast-chart { height: 330px; }
+.split-list { display: flex; flex-direction: column; gap: 15px; }
+.split-list > div { display: flex; flex-wrap: wrap; gap: 7px 15px; border-bottom: 1px solid #26364b; padding-bottom: 12px; }
+.split-list strong { color: #bed4e8; font-size: 12px; width: 100%; }
+.split-list span, .split-list small { color: #8fa9c1; font-size: 10px; }
+.model-comparison { margin-top: 20px; }
+.model-comparison tr[data-selected='true'] { background: #153430; }
+@media(max-width:800px) { .sidebar nav { width: 100%; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin: 0; } .sidebar nav button { justify-content: center; } }

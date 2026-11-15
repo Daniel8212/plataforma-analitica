@@ -90,7 +90,23 @@ Incremental, watermark atómico, bajas lógicas y SCD2 observado están implemen
 detalle y límites en [incremental-y-scd.md](documentation/incremental-y-scd.md).
 Dashboard histórico con cinco KPIs, filtros, comparación, gráficos, detalle paginado y monitoreo
 implementado; uso en [dashboard.md](documentation/dashboard.md), contratos en
-[contratos.md](documentation/contratos.md). ML, GenAI y alertas no están iniciados.
+[contratos.md](documentation/contratos.md). Pronóstico semanal implementado; GenAI y alertas en desarrollo.
+
+## Pronóstico semanal
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
+.\.venv\Scripts\python.exe -m deployment.bootstrap
+.\.venv\Scripts\python.exe -m machine_learning.train
+.\.venv\Scripts\python.exe -m pytest tests/test_forecasting.py -q
+```
+
+El módulo Pronóstico muestra resultados persistidos, baselines, evaluación y versión.
+177 semanas completas; entrenamiento/validación/prueba cronológicos; horizonte de cuatro semanas.
+El corte es mayo de **2016**, no el día actual. MAE de prueba 113.773,87 y sMAPE 10,99 %;
+el baseline de última semana obtuvo MAE ligeramente menor. No se afirma mejora universal.
+Detalle: [ML.md](machine-learning/ML.md). Los artefactos locales están en data/models/;
+el servidor web no ejecuta pickles. Reentrenar tras cambios materiales o nueva semana completa.
 
 ## Cargas posteriores y recuperación
 

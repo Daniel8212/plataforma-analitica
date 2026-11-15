@@ -25,8 +25,8 @@
 
 El usuario autorizó iniciar día 2 el 2026-11-15. Repositorio publicado por el usuario en
 https://github.com/Daniel8212/plataforma-analitica; los dos primeros commits coinciden con origin/main.
-El día 2 quedó implementado y validado. Esperar revisión del usuario antes de iniciar día 3.
-Los cambios se agrupan en los commits tercero y cuarto; sincronizar desde GitHub Desktop con Push origin.
+El usuario autorizó día 3 el 2026-11-15. Inicio con árbol limpio y cuatro commits sincronizados con GitHub.
+Pronóstico implementado; terminar validación visual y quinto commit, luego asistente y alertas.
 
 ### Fuente confirmada
 
@@ -85,7 +85,7 @@ sin superar ocho commits ni reescribir historial publicado sin autorización.
 
 ## Pendientes posteriores
 
-Esperar autorización para ML/GenAI/alertas del día 3; no se adelantaron esas implementaciones.
+En desarrollo únicamente día 3 autorizado; día 4 no iniciado.
 Video debe grabarse con ejecución real; solo se prepara guion automáticamente.
 
 ## 2026-11-15 — Día 2 completado
@@ -119,3 +119,17 @@ Video debe grabarse con ejecución real; solo se prepara guion automáticamente.
 - Build Vite aprobado, gráficos diferidos en módulo separado. No se instalaron nuevas dependencias.
 - Manuales/contratos/diagramas/diccionarios y lista revision-dia2.md actualizados. Cuarto commit agrupa API,
   dashboard, controles de calidad finales y evidencias. Total previsto: cuatro de ocho commits.
+
+## 2026-11-15 — Día 3 en curso
+
+- Se comprobaron SQL Server y recursos: 16 GB, unos 3 GB libres, GPU integrada AMD 512 MB.
+- Scikit-learn 1.9.1 y joblib 1.6.0 instalados dentro de .venv; pip check sin conflictos.
+- Pronóstico desde DW: 177 semanas completas, dos parciales excluidas, cero semanas faltantes.
+- Ridge α=100 elegido por validación; prueba cronológica MAE 113.773,87, RMSE 146.406,10,
+  sMAPE 10,99 %. Baseline última semana MAE 112.844,55: no se afirma superioridad del modelo.
+- Artefactos congelado/final, serie CSV y hashes guardados; versión y cuatro predicciones persistidas.
+- Q10 completado: IQR semanal y por línea con ejemplos; no se eliminaron ventas válidas.
+- Siete pruebas ML aprobadas (fuga temporal, selección, recursión, artefacto y API); módulo React integrado.
+- Proveedor candidato local probado: Ollama 0.40.16, Qwen2.5 1.5B Q4_K_M, CPU, sin API paga.
+  Prueba técnica en español ~3,94 s y ~1,11 GB, contexto 2048; quedan preguntas analíticas reales.
+- Pendientes: quinto commit ML; asistente con controles y evaluación; alertas/outbox tras carga y panel.

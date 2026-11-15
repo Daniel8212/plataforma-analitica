@@ -30,7 +30,7 @@ def main(grant_source_territories=False, warehouse_database=None, source_databas
                 literal = password.replace("'", "''")
                 conn.exec_driver_sql(f"CREATE LOGIN {ident(user)} WITH PASSWORD=N'{literal}', CHECK_POLICY=ON")
     with engine(db, 'admin').begin() as conn:
-        for filename in ('001_schema.sql','004_incremental.sql','007_read_views.sql'):
+        for filename in ('001_schema.sql','004_incremental.sql','007_read_views.sql','008_ml.sql'):
             for batch in re.split(r'^GO\s*$', (ROOT/'database'/filename).read_text(encoding='utf-8'), flags=re.M|re.I):
                 if batch.strip():
                     conn.exec_driver_sql(batch)
@@ -40,10 +40,10 @@ def main(grant_source_territories=False, warehouse_database=None, source_databas
                 conn.exec_driver_sql(f'CREATE USER {ident(user)} FOR LOGIN {ident(user)}')
         loader, reader = ident(os.environ['ETL_USER']), ident(os.environ['API_USER'])
         conn.exec_driver_sql(f'GRANT SELECT, INSERT ON SCHEMA::raw TO {loader}')
-        for schema in ('clean','dw','audit'):
+        for schema in ('clean','dw','audit','ml'):
             conn.exec_driver_sql(f'GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA::{schema} TO {loader}')
         for view in ('dw.vSalesKpi','dw.vSalesRead','dw.vProductFilters','dw.vCategoryFilters',
-                     'audit.vExecutions','audit.vRejections','audit.vWatermarks'):
+                     'audit.vExecutions','audit.vRejections','audit.vWatermarks','ml.vActiveModel','ml.vPredictions'):
             conn.exec_driver_sql(f'GRANT SELECT ON OBJECT::{view} TO {reader}')
     with engine(source, 'admin').begin() as conn:
         user = os.environ['ETL_USER']

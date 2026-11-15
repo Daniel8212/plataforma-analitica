@@ -2,8 +2,9 @@
 
 Catálogo para toda la entrega. Implementación actual: claves únicas, nulos/rangos, integridad,
 importes, trim, calendario, SCD observado, cuarentena, linaje y reconciliación están implementados
-y probados; detalle en incremental-y-scd.md. Q10 (detección estadística de outliers) permanece
-pendiente de completar durante perfilado ML/validación final; no se afirma implementado.
+y probados; detalle en incremental-y-scd.md. Q10 implementado en el perfilado ML mediante IQR
+semanal y de cantidad/precio/importe por línea; límites y ejemplos en evidence/ml-training.json.
+Las observaciones señaladas se conservaron; no se imputaron causas ni se borraron valores.
 Cada ejecución registra conteos antes/después y rechazo por regla. Un outlier no se elimina
 por ser atípico; precio cero puede ser válido y cantidades negativas requieren contexto de crédito.
 

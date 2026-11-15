@@ -3,9 +3,11 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from sqlalchemy.exc import SQLAlchemyError
 from backend.analytics import router
+from backend.predictive import router as predictive_router
 
 app = FastAPI(title='Analítica de ventas',version='0.2.0')
 app.include_router(router)
+app.include_router(predictive_router)
 
 @app.get('/api/health')
 def health():

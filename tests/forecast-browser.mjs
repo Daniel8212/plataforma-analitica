@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {writeFile} from 'node:fs/promises';
+import {withBrowser,delay} from './browser-driver.mjs';
+process.loadEnvFile('.env');
+await withBrowser(async({call,evaluate,wait,click,screenshot,errors})=>{
+ await call('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+ await call('Page.navigate',{url:'http://127.0.0.1:5173/'});
+ await wait('!!document.querySelector("#demo-key")','acceso');
+ await evaluate('document.querySelector("#demo-key").focus()');
+ await call('Input.insertText',{text:process.env.DEMO_API_KEY});await delay(100);
+ await click('#access-form button');
+ await wait('!!document.querySelector("[data-tab=forecast]")','navegación predictiva');
+ await click('[data-tab=forecast]');
+ await wait('document.querySelectorAll("[data-testid=forecast-panel] table tbody tr").length>=4 && !!document.querySelector("[data-testid=forecast-panel] .recharts-surface")','pronóstico y evaluación visibles');
+ const body=await evaluate('document.querySelector("[data-testid=forecast-panel]").innerText');
+ assert(body.includes('2016') && body.includes('baseline') && body.includes('Predicción, no venta observada'));
+ assert.equal(await evaluate('!!document.querySelector("#filter-form")'),false);
+ await screenshot('day3-forecast.png');
+ await call('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await delay(400);
+ assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth+1'));
+ await screenshot('day3-forecast-mobile.png',false);
+ assert.equal(errors.length,0,errors.join('\n'));
+ await writeFile('documentation/evidence/forecast-browser.json',JSON.stringify({status:'passed',checks:['Pronóstico y métricas visibles','Predicción identificada y fechas de muestra explícitas','Sin filtros dimensionales engañosos','Móvil sin desbordamiento'],javascript_errors:errors},null,2));
+ console.log('Pronóstico verificado en navegador y móvil.');
+});
