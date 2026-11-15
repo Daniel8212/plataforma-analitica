@@ -5,6 +5,28 @@ Raw conserva las proyecciones originales definidas en etl/run_initial.py por Exe
 RowsRead en audit.Execution suma filas de las cinco tablas; RowsInserted cuenta hechos nuevos.
 StageCount detalla lectura/inserción por objeto. EndTime/StartTime/RecordedAt usan UTC.
 
+## Extensión de ML, asistente y alertas
+
+El detalle exacto de tipos, nulabilidad, claves y restricciones está en los scripts
+008_ml.sql, 009_chat.sql y 010_notifications.sql, aplicados por bootstrap.
+
+| Tabla | Clave / relación | Contenido y semántica |
+|---|---|---|
+| ml.ModelRun | Version; FK ejecución origen | Algoritmo, parámetros, fechas, métricas JSON, artefacto y hashes, versión activa única |
+| ml.Prediction | Versión + tipo + origen/objetivo | Semana prevista, horizonte 1–4, valor decimal, real nullable y generación UTC; no son hechos de venta |
+| audit.ChatRequest | RequestID; FK SourceExecutionID | Hash de pregunta, herramienta, estado, modelo, duración, indicador evaluación, respuesta y bloqueos JSON |
+| notify.Task | TaskID; UNIQUE ejecución/regla | Snapshot JSON inmutable por tarea, PENDING/FAILED/SUCCEEDED, intentos, error sanitizado y finalización UTC |
+| notify.Evaluation | TaskID PK/FK | Resultado TRIGGERED/CLEAR/SKIPPED/SUPERSEDED, fecha UTC y explicación |
+| notify.Alert | AlertID; UNIQUE regla/semana/simulación | Fecha, origen, severidad, valores decimales, umbral, caída, períodos exactos, carga, evidencia JSON, estado y entrega |
+| notify.StateHistory | HistoryID; FK AlertID | Fecha UTC, estado anterior y nuevo; decisiones y resolución/reactivación de la regla |
+
+IsSimulated distingue eventos sintéticos de indicadores respaldados por DW. La demo
+puede referenciar una carga real sin alterar esa ejecución: su propia tarea/alerta
+conservan IsSimulated=1. DeliveryStatus DELIVERED significa renderizado y acuse del
+panel. State ATTENDED/DISCARDED corresponde a acción del operador y RESOLVED a la regla.
+
+## Catálogo original de capas
+
 | Tabla | Columna | Tipo | Bytes | Precisión | Escala | Nullable | Identity |
 |---|---|---|---|---|---|---|---|
 | audit.Deletion | DeletionID | bigint | 8 | 19 | 0 | False | True |

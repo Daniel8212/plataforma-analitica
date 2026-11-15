@@ -82,3 +82,25 @@ No se iniciará día 2 sin indicación del usuario.
 - Build Vite aprobado con gráficos separados de la entrada; sin ampliar dependencias.
 - Pendiente global: outliers estadísticos del catálogo y etapas 3/4, incluida reconstrucción limpia,
   ML, GenAI, alertas, validación final y video. No se declaran cumplidas todavía.
+
+## Verificación de la tercera etapa
+
+Los pendientes de ML, GenAI, alertas y outliers anteriores se completaron en esta
+etapa. Suite completa y resultados: evidence/pytest-day3.xml. Las pruebas nuevas
+incluyen siete de ML, catorce de GenAI y doce de notificaciones (además de las 42 previas).
+Una advertencia de deprecación httpx/Starlette no impide la ejecución.
+
+Navegador: reportes forecast-browser.json, chat-browser.json, alerts-browser.json,
+y day3-regression-dashboard-browser.json en evidence/. Todos usan la aplicación
+real y registran cero excepciones JavaScript; el error HTTP interceptado del dashboard
+se identifica como simulación. Las capturas anteriores se conservan y las nuevas
+regresiones del dashboard llevan prefijo day3-regression-.
+
+Alertas: snapshot real con condición falsa; condición verdadera y recuperación
+en bases Test aisladas, además de evento sintético visible marcado en el panel.
+Se prueba rollback efectivo de un acuse de entrega, luego reintento idempotente.
+Reactivación tras RESOLVED y descarte de snapshot antiguo tras uno posterior
+impiden sobrescribir un resultado vigente. La caída total de conexión del evaluador
+devuelve estado recuperable y no revierte ni cambia la carga ya confirmada.
+
+Reconstrucción integral, validación global de entrega y video permanecen para el día 4.

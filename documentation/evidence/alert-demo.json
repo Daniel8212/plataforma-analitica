@@ -1,0 +1,23 @@
+{
+  "simulation": true,
+  "note": "Valor evaluado sintético, 35 % por debajo de la referencia real; no representa ventas del DW.",
+  "payload": {
+    "eligible": true,
+    "reason": "Dos semanas completas consecutivas",
+    "current_start": "2016-05-23",
+    "current_end": "2016-05-29",
+    "reference_start": "2016-05-16",
+    "reference_end": "2016-05-22",
+    "observed": "698180.86",
+    "reference": "1074124.40",
+    "threshold": "15",
+    "actual_dw_observed": "1015562.65",
+    "simulation_note": "Valor evaluado sintético, 35 % por debajo de la referencia real; no representa ventas del DW."
+  },
+  "processing": {
+    "task_id": "F4F8F83D-C4B6-4E31-80AA-6F3E5169826D",
+    "status": "SUCCEEDED",
+    "outcome": "TRIGGERED",
+    "drop_percent": "35.00"
+  }
+}

@@ -7,6 +7,7 @@ from pathlib import Path
 from uuid import uuid4
 from sqlalchemy import text
 from etl.connection import ROOT, engine
+from notifications.service import enqueue,process
 
 PROJECTIONS = {
  'Invoices': ('Sales.Invoices','InvoiceID,CustomerID,InvoiceDate,IsCreditNote,LastEditedWhen'),
@@ -176,6 +177,7 @@ def run_pipeline(*, full=False, source_database=None, warehouse_database=None,
                     conn.execute(text("UPDATE audit.Watermark SET WatermarkValue=:upper,ExecutionID=:execution_id WHERE PipelineName='sales'"),params)
                     conn.execute(text("IF NOT EXISTS(SELECT 1 FROM audit.Watermark WHERE PipelineName='sales') INSERT audit.Watermark VALUES('sales',:upper,:execution_id)"),params)
                     conn.execute(text("UPDATE audit.Execution SET Status='SUCCEEDED',EndTime=SYSUTCDATETIME(),RowsInserted=:ins,RowsUpdated=:upd WHERE ExecutionID=:execution_id"),{**params,'ins':inserted,'upd':updated})
+                    notification_task=enqueue(conn,run,report['simulated'])
                     if fail_at=='before_commit':
                         raise RuntimeError('SIMULATED_FAILURE_BEFORE_COMMIT')
                     conn.execute(text('DROP TABLE #Changes'))
@@ -198,5 +200,6 @@ def run_pipeline(*, full=False, source_database=None, warehouse_database=None,
                 conn.rollback()
             conn.execute(text("IF OBJECT_ID('tempdb..#SelectedLines') IS NOT NULL DROP TABLE #SelectedLines; IF OBJECT_ID('tempdb..#Changes') IS NOT NULL DROP TABLE #Changes; EXEC sys.sp_releaseapplock @Resource='sales_pipeline',@LockOwner='Session'"))
             conn.commit()
+    report['notification']=process(notification_task,warehouse)
     save()
     return report

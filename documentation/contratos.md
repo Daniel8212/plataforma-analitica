@@ -67,6 +67,24 @@ Tendencias rellenan ceros solo dentro de la cobertura cargada y marcan intervalo
 La fuente inspeccionada no contiene notas de crédito; las futuras se ponen en cuarentena
 hasta verificar semántica. No se presenta esta medida como neta de devoluciones.
 
+## Contratos añadidos en la tercera etapa
+
+- GET `/api/forecast`: versión activa, corte, entrenamiento/validación/prueba,
+  métricas/baselines, histórico, predicciones y advertencia de reentrenamiento.
+- POST `/api/chat`: cuerpo question (3–500 caracteres), sin campos adicionales;
+  respuesta answer, generated, facts, dataset, verification, request_id y duración.
+  429 por frecuencia y 503 si proveedor local no disponible; no fallback de pago.
+- GET `/api/alerts`: hasta 100 alertas y 20 tareas recientes, incluida simulación,
+  períodos, importes, estados, entrega y diagnósticos.
+- POST `/api/alerts/{uuid}/seen`: acuse idempotente de renderizado en panel.
+- POST `/api/alerts/{uuid}/state`: state ATTENDED/DISCARDED; una RESOLVED no cambia
+  por esta ruta. Respuesta changed indica si hubo transición.
+
+Todas requieren X-API-Key. Identificadores UUID y estados están validados por
+FastAPI/Pydantic; el lector SQL no escribe. Modelos, runtime y secretos no se sirven
+desde rutas web. OpenAPI actualizado: openapi.json. Detalles en machine-learning/ML.md,
+generative-ai/GENAI.md y notifications/README.md.
+
 ## Convenciones operativas
 
 - Tiempo de auditoría: UTC, diferenciándolo de fechas de negocio de la fuente.

@@ -1,7 +1,7 @@
 # Plataforma de analítica de ventas
 
 Proyecto académico local: WideWorldImporters OLTP → raw → clean → DW SQL Server →
-FastAPI → React. ML, asistente generativo y alertas se incorporan tras validar el flujo base.
+FastAPI → React, con pronóstico semanal, asistente local y alertas automáticas integrados.
 Estado real y siguientes pasos: [registro de avance](documentation/avance.md).
 Requisitos de la guía: [matriz y plan](documentation/requisitos-y-plan.md).
 
@@ -119,7 +119,7 @@ el servidor web no ejecuta pickles. Reentrenar tras cambios materiales o nueva s
 .\.venv\Scripts\python.exe -m pytest tests/test_incremental_integration.py -q
 ```
 
-Orden SQL administrativo: 001 → 004 → 007 → 008 → 009 (bootstrap lo aplica).
+Orden SQL administrativo: 001 → 004 → 007 → 008 → 009 → 010 (bootstrap lo aplica).
 Ejecución: extraer delta → 006_validate_batch.sql → 005_publish.sql → reconciliar →
 confirmar DW, auditoría y watermark. 002_transform.sql queda como referencia del primer flujo.
 `etl.run_initial` ahora usa el mismo motor en modo completo, sin duplicar lógica de carga.
@@ -144,6 +144,16 @@ y la restauración del entorno completo se volverán a validar en la etapa final
 
 ## Asistente local
 
-Ollama + Qwen2.5 1.5B, sin API de pago. Inicio, permisos, herramientas y l?mites:
+Ollama + Qwen2.5 1.5B, sin API de pago. Inicio, permisos, herramientas y límites:
 [GENAI.md](generative-ai/GENAI.md). Las cifras proceden de consultas controladas;
-las explicaciones que no superan la verificaci?n se bloquean.
+las explicaciones que no superan la verificación se bloquean.
+
+## Alertas y revisión de la tercera etapa
+
+Cada carga exitosa persiste una tarea y evalúa la última semana completa frente a
+la anterior. Umbral: caída mayor al 15 %. Canal: panel Alertas, con entrega y estados.
+Reintentos sin repetir ETL: `python -m notifications.retry` usando el Python de .venv.
+Regla, simulación y recuperación: [notifications/README.md](notifications/README.md).
+Lista de revisión y evidencias: [revision-dia3.md](documentation/revision-dia3.md).
+La muestra histórica no contiene una alerta positiva natural en la última semana;
+el evento positivo del panel está marcado como **SIMULACIÓN** y no modifica ventas.

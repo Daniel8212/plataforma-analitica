@@ -21,8 +21,9 @@ flowchart LR
   T -.-> D
 ```
 
-Estado al cierre de la segunda etapa: fuente/raw/clean/DW, incremental/SCD, API, dashboard y
-monitoreo implementados y probados. ML, GenAI y alertas del diagrama siguen siendo diseño previsto.
+Estado de la tercera etapa: fuente/raw/clean/DW, incremental/SCD, API, dashboard,
+monitoreo, pronóstico semanal, asistente Ollama y alertas persistidas implementados.
+Evidencias y límites: [revisión del día 3](revision-dia3.md).
 
 - Una instancia SQL Server Developer 2022, dos bases: fuente y analítica.
   El aislamiento lógico evita consultar la fuente para construir indicadores y reduce memoria.
@@ -33,7 +34,10 @@ monitoreo implementados y probados. ML, GenAI y alertas del diagrama siguen sien
   tarea Windows en día 2 si aporta a la demostración. No se afirma tiempo real.
 - Claves y fórmulas pendientes de inspección. No usar el DW de ejemplo preconstruido.
 - API con usuario de solo lectura; ETL con permisos de carga; administración solo para bootstrap.
-- Ollama y API generativa se comparan en día 3: no contratar ni asumir cuota gratuita.
+- Ollama local con Qwen2.5 1.5B seleccionado tras prueba CPU/memoria/calidad; sin API paga.
+- Esquema `ml`: versión y predicciones; `notify`: tareas, evaluaciones, alertas e historial.
+- La API consulta con lector de vistas. Una cuenta separada de eventos inserta auditoría
+  y ejecuta procedimientos acotados de entrega/estado, sin escritura de hechos.
 - Sin alojamiento externo, correo ni mensajería inicialmente. Panel web como canal de alerta.
 
 ## Preguntas de negocio iniciales

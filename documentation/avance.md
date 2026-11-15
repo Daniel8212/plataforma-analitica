@@ -120,7 +120,7 @@ Video debe grabarse con ejecución real; solo se prepara guion automáticamente.
 - Manuales/contratos/diagramas/diccionarios y lista revision-dia2.md actualizados. Cuarto commit agrupa API,
   dashboard, controles de calidad finales y evidencias. Total previsto: cuatro de ocho commits.
 
-## 2026-11-15 — Día 3 en curso
+## 2026-11-15 — Día 3 completado
 
 - Se comprobaron SQL Server y recursos: 16 GB, unos 3 GB libres, GPU integrada AMD 512 MB.
 - Scikit-learn 1.9.1 y joblib 1.6.0 instalados dentro de .venv; pip check sin conflictos.
@@ -132,10 +132,23 @@ Video debe grabarse con ejecución real; solo se prepara guion automáticamente.
 - Siete pruebas ML aprobadas (fuga temporal, selección, recursión, artefacto y API); módulo React integrado.
 - Proveedor candidato local probado: Ollama 0.40.16, Qwen2.5 1.5B Q4_K_M, CPU, sin API paga.
   Prueba técnica en español ~3,94 s y ~1,11 GB, contexto 2048; quedan preguntas analíticas reales.
-- Pendientes: quinto commit ML; asistente con controles y evaluación; alertas/outbox tras carga y panel.
+- Los pendientes de este punto se completaron en el cierre registrado más abajo.
 
 - Quinto commit ML registrado: d18eb3a.
 - Asistente integrado: 14 preguntas, 9 llamadas reales, 7 explicaciones aceptadas y 2 bloqueadas;
-  tres casos sin informaci?n, aclaraci?n e intento SQL controlados sin modelo.
-- React/API/Ollama comprobados en navegador y m?vil; importes contrastados con OLTP.
-- Pendiente del cierre: alertas autom?ticas, pruebas de recuperaci?n e integraci?n final.
+  tres casos sin información, aclaración e intento SQL controlados sin modelo.
+- React/API/Ollama comprobados en navegador y móvil; importes contrastados con OLTP.
+- Sexto commit: a5a99df, asistente local y evaluación.
+- Alertas implementadas: snapshot y tarea con DW/watermark, evaluación después del commit,
+  deduplicación, reintentos, historial de estados y entrega confirmada al panel.
+- Carga principal 15dc90de-e5a0-4764-8940-4f34f58ac729: cero cambios, 228.265 líneas y
+  172.261.341,20 reconciliados. Caída real semanal 5,4520 %; sin alerta natural.
+- Demo positiva del 35 % expresamente SIMULACIÓN; no se modificó OLTP ni DW.
+- Navegador: dashboard (12 comprobaciones), pronóstico, asistente y alertas; escritorio/móvil,
+  sin excepciones JavaScript. Compilación Vite aprobada.
+- Lista para revisión: documentation/revision-dia3.md. No iniciar día 4 sin autorización.
+- Suite final: 75 pruebas aprobadas, una advertencia no bloqueante httpx/Starlette.
+- Séptimo commit agrupa alertas, recuperación y evidencias del cierre. Queda un commit
+  del máximo de ocho para la entrega final. Push y revisión quedan a cargo del usuario.
+- Al terminar se detienen los servidores propios de API, Vite y Ollama. SQL Server
+  conserva su volumen; comandos de inicio disponibles en README y generative-ai/GENAI.md.

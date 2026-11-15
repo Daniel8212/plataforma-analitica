@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import {writeFile} from 'node:fs/promises';
+import {withBrowser,delay} from './browser-driver.mjs';
+process.loadEnvFile('.env');
+await withBrowser(async({call,evaluate,wait,click,setValue,screenshot,errors})=>{
+ await call('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+ await call('Page.navigate',{url:'http://127.0.0.1:5173/'});
+ await wait('!!document.querySelector("#demo-key")','acceso');
+ await setValue('#demo-key',process.env.DEMO_API_KEY);await click('#access-form button');
+ await wait('!!document.querySelector("[data-tab=alerts]")','navegación');await click('[data-tab=alerts]');
+ await wait('!!document.querySelector("[data-alert-id]")','alerta simulada');
+ await wait('document.querySelector("[data-alert-id]").innerText.includes("confirmada en panel")','entrega confirmada');
+ const body=await evaluate('document.querySelector("[data-testid=alerts-panel]").innerText');
+ assert(body.includes('SIMULACIÓN')&&body.includes('NO SON VENTAS DEL DW')&&body.includes('CLEAR')&&body.includes('TRIGGERED'));
+ await click('[data-alert-id] .alert-actions button');
+ await wait('document.querySelector("[data-alert-id]").innerText.includes("ATTENDED")','estado persistido');
+ await screenshot('day3-alerts.png');
+ await call('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await delay(300);
+ assert(await evaluate('document.documentElement.scrollWidth<=window.innerWidth+1'));
+ await screenshot('day3-alerts-mobile.png',false);assert.equal(errors.length,0,errors.join('\n'));
+ await writeFile('documentation/evidence/alerts-browser.json',JSON.stringify({status:'passed',simulation:true,checks:['Alerta simulada identificada','Evaluación real CLEAR visible','Entrega confirmada después de render','Estado ATTENDED persistido','Móvil sin desbordamiento'],javascript_errors:errors},null,2));
+ console.log('Alertas verificadas en navegador; evento positivo identificado como simulado.');
+});

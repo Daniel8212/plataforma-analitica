@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "simulation": true,
+  "checks": [
+    "Alerta simulada identificada",
+    "Evaluación real CLEAR visible",
+    "Entrega confirmada después de render",
+    "Estado ATTENDED persistido",
+    "Móvil sin desbordamiento"
+  ],
+  "javascript_errors": []
+}

@@ -1,0 +1,54 @@
+{
+  "status": "passed",
+  "tests": [
+    "Clave incorrecta rechazada sin mostrar datos",
+    "Cinco KPIs renderizados; importe coincide con API; gráficos visibles",
+    "Filtros temporales y dos dimensiones actualizan KPI conforme a API",
+    "Navegación de producto desde resumen a detalle conservando filtros",
+    "Paginación real con cambio de líneas y página 2",
+    "Navegación desde categoría de cliente a detalle",
+    "Monitoreo con ejecuciones, watermark y detalle real de cuarentena",
+    "Ausencia de datos explícita fuera de cobertura",
+    "Carga/error simulados identificados; reintento recupera consulta real",
+    "Vista móvil 390 px sin desbordamiento horizontal",
+    "Importe histórico completo y diseño a 360 px sin desbordamiento",
+    "Tablas de detalle y monitoreo contenidas en móvil"
+  ],
+  "simulations": [
+    "Intercepción local de fetch: retraso 800 ms y HTTP 503; SQL Server no se detuvo ni se modificó."
+  ],
+  "initial_kpis": {
+    "sales": "13671338.00",
+    "units": 748671,
+    "invoice_count": 5491,
+    "line_count": 17713,
+    "first_date": "2016-03-03",
+    "last_date": "2016-05-31",
+    "average_ticket": "2489.77",
+    "variation_pct": "6.1791",
+    "comparison_reason": null,
+    "is_comparable": true,
+    "period": {
+      "start": "2016-03-03",
+      "end": "2016-05-31"
+    },
+    "previous": {
+      "sales": "12875738.15",
+      "units": 688572,
+      "invoice_count": 5311,
+      "line_count": 16939,
+      "first_date": "2015-12-04",
+      "last_date": "2016-03-02",
+      "start": "2015-12-04",
+      "end": "2016-03-02"
+    },
+    "loaded_at": "2026-11-15T20:32:28.671604+00:00",
+    "execution_id": "15DC90DE-E5A0-4764-8940-4F34F58AC729",
+    "coverage": {
+      "start": "2013-01-01",
+      "end": "2016-05-31"
+    },
+    "definition": "Ventas facturadas sin impuestos; moneda de origen sin código disponible. Notas de crédito no admitidas hasta validar su semántica."
+  },
+  "javascript_errors": []
+}

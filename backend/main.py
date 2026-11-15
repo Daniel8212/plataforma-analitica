@@ -5,11 +5,13 @@ from sqlalchemy.exc import SQLAlchemyError
 from backend.analytics import router
 from backend.predictive import router as predictive_router
 from backend.chat import router as chat_router
+from backend.alerts import router as alerts_router
 
-app = FastAPI(title='Analítica de ventas',version='0.2.0')
+app = FastAPI(title='Analítica de ventas',version='0.3.0')
 app.include_router(router)
 app.include_router(predictive_router)
 app.include_router(chat_router)
+app.include_router(alerts_router)
 
 @app.get('/api/health')
 def health():
