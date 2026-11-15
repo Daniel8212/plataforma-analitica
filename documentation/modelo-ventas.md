@@ -9,7 +9,7 @@ Una fila por `Sales.InvoiceLines.InvoiceLineID`; `InvoiceID` es dimensión degen
 La FK de línea apunta a una factura; la factura identifica cliente y fecha; la línea identifica producto.
 Dimensiones iniciales: fecha, cliente (categoría incorporada) y producto (marca y frío incorporados).
 StockGroups es muchos-a-muchos (hay productos con tres grupos), por lo que queda fuera del join del hecho.
-Filtros previstos: producto y categoría de cliente, además de fecha.
+Filtros implementados: producto y categoría de cliente, además de fecha.
 
 | Medida/KPI | Fórmula | Unidad / aditividad |
 |---|---|---|
@@ -32,49 +32,12 @@ en cuarentena bajo regla explícita hasta validar ese caso. Moneda sin código e
 
 ## Diseño dimensional editable
 
-```mermaid
-erDiagram
-  DimDate ||--o{ FactSales : DateKey
-  DimCustomer ||--o{ FactSales : CustomerKey
-  DimProduct ||--o{ FactSales : ProductKey
-  DimDate {
-    int DateKey PK
-    date FullDate UK
-    int Year
-    int Month
-    int Quarter
-    int IsoWeek
-  }
-  DimCustomer {
-    int CustomerKey PK
-    int CustomerID
-    string CustomerName
-    string CustomerCategory
-    datetime ObservedFrom
-    datetime ObservedTo
-    boolean IsCurrent
-  }
-  DimProduct {
-    int ProductKey PK
-    int StockItemID UK
-    string ProductName
-    string Brand
-    boolean IsChillerStock
-  }
-  FactSales {
-    int InvoiceLineID UK
-    int InvoiceID
-    int DateKey FK
-    int CustomerKey FK
-    int ProductKey FK
-    int Quantity
-    decimal SalesAmount
-    decimal TaxAmount
-    decimal ExtendedPrice
-    uuid ExecutionID
-    string RecordStatus
-  }
-```
+![alt text](<modelo-ventas - Diagrama.png>)
+
+La imagen es una vista resumida. El hecho también tiene `FactSalesKey bigint IDENTITY`
+como **PK física**; `InvoiceLineID` es la clave natural única del grano, no la PK física.
+Está incluido en la fuente [diagramas/modelo-ventas.mmd](diagramas/modelo-ventas.mmd).
+Tipos exactos y campos adicionales: diccionario-analitico.md y database/001_schema.sql.
 
 Claves sustitutas en dimensiones; naturales conservadas; miembro 0 desconocido.
 Fecha con clave YYYYMMDD y miembro 0. La carga inicial representa atributos del snapshot actual,
@@ -83,5 +46,6 @@ SCD2 observado para nombre/categoría de cliente; los hechos conservan la versi�
 El historial temporal inspeccionado no cambiaba estos atributos y no se importaron versiones de
 atributos ajenos al alcance. Detalle en incremental-y-scd.md. No inventar historia anterior a la observación.
 
-La muestra proporciona más de tres años para evaluar viabilidad semanal; aún falta revisar
-semanas incompletas, cobertura y calidad. No hay modelo ni pronóstico validado todavía.
+La viabilidad semanal se confirmó: 177 semanas completas y dos intervalos parciales
+excluidos; modelo y pronóstico evaluados. Detalle en ../machine-learning/ML.md y
+evidence/ml-training.json. El corte sigue siendo mayo de 2016.

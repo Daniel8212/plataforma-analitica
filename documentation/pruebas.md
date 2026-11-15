@@ -104,3 +104,18 @@ impiden sobrescribir un resultado vigente. La caída total de conexión del eval
 devuelve estado recuperable y no revierte ni cambia la carga ya confirmada.
 
 Reconstrucción integral, validación global de entrega y video permanecen para el día 4.
+
+## Validación de reconstrucción y entrega
+
+La reconstrucción integral se ejecutó con volumen SQL, venv y node_modules nuevos
+en el mismo equipo. Suite: **75 passed** en evidence/day4-rebuild/pytest-day4-rebuild.xml.
+Lote adicional de demo: **7 passed**, con fallas/cambios solo en nuevas bases Test y
+evidencia propia en data/demo-20261115T211447Z. Se conserva copia de su reporte de entrega.
+
+La carga inicial y el incremental se ejecutaron en la fuente restaurada; se repitieron
+entrenamiento, 14 preguntas GenAI, cuatro recorridos de navegador y recreación del
+contenedor conservando volumen. Datos, linaje, watermark, modelo, predicciones y
+conteos operativos iguales tras reinicio. Se detectó y corrigió readiness de las bases.
+
+Documentación: revision-final.md, operacion.md y evidence/day4-rebuild/summary.json.
+El video sigue pendiente; no se declara ejecutado ni aprobado por estas pruebas.

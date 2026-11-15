@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "preserved": [
+    "source",
+    "warehouse",
+    "quality",
+    "latest_load",
+    "watermark_execution_id",
+    "active_model",
+    "future",
+    "operational_counts"
+  ],
+  "restore_existing_refused": true,
+  "method": "Container recreated with same isolated named volume; readiness verified before application connections."
+}

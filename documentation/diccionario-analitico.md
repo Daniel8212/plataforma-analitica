@@ -1,34 +1,24 @@
 # Diccionario de capas analíticas — catálogo ejecutado
 
 Longitudes en bytes; nvarchar usa dos bytes por carácter. Semántica de medidas: modelo-ventas.md.
-Raw conserva las proyecciones originales definidas en etl/run_initial.py por ExecutionID.
+Raw conserva las proyecciones originales definidas en etl/pipeline.py por ExecutionID.
 RowsRead en audit.Execution suma filas de las cinco tablas; RowsInserted cuenta hechos nuevos.
 StageCount detalla lectura/inserción por objeto. EndTime/StartTime/RecordedAt usan UTC.
-
-## Extensión de ML, asistente y alertas
-
-El detalle exacto de tipos, nulabilidad, claves y restricciones está en los scripts
-008_ml.sql, 009_chat.sql y 010_notifications.sql, aplicados por bootstrap.
-
-| Tabla | Clave / relación | Contenido y semántica |
-|---|---|---|
-| ml.ModelRun | Version; FK ejecución origen | Algoritmo, parámetros, fechas, métricas JSON, artefacto y hashes, versión activa única |
-| ml.Prediction | Versión + tipo + origen/objetivo | Semana prevista, horizonte 1–4, valor decimal, real nullable y generación UTC; no son hechos de venta |
-| audit.ChatRequest | RequestID; FK SourceExecutionID | Hash de pregunta, herramienta, estado, modelo, duración, indicador evaluación, respuesta y bloqueos JSON |
-| notify.Task | TaskID; UNIQUE ejecución/regla | Snapshot JSON inmutable por tarea, PENDING/FAILED/SUCCEEDED, intentos, error sanitizado y finalización UTC |
-| notify.Evaluation | TaskID PK/FK | Resultado TRIGGERED/CLEAR/SKIPPED/SUPERSEDED, fecha UTC y explicación |
-| notify.Alert | AlertID; UNIQUE regla/semana/simulación | Fecha, origen, severidad, valores decimales, umbral, caída, períodos exactos, carga, evidencia JSON, estado y entrega |
-| notify.StateHistory | HistoryID; FK AlertID | Fecha UTC, estado anterior y nuevo; decisiones y resolución/reactivación de la regla |
-
-IsSimulated distingue eventos sintéticos de indicadores respaldados por DW. La demo
-puede referenciar una carga real sin alterar esa ejecución: su propia tarea/alerta
-conservan IsSimulated=1. DeliveryStatus DELIVERED significa renderizado y acuse del
-panel. State ATTENDED/DISCARDED corresponde a acción del operador y RESOLVED a la regla.
-
-## Catálogo original de capas
+Semántica de ML, chat y alertas: diccionario-operativo.md. DDL: database/001,004,008,009,010.
 
 | Tabla | Columna | Tipo | Bytes | Precisión | Escala | Nullable | Identity |
 |---|---|---|---|---|---|---|---|
+| audit.ChatRequest | RequestID | uniqueidentifier | 16 | 0 | 0 | False | False |
+| audit.ChatRequest | CreatedAt | datetime2 | 8 | 27 | 7 | False | False |
+| audit.ChatRequest | QuestionHash | char | 64 | 0 | 0 | False | False |
+| audit.ChatRequest | ToolName | varchar | 40 | 0 | 0 | False | False |
+| audit.ChatRequest | Status | varchar | 30 | 0 | 0 | False | False |
+| audit.ChatRequest | SourceExecutionID | uniqueidentifier | 16 | 0 | 0 | True | False |
+| audit.ChatRequest | Model | varchar | 80 | 0 | 0 | True | False |
+| audit.ChatRequest | DurationMs | int | 4 | 10 | 0 | False | False |
+| audit.ChatRequest | IsEvaluation | bit | 1 | 1 | 0 | False | False |
+| audit.ChatRequest | ResponseJson | nvarchar | -1 | 0 | 0 | False | False |
+| audit.ChatRequest | UnverifiedJson | nvarchar | -1 | 0 | 0 | False | False |
 | audit.Deletion | DeletionID | bigint | 8 | 19 | 0 | False | True |
 | audit.Deletion | ExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
 | audit.Deletion | InvoiceLineID | int | 4 | 10 | 0 | False | False |
@@ -122,6 +112,76 @@ panel. State ATTENDED/DISCARDED corresponde a acción del operador y RESOLVED a 
 | dw.FactSales | LineProfit | decimal | 9 | 18 | 2 | False | False |
 | dw.FactSales | ExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
 | dw.FactSales | RecordStatus | varchar | 16 | 0 | 0 | False | False |
+| ml.ModelRun | Version | varchar | 80 | 0 | 0 | False | False |
+| ml.ModelRun | GeneratedAt | datetime2 | 8 | 27 | 7 | False | False |
+| ml.ModelRun | SourceExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
+| ml.ModelRun | DatasetHash | char | 64 | 0 | 0 | False | False |
+| ml.ModelRun | Algorithm | varchar | 80 | 0 | 0 | False | False |
+| ml.ModelRun | DataFirstDate | date | 3 | 10 | 0 | False | False |
+| ml.ModelRun | SourceLastDate | date | 3 | 10 | 0 | False | False |
+| ml.ModelRun | AsOfDate | date | 3 | 10 | 0 | False | False |
+| ml.ModelRun | CompleteWeeks | int | 4 | 10 | 0 | False | False |
+| ml.ModelRun | TrainStart | date | 3 | 10 | 0 | False | False |
+| ml.ModelRun | TrainEnd | date | 3 | 10 | 0 | False | False |
+| ml.ModelRun | ValidationStart | date | 3 | 10 | 0 | False | False |
+| ml.ModelRun | ValidationEnd | date | 3 | 10 | 0 | False | False |
+| ml.ModelRun | TestStart | date | 3 | 10 | 0 | False | False |
+| ml.ModelRun | TestEnd | date | 3 | 10 | 0 | False | False |
+| ml.ModelRun | ParametersJson | nvarchar | -1 | 0 | 0 | False | False |
+| ml.ModelRun | MetricsJson | nvarchar | -1 | 0 | 0 | False | False |
+| ml.ModelRun | ReportJson | nvarchar | -1 | 0 | 0 | False | False |
+| ml.ModelRun | ArtifactPath | nvarchar | 500 | 0 | 0 | False | False |
+| ml.ModelRun | ArtifactSHA256 | char | 64 | 0 | 0 | False | False |
+| ml.ModelRun | IsActive | bit | 1 | 1 | 0 | False | False |
+| ml.Prediction | PredictionID | bigint | 8 | 19 | 0 | False | True |
+| ml.Prediction | Version | varchar | 80 | 0 | 0 | False | False |
+| ml.Prediction | Kind | varchar | 10 | 0 | 0 | False | False |
+| ml.Prediction | TargetWeekStart | date | 3 | 10 | 0 | False | False |
+| ml.Prediction | OriginDate | date | 3 | 10 | 0 | False | False |
+| ml.Prediction | Horizon | int | 4 | 10 | 0 | False | False |
+| ml.Prediction | PredictedSales | decimal | 9 | 18 | 2 | False | False |
+| ml.Prediction | ActualSales | decimal | 9 | 18 | 2 | True | False |
+| ml.Prediction | GeneratedAt | datetime2 | 8 | 27 | 7 | False | False |
+| notify.Alert | AlertID | uniqueidentifier | 16 | 0 | 0 | False | False |
+| notify.Alert | RuleName | varchar | 40 | 0 | 0 | False | False |
+| notify.Alert | CreatedAt | datetime2 | 8 | 27 | 7 | False | False |
+| notify.Alert | UpdatedAt | datetime2 | 8 | 27 | 7 | False | False |
+| notify.Alert | SourceExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
+| notify.Alert | Severity | varchar | 12 | 0 | 0 | False | False |
+| notify.Alert | CurrentStart | date | 3 | 10 | 0 | False | False |
+| notify.Alert | CurrentEnd | date | 3 | 10 | 0 | False | False |
+| notify.Alert | ReferenceStart | date | 3 | 10 | 0 | False | False |
+| notify.Alert | ReferenceEnd | date | 3 | 10 | 0 | False | False |
+| notify.Alert | ObservedValue | decimal | 13 | 20 | 2 | False | False |
+| notify.Alert | ReferenceValue | decimal | 13 | 20 | 2 | False | False |
+| notify.Alert | ThresholdPercent | decimal | 5 | 8 | 2 | False | False |
+| notify.Alert | DropPercent | decimal | 9 | 12 | 4 | False | False |
+| notify.Alert | Origin | varchar | 40 | 0 | 0 | False | False |
+| notify.Alert | IsSimulated | bit | 1 | 1 | 0 | False | False |
+| notify.Alert | State | varchar | 12 | 0 | 0 | False | False |
+| notify.Alert | SeenAt | datetime2 | 8 | 27 | 7 | True | False |
+| notify.Alert | DeliveryStatus | varchar | 12 | 0 | 0 | False | False |
+| notify.Alert | Explanation | nvarchar | 1000 | 0 | 0 | False | False |
+| notify.Alert | EvidenceJson | nvarchar | -1 | 0 | 0 | False | False |
+| notify.Evaluation | TaskID | uniqueidentifier | 16 | 0 | 0 | False | False |
+| notify.Evaluation | EvaluatedAt | datetime2 | 8 | 27 | 7 | False | False |
+| notify.Evaluation | Outcome | varchar | 20 | 0 | 0 | False | False |
+| notify.Evaluation | Explanation | nvarchar | 1000 | 0 | 0 | False | False |
+| notify.StateHistory | HistoryID | bigint | 8 | 19 | 0 | False | True |
+| notify.StateHistory | AlertID | uniqueidentifier | 16 | 0 | 0 | False | False |
+| notify.StateHistory | ChangedAt | datetime2 | 8 | 27 | 7 | False | False |
+| notify.StateHistory | PreviousState | varchar | 12 | 0 | 0 | False | False |
+| notify.StateHistory | NewState | varchar | 12 | 0 | 0 | False | False |
+| notify.Task | TaskID | uniqueidentifier | 16 | 0 | 0 | False | False |
+| notify.Task | ExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
+| notify.Task | RuleName | varchar | 40 | 0 | 0 | False | False |
+| notify.Task | IsSimulated | bit | 1 | 1 | 0 | False | False |
+| notify.Task | CreatedAt | datetime2 | 8 | 27 | 7 | False | False |
+| notify.Task | Status | varchar | 12 | 0 | 0 | False | False |
+| notify.Task | Attempts | int | 4 | 10 | 0 | False | False |
+| notify.Task | LastError | varchar | 200 | 0 | 0 | True | False |
+| notify.Task | CompletedAt | datetime2 | 8 | 27 | 7 | True | False |
+| notify.Task | Payload | nvarchar | -1 | 0 | 0 | False | False |
 | raw.CustomerCategories | ExecutionID | uniqueidentifier | 16 | 0 | 0 | False | False |
 | raw.CustomerCategories | CustomerCategoryID | int | 4 | 10 | 0 | False | False |
 | raw.CustomerCategories | CustomerCategoryName | nvarchar | 100 | 0 | 0 | False | False |

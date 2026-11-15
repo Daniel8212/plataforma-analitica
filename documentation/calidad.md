@@ -8,7 +8,7 @@ Las observaciones señaladas se conservaron; no se imputaron causas ni se borrar
 Cada ejecución registra conteos antes/después y rechazo por regla. Un outlier no se elimina
 por ser atípico; precio cero puede ser válido y cantidades negativas requieren contexto de crédito.
 
-| ID | Control / transformación | Tratamiento previsto | Evidencia |
+| ID | Control / transformación | Tratamiento aplicado | Evidencia |
 |---|---|---|---|
 | Q01 | Clave natural de línea no nula y única en extracción | Duplicado inesperado: fallar lote, sin elegir sobreviviente arbitrario | Conteo total vs distinct |
 | Q02 | Factura, producto, cliente y fecha resolubles | FK desconocida: cuarentena o miembro desconocido según causa documentada | Anti-joins y rechazo |
@@ -30,3 +30,11 @@ Métricas: completitud (no nulos/total), unicidad (claves distintas/total),
 validez (válidos/total), consistencia (reglas cruzadas satisfechas/total),
 integridad (huérfanos) y oportunidad (evento → disponibilidad, distinguiendo dataset histórico
 de latencia técnica de carga). Registrar numeradores/denominadores y no solo porcentajes.
+
+Aceptación final: deployment.acceptance calcula numeradores/denominadores de
+completitud de precio, unicidad de clave, consistencia de importes y aceptación en
+clean, junto con huérfanos, linaje y duración de carga. Resultados ejecutados en
+evidence/day4-rebuild/persistence-after.json y evidence/day4-main-preserved.json.
+En la reconstrucción: 228.265/228.265 completos, únicos, consistentes y aceptados;
+cero huérfanos y cero hechos sin carga exitosa. La antigüedad del dataset se registra
+aparte de la duración técnica; no se presenta como incumplimiento de un SLA actual.

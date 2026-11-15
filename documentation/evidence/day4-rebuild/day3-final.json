@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "source": {
+    "lines": 228265,
+    "invoices": 70510,
+    "units": 8950628,
+    "sales": "172261341.20",
+    "last_line_edit": "2016-05-31 12:00:00"
+  },
+  "warehouse": {
+    "lines": 228265,
+    "invoices": 70510,
+    "units": 8950628,
+    "sales": "172261341.20"
+  },
+  "forecast_version": "weekly-20261115T210040-1ec163f9",
+  "tasks": [
+    {
+      "TaskID": "65028E40-FDAF-4A98-8A0C-8E0597D5B581",
+      "ExecutionID": "7EED887C-04D4-4D6D-920F-C673F63893ED",
+      "RuleName": "SALES_DROP_WEEKLY",
+      "IsSimulated": false,
+      "CreatedAt": "2026-11-15 21:00:18.431676",
+      "Status": "SUCCEEDED",
+      "Attempts": 1,
+      "LastError": null,
+      "CompletedAt": "2026-11-15 21:00:18.631750",
+      "Outcome": "CLEAR",
+      "Explanation": "Sin caída superior al umbral."
+    },
+    {
+      "TaskID": "4678CF5D-35CF-40C5-92F3-FBB448C0BE25",
+      "ExecutionID": "09CD63DF-AF0F-441B-A013-58D104EB8658",
+      "RuleName": "SALES_DROP_WEEKLY",
+      "IsSimulated": false,
+      "CreatedAt": "2026-11-15 21:02:04.585477",
+      "Status": "SUCCEEDED",
+      "Attempts": 1,
+      "LastError": null,
+      "CompletedAt": "2026-11-15 21:02:04.639384",
+      "Outcome": "CLEAR",
+      "Explanation": "Sin caída superior al umbral."
+    },
+    {
+      "TaskID": "FE0421B5-64B5-426D-A865-DAF4A43DFF0B",
+      "ExecutionID": "09CD63DF-AF0F-441B-A013-58D104EB8658",
+      "RuleName": "DEMO_SALES_DROP",
+      "IsSimulated": true,
+      "CreatedAt": "2026-11-15 21:05:37.285102",
+      "Status": "SUCCEEDED",
+      "Attempts": 1,
+      "LastError": null,
+      "CompletedAt": "2026-11-15 21:05:37.418886",
+      "Outcome": "TRIGGERED",
+      "Explanation": "Caída superior al umbral; revisar productos y clientes del período."
+    }
+  ],
+  "alerts": [
+    {
+      "AlertID": "38915BA8-600B-4DCC-BA80-9BF040C2AF8B",
+      "RuleName": "DEMO_SALES_DROP",
+      "CreatedAt": "2026-11-15T21:05:37.393554+00:00",
+      "UpdatedAt": "2026-11-15T21:07:07.827639+00:00",
+      "SourceExecutionID": "09CD63DF-AF0F-441B-A013-58D104EB8658",
+      "Severity": "HIGH",
+      "CurrentStart": "2016-05-23",
+      "CurrentEnd": "2016-05-29",
+      "ReferenceStart": "2016-05-16",
+      "ReferenceEnd": "2016-05-22",
+      "ObservedValue": "698180.86",
+      "ReferenceValue": "1074124.40",
+      "ThresholdPercent": "15.00",
+      "DropPercent": "35.0000",
+      "Origin": "POST_LOAD_RULE",
+      "IsSimulated": true,
+      "State": "ATTENDED",
+      "SeenAt": "2026-11-15T21:07:07.697442+00:00",
+      "DeliveryStatus": "DELIVERED",
+      "Explanation": "Caída superior al umbral; revisar productos y clientes del período.",
+      "EvidenceJson": "{\"eligible\": true, \"reason\": \"Dos semanas completas consecutivas\", \"current_start\": \"2016-05-23\", \"current_end\": \"2016-05-29\", \"reference_start\": \"2016-05-16\", \"reference_end\": \"2016-05-22\", \"observed\": \"698180.86\", \"reference\": \"1074124.40\", \"threshold\": \"15\", \"actual_dw_observed\": \"1015562.65\", \"simulation_note\": \"Valor evaluado sint\\u00e9tico, 35 % por debajo de la referencia real; no representa ventas del DW.\"}"
+    }
+  ],
+  "note": "Lecturas reales; los eventos IsSimulated están separados y no modifican hechos."
+}

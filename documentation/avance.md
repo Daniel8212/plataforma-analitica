@@ -85,7 +85,7 @@ sin superar ocho commits ni reescribir historial publicado sin autorización.
 
 ## Pendientes posteriores
 
-En desarrollo únicamente día 3 autorizado; día 4 no iniciado.
+El día 4 fue autorizado: cierre técnico y documental; video dejado para el final.
 Video debe grabarse con ejecución real; solo se prepara guion automáticamente.
 
 ## 2026-11-15 — Día 2 completado
@@ -152,3 +152,34 @@ Video debe grabarse con ejecución real; solo se prepara guion automáticamente.
   del máximo de ocho para la entrega final. Push y revisión quedan a cargo del usuario.
 - Al terminar se detienen los servidores propios de API, Vite y Ollama. SQL Server
   conserva su volumen; comandos de inicio disponibles en README y generative-ai/GENAI.md.
+
+## 2026-11-15 — Día 4: cierre técnico verificado
+
+- Inspección: PowerShell 5.1, Python 3.12.6; Node activo 22.12/npm 10.9, sin instalar otra versión.
+- Copia limpia data/rebuild-20261115T205729Z, venv/node_modules nuevos y SQL 14334
+  en volumen independiente; instancia principal detenida temporalmente para reducir memoria.
+- Backup oficial SHA256 verificado; restore sin REPLACE, bootstrap/RLS autorizada,
+  carga inicial y cuatro capas reconciliadas: 228.265 líneas y 172.261.341,20.
+- Incremental sin cambios: cero inserciones/actualizaciones. Reentrenamiento reproduce
+  algoritmo Ridge, métricas y cuatro predicciones; nueva versión solo en base de aceptación.
+- 75 pruebas aprobadas en reconstrucción, más lote de demo final de siete casos aprobado.
+- GenAI: 14 preguntas repetidas con proveedor real, mismos bloqueos; cuatro recorridos
+  Chrome (dashboard, pronóstico, chat, alertas), escritorio/móvil, cero excepciones JS.
+- Persistencia verificada al recrear contenedor: datos, watermark, modelo/predicciones
+  y conteos operativos iguales. Restore rechaza base existente.
+- Hallazgos corregidos: Tailwind limitado a frontend/src; readiness comprueba bases
+  recuperadas además de master; prueba visual admite ausencia de rechazos históricos.
+- SQL principal restaurado a servicio y validado sin cambios en hechos/modelo; aceptación
+  detenida, volumen conservado. API/Vite/Ollama de prueba detenidos.
+- Manuales de operación/usuario, índice, catálogo de seis esquemas y revisión final preparados.
+  Exportaciones PNG del usuario conservadas, seis fuentes Mermaid independientes preservadas.
+- Escaneo de secretos conocidos e historia textual Git aprobado, sin archivos privados
+  versionados ni enlaces Markdown rotos. No se publica ni se hace push automáticamente.
+- Guion final de cinco minutos y secuencia de grabación preparados al terminar el
+  cierre técnico, como solicitó el usuario. Ensayo, grabación y revisión del archivo
+  requieren al autor; no se declara video grabado.
+- Revisión de cinco PNG: enlaces correctos; se detectaron dos imprecisiones del
+  Mermaid original (opcionalidad de FK y PK del hecho), corregidas en las fuentes .mmd
+  y aclaradas en documentos. PNG del usuario conservados para su regeneración.
+- El octavo commit agrupa el cierre técnico/documental y preparación de demo/video;
+  no se crea un noveno ni se hace push automáticamente.

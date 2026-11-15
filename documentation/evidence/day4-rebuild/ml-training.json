@@ -1,0 +1,524 @@
+{
+  "selected": "ridge_alpha_100",
+  "best_learned": "ridge_alpha_100",
+  "validation": {
+    "naive_last_week": {
+      "mae": 144044.888,
+      "rmse": 167984.16298746318,
+      "smape_pct": 13.94697120500075,
+      "n": 25
+    },
+    "seasonal_naive_52": {
+      "mae": 138474.862,
+      "rmse": 167430.8994753767,
+      "smape_pct": 14.504663353886874,
+      "n": 25
+    },
+    "ridge_alpha_1": {
+      "mae": 156952.3150369005,
+      "rmse": 174173.10086387757,
+      "smape_pct": 14.780957458185885,
+      "n": 25
+    },
+    "ridge_alpha_10": {
+      "mae": 95328.73106103703,
+      "rmse": 119255.2758694723,
+      "smape_pct": 9.346322306712915,
+      "n": 25
+    },
+    "ridge_alpha_100": {
+      "mae": 82832.50075217997,
+      "rmse": 105049.91693859716,
+      "smape_pct": 8.149580887644921,
+      "n": 25
+    },
+    "random_forest_depth_4": {
+      "mae": 90544.06751615813,
+      "rmse": 115335.37049774312,
+      "smape_pct": 8.873452806484107,
+      "n": 25
+    }
+  },
+  "test": {
+    "ridge_alpha_100": {
+      "mae": 113773.86994134873,
+      "rmse": 146406.10285543156,
+      "smape_pct": 10.98976049550088,
+      "n": 25
+    },
+    "naive_last_week": {
+      "mae": 112844.55400000002,
+      "rmse": 146908.33901282973,
+      "smape_pct": 10.676419516328268,
+      "n": 25
+    },
+    "seasonal_naive_52": {
+      "mae": 157939.58399999997,
+      "rmse": 203492.76232530532,
+      "smape_pct": 15.13293568628353,
+      "n": 25
+    }
+  },
+  "splits": {
+    "train_start": "2014-01-06",
+    "train_end": "2015-06-08",
+    "validation_start": "2015-06-15",
+    "validation_end": "2015-11-30",
+    "test_start": "2015-12-07",
+    "test_end": "2016-05-23",
+    "train_rows": 75,
+    "validation_rows": 25,
+    "test_rows": 25
+  },
+  "test_predictions": [
+    {
+      "week_start": "2015-12-07",
+      "origin": "2015-12-06",
+      "horizon": 1,
+      "actual": 1023197.05,
+      "predicted": 1021939.1941971659
+    },
+    {
+      "week_start": "2015-12-14",
+      "origin": "2015-12-06",
+      "horizon": 2,
+      "actual": 928532.4,
+      "predicted": 1011782.768361452
+    },
+    {
+      "week_start": "2015-12-21",
+      "origin": "2015-12-06",
+      "horizon": 3,
+      "actual": 947496.8,
+      "predicted": 1006875.1880801714
+    },
+    {
+      "week_start": "2015-12-28",
+      "origin": "2015-12-06",
+      "horizon": 4,
+      "actual": 988549.1,
+      "predicted": 1005820.5923196942
+    },
+    {
+      "week_start": "2016-01-04",
+      "origin": "2016-01-03",
+      "horizon": 1,
+      "actual": 1313147.3,
+      "predicted": 1005227.6103811607
+    },
+    {
+      "week_start": "2016-01-11",
+      "origin": "2016-01-03",
+      "horizon": 2,
+      "actual": 1061551.4,
+      "predicted": 993687.2086213821
+    },
+    {
+      "week_start": "2016-01-18",
+      "origin": "2016-01-03",
+      "horizon": 3,
+      "actual": 915186.9,
+      "predicted": 1031636.6183864936
+    },
+    {
+      "week_start": "2016-01-25",
+      "origin": "2016-01-03",
+      "horizon": 4,
+      "actual": 913258.3,
+      "predicted": 1037783.2124486312
+    },
+    {
+      "week_start": "2016-02-01",
+      "origin": "2016-01-31",
+      "horizon": 1,
+      "actual": 875906.6,
+      "predicted": 1021436.772097168
+    },
+    {
+      "week_start": "2016-02-08",
+      "origin": "2016-01-31",
+      "horizon": 2,
+      "actual": 879794.75,
+      "predicted": 1031816.5560510714
+    },
+    {
+      "week_start": "2016-02-15",
+      "origin": "2016-01-31",
+      "horizon": 3,
+      "actual": 938555.6,
+      "predicted": 1026135.3712401702
+    },
+    {
+      "week_start": "2016-02-22",
+      "origin": "2016-01-31",
+      "horizon": 4,
+      "actual": 1051939.35,
+      "predicted": 1067828.6648501207
+    },
+    {
+      "week_start": "2016-02-29",
+      "origin": "2016-02-28",
+      "horizon": 1,
+      "actual": 1221350.75,
+      "predicted": 1008104.358868889
+    },
+    {
+      "week_start": "2016-03-07",
+      "origin": "2016-02-28",
+      "horizon": 2,
+      "actual": 832359.15,
+      "predicted": 1070378.8402593052
+    },
+    {
+      "week_start": "2016-03-14",
+      "origin": "2016-02-28",
+      "horizon": 3,
+      "actual": 733819.8,
+      "predicted": 1032330.0662977949
+    },
+    {
+      "week_start": "2016-03-21",
+      "origin": "2016-02-28",
+      "horizon": 4,
+      "actual": 1240579.6,
+      "predicted": 1066254.1426696696
+    },
+    {
+      "week_start": "2016-03-28",
+      "origin": "2016-03-27",
+      "horizon": 1,
+      "actual": 1050331.6,
+      "predicted": 1028220.4868585372
+    },
+    {
+      "week_start": "2016-04-04",
+      "origin": "2016-03-27",
+      "horizon": 2,
+      "actual": 1024178.3,
+      "predicted": 1126520.490762567
+    },
+    {
+      "week_start": "2016-04-11",
+      "origin": "2016-03-27",
+      "horizon": 3,
+      "actual": 1161331.65,
+      "predicted": 1065142.552207264
+    },
+    {
+      "week_start": "2016-04-18",
+      "origin": "2016-03-27",
+      "horizon": 4,
+      "actual": 1107380.5,
+      "predicted": 1079397.8028064843
+    },
+    {
+      "week_start": "2016-04-25",
+      "origin": "2016-04-24",
+      "horizon": 1,
+      "actual": 1097009.3,
+      "predicted": 1079152.0343274302
+    },
+    {
+      "week_start": "2016-05-02",
+      "origin": "2016-04-24",
+      "horizon": 2,
+      "actual": 1353330.25,
+      "predicted": 1059117.461531586
+    },
+    {
+      "week_start": "2016-05-09",
+      "origin": "2016-04-24",
+      "horizon": 3,
+      "actual": 1146150.95,
+      "predicted": 1057687.589019522
+    },
+    {
+      "week_start": "2016-05-16",
+      "origin": "2016-04-24",
+      "horizon": 4,
+      "actual": 1074124.4,
+      "predicted": 1065720.3061471693
+    },
+    {
+      "week_start": "2016-05-23",
+      "origin": "2016-05-22",
+      "horizon": 1,
+      "actual": 1015562.65,
+      "predicted": 1099307.305015339
+    }
+  ],
+  "evaluation": "Bloques de origen móvil de hasta cuatro semanas; sin reentrenar dentro de validación/prueba. Cada origen solo conoce semanas anteriores.",
+  "future": [
+    {
+      "week_start": "2016-05-30",
+      "horizon": 1,
+      "predicted": 1097309.8362655416
+    },
+    {
+      "week_start": "2016-06-06",
+      "horizon": 2,
+      "predicted": 1067653.7828279783
+    },
+    {
+      "week_start": "2016-06-13",
+      "horizon": 3,
+      "predicted": 1054637.8941380002
+    },
+    {
+      "week_start": "2016-06-20",
+      "horizon": 4,
+      "predicted": 1078855.5235889708
+    }
+  ],
+  "version": "weekly-20261115T210040-1ec163f9",
+  "dataset_hash": "02d79fd9892c73118269c78bd00e740b73b2102f18a58ff2c8dee74e3f4c2b88",
+  "source_execution_id": "7EED887C-04D4-4D6D-920F-C673F63893ED",
+  "parameters": {
+    "features": [
+      "lag_1",
+      "lag_2",
+      "lag_4",
+      "lag_13",
+      "lag_52",
+      "mean_4",
+      "mean_13",
+      "std_4",
+      "trend",
+      "season_sin",
+      "season_cos"
+    ],
+    "lags": [
+      1,
+      2,
+      4,
+      13,
+      52
+    ],
+    "horizon_weeks": 4,
+    "clip_nonnegative": true,
+    "seed": 42,
+    "sklearn_version": "1.9.1",
+    "code_sha256": "76e7c8693833d7afd07e7a08873c35a0f19b1b6561d0698aea8b79c1b212d3c3",
+    "selection": "MAE en validación recursiva; el conjunto de prueba nunca selecciona algoritmo ni parámetros.",
+    "deployment_refit": "Tras evaluar prueba, reentrenar con todas las semanas completas."
+  },
+  "coverage": {
+    "first_date": "2013-01-01",
+    "last_date": "2016-05-31"
+  },
+  "as_of": "2016-05-29",
+  "quality": {
+    "complete_weeks": 177,
+    "partial_weeks_excluded": [
+      "2012-12-31",
+      "2016-05-30"
+    ],
+    "missing_weeks_filled_with_zero": 0,
+    "non_finite": 0,
+    "negative_weeks": 0,
+    "weekly_iqr_bounds": [
+      588297.4249999998,
+      1340768.8250000002
+    ],
+    "weekly_outliers": [
+      {
+        "week": "2016-05-02",
+        "sales": 1353330.25
+      }
+    ],
+    "treatment": "No se eliminan outliers automáticamente. Se conservan ventas válidas; las semanas parciales se excluyen por comparabilidad, no por ser atípicas.",
+    "line_outliers": {
+      "Quantity": {
+        "q1": 5.0,
+        "q3": 60.0,
+        "lower": -77.5,
+        "upper": 142.5,
+        "flagged": 13907,
+        "examples": [
+          {
+            "InvoiceLineID": 1117,
+            "ProductName": "Black and orange fragile despatch tape 48mmx100m",
+            "Quantity": 360,
+            "UnitPrice": "4.10",
+            "SalesAmount": "1476.00"
+          },
+          {
+            "InvoiceLineID": 3966,
+            "ProductName": "Black and orange fragile despatch tape 48mmx75m",
+            "Quantity": 360,
+            "UnitPrice": "3.70",
+            "SalesAmount": "1332.00"
+          },
+          {
+            "InvoiceLineID": 5124,
+            "ProductName": "Black and orange fragile despatch tape 48mmx100m",
+            "Quantity": 360,
+            "UnitPrice": "4.10",
+            "SalesAmount": "1476.00"
+          },
+          {
+            "InvoiceLineID": 5161,
+            "ProductName": "Black and orange fragile despatch tape 48mmx75m",
+            "Quantity": 360,
+            "UnitPrice": "3.70",
+            "SalesAmount": "1332.00"
+          },
+          {
+            "InvoiceLineID": 5620,
+            "ProductName": "Black and orange fragile despatch tape 48mmx75m",
+            "Quantity": 360,
+            "UnitPrice": "3.70",
+            "SalesAmount": "1332.00"
+          }
+        ]
+      },
+      "UnitPrice": {
+        "q1": 13.0,
+        "q3": 32.0,
+        "lower": -15.5,
+        "upper": 60.5,
+        "flagged": 24184,
+        "examples": [
+          {
+            "InvoiceLineID": 1329,
+            "ProductName": "Air cushion machine (Blue)",
+            "Quantity": 8,
+            "UnitPrice": "1899.00",
+            "SalesAmount": "15192.00"
+          },
+          {
+            "InvoiceLineID": 1506,
+            "ProductName": "Air cushion machine (Blue)",
+            "Quantity": 9,
+            "UnitPrice": "1899.00",
+            "SalesAmount": "17091.00"
+          },
+          {
+            "InvoiceLineID": 1588,
+            "ProductName": "Air cushion machine (Blue)",
+            "Quantity": 3,
+            "UnitPrice": "1899.00",
+            "SalesAmount": "5697.00"
+          },
+          {
+            "InvoiceLineID": 1708,
+            "ProductName": "Air cushion machine (Blue)",
+            "Quantity": 5,
+            "UnitPrice": "1899.00",
+            "SalesAmount": "9495.00"
+          },
+          {
+            "InvoiceLineID": 1720,
+            "ProductName": "Air cushion machine (Blue)",
+            "Quantity": 3,
+            "UnitPrice": "1899.00",
+            "SalesAmount": "5697.00"
+          }
+        ]
+      },
+      "SalesAmount": {
+        "q1": 96.0,
+        "q3": 864.0,
+        "lower": -1056.0,
+        "upper": 2016.0,
+        "flagged": 20012,
+        "examples": [
+          {
+            "InvoiceLineID": 5698,
+            "ProductName": "Air cushion machine (Blue)",
+            "Quantity": 10,
+            "UnitPrice": "1899.00",
+            "SalesAmount": "18990.00"
+          },
+          {
+            "InvoiceLineID": 10086,
+            "ProductName": "Air cushion machine (Blue)",
+            "Quantity": 10,
+            "UnitPrice": "1899.00",
+            "SalesAmount": "18990.00"
+          },
+          {
+            "InvoiceLineID": 13777,
+            "ProductName": "Air cushion machine (Blue)",
+            "Quantity": 10,
+            "UnitPrice": "1899.00",
+            "SalesAmount": "18990.00"
+          },
+          {
+            "InvoiceLineID": 14186,
+            "ProductName": "Air cushion machine (Blue)",
+            "Quantity": 10,
+            "UnitPrice": "1899.00",
+            "SalesAmount": "18990.00"
+          },
+          {
+            "InvoiceLineID": 19624,
+            "ProductName": "Air cushion machine (Blue)",
+            "Quantity": 10,
+            "UnitPrice": "1899.00",
+            "SalesAmount": "18990.00"
+          }
+        ]
+      }
+    }
+  },
+  "history": [
+    {
+      "week_start": "2016-03-07",
+      "sales": 832359.15
+    },
+    {
+      "week_start": "2016-03-14",
+      "sales": 733819.8
+    },
+    {
+      "week_start": "2016-03-21",
+      "sales": 1240579.6
+    },
+    {
+      "week_start": "2016-03-28",
+      "sales": 1050331.6
+    },
+    {
+      "week_start": "2016-04-04",
+      "sales": 1024178.3
+    },
+    {
+      "week_start": "2016-04-11",
+      "sales": 1161331.65
+    },
+    {
+      "week_start": "2016-04-18",
+      "sales": 1107380.5
+    },
+    {
+      "week_start": "2016-04-25",
+      "sales": 1097009.3
+    },
+    {
+      "week_start": "2016-05-02",
+      "sales": 1353330.25
+    },
+    {
+      "week_start": "2016-05-09",
+      "sales": 1146150.95
+    },
+    {
+      "week_start": "2016-05-16",
+      "sales": 1074124.4
+    },
+    {
+      "week_start": "2016-05-23",
+      "sales": 1015562.65
+    }
+  ],
+  "artifact_path": "data/models/weekly-20261115T210040-1ec163f9/model.joblib",
+  "artifact_sha256": "17a2ccf03c2accbf1d2a24b9258a49bccf2d7f0c62c5c8a79e1f16815724f438",
+  "series_snapshot_path": "data/models/weekly-20261115T210040-1ec163f9/weekly-sales.csv",
+  "limitations": [
+    "Muestra comercial sintética de Microsoft, no ventas actuales de una empresa real.",
+    "Pocas observaciones y una sola separación temporal; sin intervalos de confianza ni garantías de precisión.",
+    "La primera semana pronosticada puede coincidir con días parciales ya presentes en el DW; no se usaron esos días para entrenar.",
+    "No se infieren causas de las variaciones. Reentrenar tras cambios materiales o una nueva semana completa."
+  ]
+}

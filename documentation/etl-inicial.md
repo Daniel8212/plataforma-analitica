@@ -6,22 +6,7 @@ El diagrama siguiente documenta la primera implementación, no sustituye el manu
 
 ## Flujo editable
 
-```mermaid
-flowchart TD
-  A[Python: adquirir bloqueo exclusivo de pipeline] --> B[Registrar ejecución RUNNING]
-  B --> C[Transacción serializable: cinco proyecciones OLTP a raw]
-  C --> D[Conteos y reconciliación fuente/raw; confirmar raw]
-  D --> E{Dimensiones visibles y no vacías}
-  E -->|No| F[FAILED; raw conservado; DW sin cambios]
-  E -->|Sí| G[Validar, poner rechazos en cuarentena y construir clean]
-  G --> H[Calendario, dimensiones y hechos nuevos]
-  H --> I{Reconciliación exacta y cobertura}
-  I -->|No| J[Rollback publicación; FAILED]
-  I -->|Sí| K[Auditoría SUCCEEDED y commit conjunto de publicación]
-  F --> L[Liberar bloqueo]
-  J --> L
-  K --> L
-```
+![alt text](<ETL - DIAGRAM.png>)
 
 Python y SQLAlchemy/pyodbc coordinan extracción y transformación SQL en una instancia.
 La fuente está en otra base; no se usa el DW preconstruido de Microsoft.

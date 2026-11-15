@@ -1,0 +1,10 @@
+flowchart TD
+  A[Bloqueo exclusivo de sesión] --> B[RUNNING + límite superior UTC]
+  B --> C[Transacción de extracción a raw]
+  C --> D[Confirmar originales + conteos]
+  D --> E[Transacción de validación: clean y cuarentena]
+  E --> F[Confirmar evidencia preparada]
+  F --> G[Transacción de publicación: SCD + upsert + bajas]
+  G --> H{Reconciliación fila por fila}
+  H -->|Exacta| I[Watermark + auditoría SUCCEEDED en el mismo commit]
+  H -->|Diferente / falla| J[Rollback DW y watermark; FAILED]

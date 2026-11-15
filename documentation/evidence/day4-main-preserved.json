@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-15T21:13:03.968176+00:00",
+  "source": {
+    "lines": 228265,
+    "distinct_lines": 228265,
+    "invoices": 70510,
+    "units": 8950628,
+    "sales": "172261341.20",
+    "null_prices": 0,
+    "inconsistent_amounts": 0,
+    "last_line_edit": "2016-05-31 12:00:00"
+  },
+  "warehouse": {
+    "lines": 228265,
+    "distinct_lines": 228265,
+    "invoices": 70510,
+    "units": 8950628,
+    "sales": "172261341.20",
+    "first_date": "2013-01-01",
+    "last_date": "2016-05-31"
+  },
+  "quality": {
+    "source_price_completeness": {
+      "numerator": 228265,
+      "denominator": 228265,
+      "ratio": 1.0
+    },
+    "source_key_uniqueness": {
+      "numerator": 228265,
+      "denominator": 228265,
+      "ratio": 1.0
+    },
+    "source_amount_consistency": {
+      "numerator": 228265,
+      "denominator": 228265,
+      "ratio": 1.0
+    },
+    "initial_clean_acceptance": {
+      "numerator": 228265,
+      "denominator": 228265,
+      "ratio": 1.0
+    },
+    "initial_rejections": 0,
+    "dw_orphans": 0,
+    "invalid_fact_lineage": 0
+  },
+  "latest_load": {
+    "ExecutionID": "15DC90DE-E5A0-4764-8940-4F34F58AC729",
+    "StartTime": "2026-11-15 20:32:16.699101",
+    "EndTime": "2026-11-15 20:32:28.671604",
+    "RowsRead": 898,
+    "RowsInserted": 0,
+    "RowsUpdated": 0,
+    "RowsRejected": 0,
+    "DurationMs": 11972
+  },
+  "watermark_execution_id": "15DC90DE-E5A0-4764-8940-4F34F58AC729",
+  "active_model": {
+    "Version": "weekly-20261115T193206-a650a53f",
+    "DatasetHash": "02d79fd9892c73118269c78bd00e740b73b2102f18a58ff2c8dee74e3f4c2b88",
+    "AsOfDate": "2016-05-29",
+    "Algorithm": "ridge_alpha_100"
+  },
+  "future": [
+    {
+      "TargetWeekStart": "2016-05-30",
+      "PredictedSales": "1097309.84"
+    },
+    {
+      "TargetWeekStart": "2016-06-06",
+      "PredictedSales": "1067653.78"
+    },
+    {
+      "TargetWeekStart": "2016-06-13",
+      "PredictedSales": "1054637.89"
+    },
+    {
+      "TargetWeekStart": "2016-06-20",
+      "PredictedSales": "1078855.52"
+    }
+  ],
+  "operational_counts": {
+    "dw.DimCustomer": 664,
+    "dw.DimProduct": 228,
+    "audit.Execution": 8,
+    "audit.StageCount": 62,
+    "audit.Reconciliation": 36,
+    "audit.Quarantine": 228265,
+    "audit.ChatRequest": 30,
+    "notify.Task": 2,
+    "notify.Evaluation": 2,
+    "notify.Alert": 1,
+    "notify.StateHistory": 1,
+    "ml.ModelRun": 2,
+    "ml.Prediction": 58
+  },
+  "timeliness": {
+    "load_duration_ms": 11972,
+    "historical_data_last_date": "2016-05-31",
+    "note": "Duración técnica distinta de antigüedad de la muestra 2013–2016; no es tiempo real ni SLA."
+  }
+}

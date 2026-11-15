@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "host": "Windows 11 / PowerShell 5.1",
+  "python": "3.12.6",
+  "node": "v22.12.0",
+  "npm": "10.9.0",
+  "rebuild": {
+    "created_at": "20261115T205729Z",
+    "checkout": "C:\\Users\\camba\\Downloads\\Workspace\\Tecnologias Emegentes\\plataforma-analitica\\data\\rebuild-20261115T205729Z",
+    "files": 166,
+    "project": "plataforma-rebuild-20261115t205729z",
+    "sql_port": 14334,
+    "backup_sha256": "e842bad6ce02f74f166947e559dab1b476edd7eaae3da2ab9e3f522f1dd87124",
+    "note": "Copia local .env ignorada, puerto aislado, sin reutilizar venv/node_modules ni volumen SQL."
+  },
+  "python_lock_exact_match": true,
+  "npm_ci": "passed; 117 packages; audit reported 0 vulnerabilities at execution",
+  "frontend_build": "passed; 424 modules; CSS 24.42 kB after explicit Tailwind sources",
+  "pytest": {
+    "passed": 75,
+    "failed": 0,
+    "warnings": [
+      "httpx/Starlette deprecation"
+    ]
+  },
+  "browser": {
+    "dashboard-browser.json": "passed",
+    "forecast-browser.json": "passed",
+    "chat-browser.json": "passed",
+    "alerts-browser.json": "passed"
+  },
+  "main_environment_preserved": true,
+  "main_model_version": "weekly-20261115T193206-a650a53f",
+  "cached_inputs": [
+    "official OLTP backup",
+    "package caches",
+    "local Ollama runtime and model"
+  ],
+  "new_state": [
+    "Python venv",
+    "frontend node_modules",
+    "SQL instance and named volume",
+    "source restore",
+    "DW schema/data",
+    "trained model registry"
+  ],
+  "limits": [
+    "same Windows host; not a new physical computer",
+    "video not recorded",
+    "GitHub push not performed"
+  ]
+}

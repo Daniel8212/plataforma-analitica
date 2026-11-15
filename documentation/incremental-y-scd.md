@@ -26,18 +26,8 @@ Reloj del servidor y watermark incoherentes hacen fallar la carga en lugar de re
 
 ## Transacciones y auditoría
 
-```mermaid
-flowchart TD
-  A[Bloqueo exclusivo de sesión] --> B[RUNNING + límite superior UTC]
-  B --> C[Transacción de extracción a raw]
-  C --> D[Confirmar originales + conteos]
-  D --> E[Transacción de validación: clean y cuarentena]
-  E --> F[Confirmar evidencia preparada]
-  F --> G[Transacción de publicación: SCD + upsert + bajas]
-  G --> H{Reconciliación fila por fila}
-  H -->|Exacta| I[Watermark + auditoría SUCCEEDED en el mismo commit]
-  H -->|Diferente / falla| J[Rollback DW y watermark; FAILED]
-```
+![alt text](<incremental-y-scd - Diagrama.png>)
+
 
 Raw y rechazos preparados sobreviven a una falla posterior. Clean es staging, no una interfaz de
 consumo público. Las vistas aprobadas leen únicamente DW activo. Reejecutar crea otro UUID y

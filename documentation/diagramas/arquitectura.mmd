@@ -1,0 +1,18 @@
+flowchart LR
+  S[(WideWorldImporters OLTP)] -->|Python / lectura| R[(SalesAnalytics.raw)]
+  R --> Q{Calidad y conversión}
+  Q --> C[(clean)]
+  Q --> X[(audit.Quarantine)]
+  C --> D[(dw: estrella de ventas)]
+  D --> A[FastAPI: consultas parametrizadas]
+  A --> U[React / Vite / Tailwind / Recharts]
+  D --> M[ML: entrenamiento e inferencia]
+  M --> P[(Predicciones versionadas)]
+  P --> A
+  A --> G[GenAI: herramientas limitadas]
+  G --> A
+  D --> N[Regla tras carga exitosa]
+  N --> E[(Alertas y entregas)]
+  E --> A
+  T[Auditoría y watermark] -.-> R
+  T -.-> D

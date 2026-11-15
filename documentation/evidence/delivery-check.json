@@ -1,0 +1,8 @@
+{
+  "secrets_scan": "passed",
+  "scope": "Valores PASSWORD/KEY actuales de .env en archivos no ignorados e historia textual Git; no sustituye un detector universal.",
+  "scanned_files": 229,
+  "private_tracked_files": [],
+  "missing_markdown_links": [],
+  "note": "Los enlaces de exportaciones del usuario pendientes se informan; no se reescriben sus documentos."
+}

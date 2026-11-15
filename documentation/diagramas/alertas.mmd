@@ -1,0 +1,12 @@
+flowchart LR
+  E[ETL reconciliado] --> T[Transacción: DW + watermark + éxito + tarea y snapshot]
+  T --> C[Commit]
+  C --> W[Procesar tarea]
+  W --> V[Evaluación persistida]
+  V --> A[Alerta única por regla y semana]
+  W --> F[FAILED: diagnóstico sanitizado]
+  F --> R[notifications.retry]
+  R --> W
+  A --> U[Panel React]
+  U --> S[POST seen: entrega confirmada]
+  U --> O[Atender o descartar: historial]

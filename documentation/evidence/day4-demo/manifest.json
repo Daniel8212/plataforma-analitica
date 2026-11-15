@@ -1,0 +1,12 @@
+{
+  "simulation": true,
+  "status": "passed",
+  "cases": [
+    "tests/test_incremental_integration.py::test_update_late_row_and_idempotence",
+    "tests/test_incremental_integration.py::test_quarantine_and_recovery",
+    "tests/test_incremental_integration.py::test_failure_rolls_back_dw_and_watermark_then_recovers",
+    "tests/test_notifications.py::test_integrated_alert_recovery_and_delivery"
+  ],
+  "reports": "data\\demo-20261115T211447Z",
+  "note": "Cambios tardíos, inválidos y fallas solo en bases Test únicas. No altera fuente/DW principales ni reportes históricos."
+}

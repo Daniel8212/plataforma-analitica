@@ -1,6 +1,7 @@
 """Eventos simulados en bases aisladas; nunca se modifica la fuente principal."""
 import json
 import os
+from pathlib import Path
 from datetime import datetime
 from decimal import Decimal
 from uuid import uuid4
@@ -95,7 +96,9 @@ def test_integrated_alert_recovery_and_delivery(platform):
     with engine(p['dw']).connect() as c:checked=snapshot(c)
     assert checked['current_start']=='2013-01-14' and checked['current_end']=='2013-01-20'
     assert checked['reference_start']=='2013-01-07' and checked['reference_end']=='2013-01-13'
-    (ROOT/'documentation/evidence/alert-tests.json').write_text(json.dumps({'simulation':True,'source':p['source'],'warehouse':p['dw'],
+    evidence=Path(os.getenv('TEST_EVIDENCE_DIR',str(ROOT/'documentation/evidence')))
+    evidence.mkdir(parents=True,exist_ok=True)
+    (evidence/'alert-tests.json').write_text(json.dumps({'simulation':True,'source':p['source'],'warehouse':p['dw'],
         'runs':reports,'retry':retried,'snapshot':checked,'checks':['true','false','threshold','deduplication','ETL rollback has no task','worker failure preserves ETL','retry resolves alert','delivery acknowledgement idempotent','operator history']},default=str,indent=2),encoding='utf-8')
 
 @pytest.mark.parametrize('role,sql',[('api','UPDATE notify.Alert SET State=State'),('app','SELECT * FROM raw.InvoiceLines'),('app','UPDATE dw.FactSales SET Quantity=Quantity')])

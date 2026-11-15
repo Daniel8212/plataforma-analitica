@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checks": [
+    "Pronóstico y métricas visibles",
+    "Predicción identificada y fechas de muestra explícitas",
+    "Sin filtros dimensionales engañosos",
+    "Móvil sin desbordamiento"
+  ],
+  "javascript_errors": []
+}

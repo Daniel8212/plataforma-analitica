@@ -11,3 +11,7 @@ data/
 *.bak
 *.log
 *.joblib
+# Grabaciones se entregan por separado, sin binarios grandes en Git.
+*.mp4
+*.mkv
+*.webm

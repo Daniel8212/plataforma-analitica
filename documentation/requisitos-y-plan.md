@@ -25,7 +25,7 @@ no una autorización para publicar ni para transmitir información a terceros.
 - Estrella y un proceso principal (pp. 4,6): recomendaciones adoptadas por simplicidad.
 - FactSales y atributos de ejemplo (p.7): no copiar campos sin comprobar fuente.
 - Pronóstico, clasificación, clustering y anomalías (p.8): alternativas; el pronóstico semanal se confirma tras perfilado.
-- Caída del 15% (p.10): ejemplo; el umbral será configurable y documentado.
+- Caída del 15% (p.10): ejemplo; se adoptó el 15% documentado en notifications/README.md.
 - Airflow, mensajería, WebSockets, MLflow y canales externos: opcionales; quedan fuera inicialmente.
 - Ocho fases y rúbrica ponderada (pp.11,13): sugeridas, no ocho semanas obligatorias.
 
@@ -50,3 +50,12 @@ No denominar tiempo real al batch; frecuencia inicial bajo demanda y alerta tras
 
 La documentación y evidencias se producen en cada paso. No avanzar declarando una puerta
 superada sin ejecución. Si hay bloqueo, conservar requisitos y diagnosticar antes de sustituir fuente.
+
+## Estado de aceptación final
+
+Fuente, ETL, fiabilidad, DW, BI, ML, GenAI, alertas y operación cuentan con código,
+documentación y pruebas ejecutadas. La trazabilidad a artefactos está en
+[indice-entrega.md](indice-entrega.md), los resultados en [revision-final.md](revision-final.md)
+y la evidencia de reconstrucción en evidence/day4-rebuild/summary.json.
+El video y su entrega efectiva permanecen pendientes hasta que el autor los realice;
+un guion y capturas no se presentan como sustitutos de la grabación.

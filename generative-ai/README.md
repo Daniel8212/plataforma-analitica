@@ -1,6 +1,8 @@
-# Asistente analítico — día 3
+# Asistente analítico local
 
-Pendiente probar recursos, calidad y disponibilidad de un único proveedor.
-Sin API gratuita supuesta, sin envío de información sensible y sin SQL arbitrario generado.
-El backend entregará métricas/períodos reales con herramientas limitadas; la respuesta
-debe reconocer falta de respaldo. Evaluación: 10 preguntas, al menos 2 sin información suficiente.
+Implementado con Ollama y Qwen2.5 1.5B sobre CPU, sin API de pago. Herramientas
+controladas consultan el DW; el modelo redacta una frase sin ejecutar SQL ni inventar
+las cifras de la tabla. Se reconocen los casos sin información y se bloquean
+explicaciones incompatibles con el respaldo. Evaluación real: 14 preguntas.
+
+Inicio, contrato, controles y límites: [GENAI.md](GENAI.md).

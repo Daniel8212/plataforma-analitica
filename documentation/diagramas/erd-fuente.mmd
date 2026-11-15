@@ -1,0 +1,9 @@
+erDiagram
+  Sales_Customers ||--o{ Sales_Customers : BillToCustomerID
+  Sales_CustomerCategories ||--o{ Sales_Customers : CustomerCategoryID
+  Sales_Invoices ||--o{ Sales_InvoiceLines : InvoiceID
+  Warehouse_StockItems ||--o{ Sales_InvoiceLines : StockItemID
+  Sales_Customers ||--o{ Sales_Invoices : BillToCustomerID
+  Sales_Customers ||--o{ Sales_Invoices : CustomerID
+  Warehouse_StockGroups ||--o{ Warehouse_StockItemStockGroups : StockGroupID
+  Warehouse_StockItems ||--o{ Warehouse_StockItemStockGroups : StockItemID

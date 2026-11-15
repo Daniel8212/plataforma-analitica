@@ -1,6 +1,7 @@
 """Cambios simulados exclusivamente en dos bases Test únicas; fuente principal intacta."""
 import json
 import os
+from pathlib import Path
 from datetime import datetime
 from uuid import uuid4
 import pytest
@@ -44,7 +45,9 @@ def platform():
     yield {'source':src,'dw':dst,'run':run}
     out={'simulation':True,'source_database':src,'warehouse_database':dst,'runs':reports,
          'note':'Cambios solo en bases aisladas. Se conservan para inspección; no se elimina ninguna base de usuario.'}
-    (ROOT/'documentation/evidence/incremental-tests.json').write_text(json.dumps(out,default=str,indent=2),encoding='utf-8')
+    evidence=Path(os.getenv('TEST_EVIDENCE_DIR',str(ROOT/'documentation/evidence')))
+    evidence.mkdir(parents=True,exist_ok=True)
+    (evidence/'incremental-tests.json').write_text(json.dumps(out,default=str,indent=2),encoding='utf-8')
 
 @pytest.fixture()
 def p(platform):

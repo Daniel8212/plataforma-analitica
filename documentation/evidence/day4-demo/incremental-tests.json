@@ -1,0 +1,1059 @@
+{
+  "simulation": true,
+  "source_database": "WWI_Test_20261115_151449_63586e",
+  "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+  "runs": [
+    {
+      "execution_id": "61a77241-8f03-443e-bf28-3df5a1dd8f21",
+      "mode": "full",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "1900-01-01 00:00:00",
+      "window_start": "1899-12-30 00:00:00",
+      "window_end": "2026-11-15 21:14:51.783002",
+      "raw_counts": {
+        "Invoices": 3,
+        "InvoiceLines": 4,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "raw_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "clean_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 4,
+      "updated": 0,
+      "actions": {
+        "CUSTOMER_INSERT": 3,
+        "INSERT": 4,
+        "PRODUCT_INSERT": 4
+      },
+      "dw": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "watermark_after": "2026-11-15 21:14:51.783002",
+      "notification": {
+        "task_id": "96229A7D-5217-4107-9ED8-D0CD248405DB",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "c4ab83a4-b739-468f-87ba-13732e34e79a",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:51.783002",
+      "window_start": "2026-11-13 21:14:51.783002",
+      "window_end": "2026-11-15 21:14:52.739211",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 1,
+      "actions": {
+        "UPDATE": 1
+      },
+      "dw": {
+        "rows": 4,
+        "sales": "2805.00"
+      },
+      "watermark_after": "2026-11-15 21:14:52.739211",
+      "notification": {
+        "task_id": "2875493F-F442-4683-8623-CDACC0AF23CD",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "cdc56740-4619-4a0c-96d5-07cbfcac3717",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:52.739211",
+      "window_start": "2026-11-13 21:14:52.739211",
+      "window_end": "2026-11-15 21:14:53.067017",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 2,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 2,
+        "sales": "4620.00"
+      },
+      "raw_delta": {
+        "rows": 2,
+        "sales": "4620.00"
+      },
+      "clean_delta": {
+        "rows": 2,
+        "sales": "4620.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 1,
+      "updated": 0,
+      "actions": {
+        "INSERT": 1
+      },
+      "dw": {
+        "rows": 5,
+        "sales": "5115.00"
+      },
+      "watermark_after": "2026-11-15 21:14:53.067017",
+      "notification": {
+        "task_id": "869134BF-240A-4F26-85AF-2F986928FD39",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "289920f7-d2ef-4d99-b5ae-e8c7f8aee67e",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:53.067017",
+      "window_start": "2026-11-13 21:14:53.067017",
+      "window_end": "2026-11-15 21:14:53.326922",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 0,
+      "actions": {},
+      "dw": {
+        "rows": 5,
+        "sales": "5115.00"
+      },
+      "watermark_after": "2026-11-15 21:14:53.326922",
+      "notification": {
+        "task_id": "BA1979AA-447F-4261-8557-AC98C309656E",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "18a6ff66-062a-4d9e-90b0-51a727afcdd0",
+      "mode": "full",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:53.326922",
+      "window_start": "2026-11-13 21:14:53.326922",
+      "window_end": "2026-11-15 21:14:53.612393",
+      "raw_counts": {
+        "Invoices": 3,
+        "InvoiceLines": 4,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "raw_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "clean_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 2,
+      "actions": {
+        "DELETE": 1,
+        "UPDATE": 1
+      },
+      "dw": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "watermark_after": "2026-11-15 21:14:53.612393",
+      "notification": {
+        "task_id": "12A49407-60BF-4959-8787-ACCC5AC5D2D5",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "5d816bc4-4802-4bdf-9e6b-36449b621de8",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:53.612393",
+      "window_start": "2026-11-13 21:14:53.612393",
+      "window_end": "2026-11-15 21:14:53.890413",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "clean_delta": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "quarantine": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 1,
+      "actions": {
+        "REJECT": 1
+      },
+      "dw": {
+        "rows": 3,
+        "sales": "495.00"
+      },
+      "watermark_after": "2026-11-15 21:14:53.890413",
+      "notification": {
+        "task_id": "E3389C25-AD45-4ACA-A6F2-AF801A55684E",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "a352f4aa-6de8-4c37-9fb1-861c2b0976ea",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:53.890413",
+      "window_start": "2026-11-13 21:14:53.890413",
+      "window_end": "2026-11-15 21:14:54.193205",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 1,
+      "actions": {
+        "UPDATE": 1
+      },
+      "dw": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "watermark_after": "2026-11-15 21:14:54.193205",
+      "notification": {
+        "task_id": "0A4B4BE4-7042-4C68-BCFC-A6139231A50B",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "d01ac98c-1ec7-47be-96e4-3a7b78353898",
+      "mode": "full",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:54.193205",
+      "window_start": "2026-11-13 21:14:54.193205",
+      "window_end": "2026-11-15 21:14:54.483001",
+      "raw_counts": {
+        "Invoices": 3,
+        "InvoiceLines": 4,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "raw_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "clean_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 0,
+      "actions": {},
+      "dw": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "watermark_after": "2026-11-15 21:14:54.483001",
+      "notification": {
+        "task_id": "A2936C12-0C1E-44A4-B69E-8C60EF1544EE",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "3f5e3982-0dbd-48ac-8bd2-1b867ce7526c",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:54.483001",
+      "window_start": "2026-11-13 21:14:54.483001",
+      "window_end": "2026-11-15 21:14:54.772902",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "clean_delta": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "quarantine": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 1,
+      "actions": {
+        "REJECT": 1
+      },
+      "dw": {
+        "rows": 3,
+        "sales": "495.00"
+      },
+      "watermark_after": "2026-11-15 21:14:54.772902",
+      "notification": {
+        "task_id": "1B1D66EB-9CFF-4851-A80B-2B2A29BF6DA2",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "e7101d3e-6600-4388-a818-178c53f58646",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:54.772902",
+      "window_start": "2026-11-13 21:14:54.772902",
+      "window_end": "2026-11-15 21:14:55.057625",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2300.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 1,
+      "actions": {
+        "UPDATE": 1
+      },
+      "dw": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "watermark_after": "2026-11-15 21:14:55.057625",
+      "notification": {
+        "task_id": "0BEF2E14-32C1-449A-8873-8AF06FD96071",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "a1a65623-960d-4e7a-94dc-4b26bc1036c0",
+      "mode": "full",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:55.057625",
+      "window_start": "2026-11-13 21:14:55.057625",
+      "window_end": "2026-11-15 21:14:55.338800",
+      "raw_counts": {
+        "Invoices": 3,
+        "InvoiceLines": 4,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "raw_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "clean_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 0,
+      "actions": {},
+      "dw": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "watermark_after": "2026-11-15 21:14:55.338800",
+      "notification": {
+        "task_id": "27182DE4-C17B-4A94-B4E5-5D72C928E1CD",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "eb6b1023-7e4f-44dc-b5d9-29398cee1b81",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:55.338800",
+      "window_start": "2026-11-13 21:14:55.338800",
+      "window_end": "2026-11-15 21:14:55.683356",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 9,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "status": "FAILED",
+      "error_code": "SIMULATED_FAILURE_AFTER_RAW",
+      "watermark_after": "2026-11-15 21:14:55.338800"
+    },
+    {
+      "execution_id": "f7507575-18fa-433c-b278-e0ca7712dc3c",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:55.338800",
+      "window_start": "2026-11-13 21:14:55.338800",
+      "window_end": "2026-11-15 21:14:55.836575",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 9,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 1,
+      "actions": {
+        "CUSTOMER_EXPIRE": 1,
+        "CUSTOMER_INSERT": 1,
+        "UPDATE": 1
+      },
+      "dw": {
+        "rows": 4,
+        "sales": "2805.00"
+      },
+      "watermark_after": "2026-11-15 21:14:55.836575",
+      "notification": {
+        "task_id": "AAE44D8F-DDE8-48DF-BA42-8DEF40B04DE4",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "669196b4-c8e6-45fe-b91a-e152f91a75b7",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:55.836575",
+      "window_start": "2026-11-13 21:14:55.836575",
+      "window_end": "2026-11-15 21:14:56.106183",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 9,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 0,
+      "actions": {},
+      "dw": {
+        "rows": 4,
+        "sales": "2805.00"
+      },
+      "watermark_after": "2026-11-15 21:14:56.106183",
+      "notification": {
+        "task_id": "85AAE036-E597-431A-AD61-5C7F020DE5DC",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "676ba686-85ea-4ea4-9c5c-2b7784f7e5bf",
+      "mode": "full",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:56.106183",
+      "window_start": "2026-11-13 21:14:56.106183",
+      "window_end": "2026-11-15 21:14:56.391837",
+      "raw_counts": {
+        "Invoices": 3,
+        "InvoiceLines": 4,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "raw_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "clean_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 1,
+      "actions": {
+        "CUSTOMER_EXPIRE": 1,
+        "CUSTOMER_INSERT": 1,
+        "UPDATE": 1
+      },
+      "dw": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "watermark_after": "2026-11-15 21:14:56.391837",
+      "notification": {
+        "task_id": "340CE65D-FD05-45A9-90FC-90903759EE8C",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "2313e34f-a437-49a5-98d7-c3675154c411",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:56.391837",
+      "window_start": "2026-11-13 21:14:56.391837",
+      "window_end": "2026-11-15 21:14:56.693891",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 9,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "FAILED",
+      "error_code": "SIMULATED_FAILURE_AFTER_PUBLISH",
+      "watermark_after": "2026-11-15 21:14:56.391837"
+    },
+    {
+      "execution_id": "7daed1b6-1509-4ae9-accc-ac824e4cd377",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:56.391837",
+      "window_start": "2026-11-13 21:14:56.391837",
+      "window_end": "2026-11-15 21:14:56.889225",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 9,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 1,
+      "actions": {
+        "CUSTOMER_EXPIRE": 1,
+        "CUSTOMER_INSERT": 1,
+        "UPDATE": 1
+      },
+      "dw": {
+        "rows": 4,
+        "sales": "2805.00"
+      },
+      "watermark_after": "2026-11-15 21:14:56.889225",
+      "notification": {
+        "task_id": "0C58EDB0-9C9E-4D1F-8EF2-BC4814529582",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "790ec79f-aef8-4b02-8fc9-77913209c249",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:56.889225",
+      "window_start": "2026-11-13 21:14:56.889225",
+      "window_end": "2026-11-15 21:14:57.149590",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 9,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 0,
+      "actions": {},
+      "dw": {
+        "rows": 4,
+        "sales": "2805.00"
+      },
+      "watermark_after": "2026-11-15 21:14:57.149590",
+      "notification": {
+        "task_id": "8532CC2F-B37A-484F-BB3D-69F8938D105B",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "1569ec4c-354d-4e89-8b53-c70b8003fd8e",
+      "mode": "full",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:57.149590",
+      "window_start": "2026-11-13 21:14:57.149590",
+      "window_end": "2026-11-15 21:14:57.423809",
+      "raw_counts": {
+        "Invoices": 3,
+        "InvoiceLines": 4,
+        "Customers": 3,
+        "CustomerCategories": 8,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "raw_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "clean_delta": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 1,
+      "actions": {
+        "CUSTOMER_EXPIRE": 1,
+        "CUSTOMER_INSERT": 1,
+        "UPDATE": 1
+      },
+      "dw": {
+        "rows": 4,
+        "sales": "2795.00"
+      },
+      "watermark_after": "2026-11-15 21:14:57.423809",
+      "notification": {
+        "task_id": "93D298C4-3C29-4EC3-A3FF-BCADC63DE188",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "7d4f4fbd-d404-4e46-8563-a80da6303757",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:57.423809",
+      "window_start": "2026-11-13 21:14:57.423809",
+      "window_end": "2026-11-15 21:14:57.743988",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 9,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "FAILED",
+      "error_code": "SIMULATED_FAILURE_BEFORE_COMMIT",
+      "watermark_after": "2026-11-15 21:14:57.423809"
+    },
+    {
+      "execution_id": "b80357cd-fe2d-4ddd-8770-7fe4269c6475",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:57.423809",
+      "window_start": "2026-11-13 21:14:57.423809",
+      "window_end": "2026-11-15 21:14:58.018528",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 9,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 1,
+      "actions": {
+        "CUSTOMER_EXPIRE": 1,
+        "CUSTOMER_INSERT": 1,
+        "UPDATE": 1
+      },
+      "dw": {
+        "rows": 4,
+        "sales": "2805.00"
+      },
+      "watermark_after": "2026-11-15 21:14:58.018528",
+      "notification": {
+        "task_id": "B298B176-52EA-42F9-A15B-83BF08A29DD8",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    },
+    {
+      "execution_id": "ac4ea2d6-88db-444e-ad0b-78fc53706f95",
+      "mode": "incremental",
+      "simulated": true,
+      "source_database": "WWI_Test_20261115_151449_63586e",
+      "warehouse_database": "SalesAnalytics_Test_20261115_151449_63586e",
+      "watermark_before": "2026-11-15 21:14:58.018528",
+      "window_start": "2026-11-13 21:14:58.018528",
+      "window_end": "2026-11-15 21:14:58.284162",
+      "raw_counts": {
+        "Invoices": 1,
+        "InvoiceLines": 1,
+        "Customers": 3,
+        "CustomerCategories": 9,
+        "StockItems": 4
+      },
+      "source_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "raw_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "clean_delta": {
+        "rows": 1,
+        "sales": "2310.00"
+      },
+      "quarantine": {
+        "rows": 0,
+        "sales": "0.00"
+      },
+      "status": "SUCCEEDED",
+      "inserted": 0,
+      "updated": 0,
+      "actions": {},
+      "dw": {
+        "rows": 4,
+        "sales": "2805.00"
+      },
+      "watermark_after": "2026-11-15 21:14:58.284162",
+      "notification": {
+        "task_id": "67BEF424-793F-4995-8139-E59B23F4978F",
+        "status": "SUCCEEDED",
+        "outcome": "SKIPPED",
+        "drop_percent": null
+      }
+    }
+  ],
+  "note": "Cambios solo en bases aisladas. Se conservan para inspecci\u00f3n; no se elimina ninguna base de usuario."
+}

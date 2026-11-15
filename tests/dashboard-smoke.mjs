@@ -63,9 +63,14 @@ await withBrowser(async({call,evaluate,wait,click,setValue,screenshot,errors})=>
   report.tests.push('Navegación desde categoría de cliente a detalle');
   await click('[data-tab=operations]');
   await wait('!!document.querySelector("[data-testid=operations-panel] table tbody tr")','ejecuciones y calidad');
-  await click('[data-testid=operations-panel] table button.text-action');
-  await wait('!!document.querySelector("[data-testid=rejection-detail] tbody tr")','detalle paginado de rechazo');
-  report.tests.push('Monitoreo con ejecuciones, watermark y detalle real de cuarentena');
+  if(await evaluate('!!document.querySelector("[data-testid=operations-panel] table button.text-action")')) {
+    await click('[data-testid=operations-panel] table button.text-action');
+    await wait('!!document.querySelector("[data-testid=rejection-detail] tbody tr")','detalle paginado de rechazo');
+    report.tests.push('Monitoreo con ejecuciones, watermark y detalle real de cuarentena');
+  } else {
+    assert(await evaluate('document.querySelector("[data-testid=operations-panel]").innerText.includes("No hay rechazos registrados.")'));
+    report.tests.push('Monitoreo con ejecuciones, watermark y ausencia explícita de rechazos en instalación limpia');
+  }
   await screenshot('day2-operations.png');
 
   await click('[data-tab=summary]');

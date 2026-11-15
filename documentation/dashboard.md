@@ -76,4 +76,5 @@ Las modificaciones operacionales simuladas usan bases Test separadas y bandera I
 
 Los gráficos se cargan de forma diferida; build de Vite genera entrada y módulo de gráficos
 separados. Latencias HTTP puntuales en evidence/api-measurements.json; no equivalen a un SLA.
-La reconstrucción desde un equipo limpio se validará en la etapa final de entrega.
+Se verificó una reconstrucción en el mismo equipo con dependencias y volumen SQL
+nuevos; los reportes/capturas están en evidence/day4-rebuild/. No se probó otro equipo.

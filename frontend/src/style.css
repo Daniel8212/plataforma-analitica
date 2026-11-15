@@ -1,4 +1,5 @@
-@import 'tailwindcss';
+@import 'tailwindcss' source(none);
+@source './';
 :root { font-family: 'Segoe UI', sans-serif; color: #e8eff8; background: #0b1321; color-scheme: dark; font-synthesis: none; }
 * { box-sizing: border-box; }
 body { margin: 0; min-width: 320px; }

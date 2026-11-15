@@ -1,0 +1,42 @@
+erDiagram
+  DimDate ||--o{ FactSales : DateKey
+  DimCustomer ||--o{ FactSales : CustomerKey
+  DimProduct ||--o{ FactSales : ProductKey
+  DimDate {
+    int DateKey PK
+    date FullDate UK
+    int Year
+    int Month
+    int Quarter
+    int IsoWeek
+  }
+  DimCustomer {
+    int CustomerKey PK
+    int CustomerID
+    string CustomerName
+    string CustomerCategory
+    datetime ObservedFrom
+    datetime ObservedTo
+    boolean IsCurrent
+  }
+  DimProduct {
+    int ProductKey PK
+    int StockItemID UK
+    string ProductName
+    string Brand
+    boolean IsChillerStock
+  }
+  FactSales {
+    bigint FactSalesKey PK
+    int InvoiceLineID UK
+    int InvoiceID
+    int DateKey FK
+    int CustomerKey FK
+    int ProductKey FK
+    int Quantity
+    decimal SalesAmount
+    decimal TaxAmount
+    decimal ExtendedPrice
+    uuid ExecutionID
+    string RecordStatus
+  }
