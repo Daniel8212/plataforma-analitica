@@ -55,7 +55,11 @@ def reconcile(conn, source):
     for left,right in ((source_sql,DW_VALID_SQL),(DW_VALID_SQL,source_sql)):
         if conn.execute(text(f'SELECT TOP(1) 1 FROM ({left} EXCEPT {right}) difference')).scalar():
             raise RuntimeError('SOURCE_DW_ROW_MISMATCH_USE_FULL_RECONCILIATION')
-    return total(conn,f'SELECT COUNT_BIG(*) n,COALESCE(SUM(SalesAmount),0) amount FROM ({source_sql}) s',{})
+    expected=total(conn,f'SELECT COUNT_BIG(*) n,COALESCE(SUM(SalesAmount),0) amount FROM ({source_sql}) s',{})
+    actual=total(conn,"SELECT COUNT_BIG(*) n,COALESCE(SUM(SalesAmount),0) amount FROM dw.FactSales WHERE RecordStatus='ACTIVE'",{})
+    if expected!=actual:
+        raise RuntimeError('SOURCE_DW_TOTAL_MISMATCH')
+    return actual
 
 def run_pipeline(*, full=False, source_database=None, warehouse_database=None,
                  overlap_hours=48, fail_at=None, simulated=False, evidence_dir=None):

@@ -21,7 +21,8 @@ flowchart LR
   T -.-> D
 ```
 
-El diagrama es diseño previsto, no evidencia de componentes ejecutados.
+Estado al cierre de la segunda etapa: fuente/raw/clean/DW, incremental/SCD, API, dashboard y
+monitoreo implementados y probados. ML, GenAI y alertas del diagrama siguen siendo diseño previsto.
 
 - Una instancia SQL Server Developer 2022, dos bases: fuente y analítica.
   El aislamiento lógico evita consultar la fuente para construir indicadores y reduce memoria.

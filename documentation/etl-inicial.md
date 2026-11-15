@@ -1,5 +1,9 @@
 # Carga inicial y operación
 
+Referencia del cierre del primer flujo. Desde la segunda etapa `etl.run_initial` usa el mismo
+motor que el incremental; transacciones y política actuales en incremental-y-scd.md.
+El diagrama siguiente documenta la primera implementación, no sustituye el manual vigente.
+
 ## Flujo editable
 
 ```mermaid

@@ -1,7 +1,10 @@
 # Catálogo inicial de calidad y transformación
 
-Estado: reglas propuestas; los dominios y tratamientos se confirman con perfilado real.
-Cada ejecución registrará conteos antes/después y rechazo por regla. Un outlier no se elimina
+Catálogo para toda la entrega. Implementación actual: claves únicas, nulos/rangos, integridad,
+importes, trim, calendario, SCD observado, cuarentena, linaje y reconciliación están implementados
+y probados; detalle en incremental-y-scd.md. Q10 (detección estadística de outliers) permanece
+pendiente de completar durante perfilado ML/validación final; no se afirma implementado.
+Cada ejecución registra conteos antes/después y rechazo por regla. Un outlier no se elimina
 por ser atípico; precio cero puede ser válido y cantidades negativas requieren contexto de crédito.
 
 | ID | Control / transformación | Tratamiento previsto | Evidencia |
@@ -9,7 +12,7 @@ por ser atípico; precio cero puede ser válido y cantidades negativas requieren
 | Q01 | Clave natural de línea no nula y única en extracción | Duplicado inesperado: fallar lote, sin elegir sobreviviente arbitrario | Conteo total vs distinct |
 | Q02 | Factura, producto, cliente y fecha resolubles | FK desconocida: cuarentena o miembro desconocido según causa documentada | Anti-joins y rechazo |
 | Q03 | Cantidad/precio/impuesto/importe convertibles a decimal exacto | No truncar; errores a cuarentena | Tipo fuente y sumas |
-| Q04 | Coherencia del importe extendido con base e impuesto | Fórmula por confirmar; diferencias explicadas o rechazadas | Conteo y diferencia monetaria |
+| Q04 | Coherencia del importe extendido con base e impuesto | Cantidad × precio + impuesto = extendido; diferencias a cuarentena | Conteo y diferencia monetaria |
 | Q05 | Semántica de notas de crédito y devoluciones | Conservar original; no cambiar signo dos veces | Distribución por IsCreditNote y signo |
 | Q06 | Fechas válidas y relaciones temporales coherentes | Conservar fecha de negocio; auditoría UTC separada | Mínimos, máximos y nulos |
 | Q07 | Nombres/códigos con espacios y formatos | Trim documentado en clean; raw sin modificación | Comparación de valores modificados |

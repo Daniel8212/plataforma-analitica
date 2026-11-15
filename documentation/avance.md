@@ -25,7 +25,8 @@
 
 El usuario autorizó iniciar día 2 el 2026-11-15. Repositorio publicado por el usuario en
 https://github.com/Daniel8212/plataforma-analitica; los dos primeros commits coinciden con origin/main.
-Incremental/SCD/recuperación implementados; cerrar sus pruebas y tercer commit, luego completar API/dashboard.
+El día 2 quedó implementado y validado. Esperar revisión del usuario antes de iniciar día 3.
+Los cambios se agrupan en los commits tercero y cuarto; sincronizar desde GitHub Desktop con Push origin.
 
 ### Fuente confirmada
 
@@ -84,10 +85,10 @@ sin superar ocho commits ni reescribir historial publicado sin autorización.
 
 ## Pendientes posteriores
 
-Completar únicamente día 2 en esta etapa; no adelantar ML/GenAI/alertas del día 3.
+Esperar autorización para ML/GenAI/alertas del día 3; no se adelantaron esas implementaciones.
 Video debe grabarse con ejecución real; solo se prepara guion automáticamente.
 
-## 2026-11-15 — Día 2 en curso
+## 2026-11-15 — Día 2 completado
 
 - Árbol inicialmente limpio y main sincronizada con GitHub (dos commits).
 - Docker healthy; se inspeccionaron capacidades temporales y marcas de edición sin modificar OLTP.
@@ -101,5 +102,20 @@ Video debe grabarse con ejecución real; solo se prepara guion automáticamente.
   el primero extrajo 530 líneas solapadas y el siguiente 0 líneas. Fuente principal intacta.
 - Pruebas en bases Test aisladas, con IsSimulated=1: actualizaciones, tardíos, SCD2, cuarentena,
   bajas/reaparición, tres puntos de falla y reparación completa. Evidencia en incremental-tests.json.
-- Pruebas originales: 3 passed tras la migración. Suite incremental: 11 passed, incluida protección
-  contra watermark futuro. Reportes JUnit y ejecuciones simuladas registrados. Pendiente API/dashboard.
+- Pruebas finales: 42 passed (3 originales, 12 incremental/recuperación, 27 API), una advertencia
+  no bloqueante httpx/Starlette. Incluyen duplicados ambiguos, reloj futuro y SCD2 visible desde API.
+- EXCEPT en ambos sentidos más conteos/importes verifica igualdad por filas y multiplicidad.
+- Incremental principal final `5dec3572-60d8-4492-9a22-d511c8cf6cbf`: cero inserciones/actualizaciones,
+  mismo total reconciliado y watermark confirmado tras la validación reforzada.
+- Commit tercero: `15712e6`, incremental, historial observado de clientes y recuperación.
+- Migración 007: siete vistas aprobadas para lector API, sin acceso directo a raw ni escritura.
+- API completa: KPIs, comparación, filtros, tendencias, desgloses, detalle, monitoreo y cuarentena.
+  Contrato OpenAPI exportado y valores de filtros contrastados con SQL operacional independiente.
+- Dashboard React/Tailwind/Recharts: cinco KPIs, fecha/producto/categoría, series semanales/mensuales,
+  referencia exacta, detalle paginado, navegación desde producto/categoría, carga/error/vacío y monitoreo.
+- Chrome: 12 comprobaciones aprobadas, sin excepciones JavaScript; móvil a 360/390 px, incluidas tablas.
+  Error visual simulado localmente, identificado en reporte y captura. Fuente principal no alterada.
+- HTTP local: 90–434 ms por endpoint en una medición puntual. Sin simulaciones operacionales en DW principal.
+- Build Vite aprobado, gráficos diferidos en módulo separado. No se instalaron nuevas dependencias.
+- Manuales/contratos/diagramas/diccionarios y lista revision-dia2.md actualizados. Cuarto commit agrupa API,
+  dashboard, controles de calidad finales y evidencias. Total previsto: cuatro de ocho commits.

@@ -40,7 +40,8 @@ SQL Server está en `127.0.0.1:14333`, volumen `plataforma-analitica_sqlserver_d
 Límite contenedor 6 GB; SQL Server 4096 MB. Detener conserva datos. No ejecutar `down -v`
 para reiniciar: elimina la persistencia. La fuente y DW serán bases separadas en la misma
 instancia para reducir recursos. `sa` se reserva a preparación; ETL y API usarán cuentas distintas.
-No publicar servicios ni secretos; GitHub y Vercel aún no configurados.
+Código en [GitHub](https://github.com/Daniel8212/plataforma-analitica), publicado por el usuario.
+La aplicación sigue local; Vercel no configurado. No publicar secretos ni bases operacionales.
 
 ## Fuentes oficiales
 
@@ -70,14 +71,14 @@ y ETL conserva SELECT sobre las cinco tablas. Sin esos roles la carga falla por 
 conservando raw. No desactivar RLS ni usar sa como extractor.
 
 La clave demo se consulta localmente en `.env`; no colocar su valor en comandos, URLs ni capturas.
-El navegador solo la mantiene en memoria. La API usa analytics_reader sobre dw.vSalesKpi;
+El navegador solo la mantiene en memoria. La API usa analytics_reader sobre siete vistas aprobadas;
 sa se limita a bootstrap/restauración y el extractor tiene cuenta separada.
 
 ```powershell
-# Desde raíz: tres pruebas ejecutadas y aprobadas:
-.\.venv\Scripts\python.exe -m pytest tests/test_initial_integration.py -q
+# Desde raíz: suite de integración, incremental y API:
+.\.venv\Scripts\python.exe -m pytest tests/test_initial_integration.py tests/test_incremental_integration.py tests/test_dashboard_api.py -q
 # Con API y Vite activos: prueba Chrome ejecutada y aprobada:
-node tests/browser-smoke.mjs
+node tests/dashboard-smoke.mjs
 ```
 
 La prueba de navegador requiere Chrome instalado, API en 8000 y Vite en 5173.
@@ -87,7 +88,9 @@ capas y en pantalla. Son datos de ejemplo oficiales de Microsoft (2013–2016), 
 de una empresa real ni cifras hardcodeadas. Repetir la carga sin cambios inserta cero hechos.
 Incremental, watermark atómico, bajas lógicas y SCD2 observado están implementados;
 detalle y límites en [incremental-y-scd.md](documentation/incremental-y-scd.md).
-Dashboard completo, ML, GenAI y alertas siguen pendientes.
+Dashboard histórico con cinco KPIs, filtros, comparación, gráficos, detalle paginado y monitoreo
+implementado; uso en [dashboard.md](documentation/dashboard.md), contratos en
+[contratos.md](documentation/contratos.md). ML, GenAI y alertas no están iniciados.
 
 ## Cargas posteriores y recuperación
 
@@ -100,11 +103,24 @@ Dashboard completo, ML, GenAI y alertas siguen pendientes.
 .\.venv\Scripts\python.exe -m pytest tests/test_incremental_integration.py -q
 ```
 
-Orden SQL administrativo: 001_schema.sql → 004_incremental.sql (bootstrap lo aplica).
+Orden SQL administrativo: 001_schema.sql → 004_incremental.sql → 007_read_views.sql (bootstrap lo aplica).
 Ejecución: extraer delta → 006_validate_batch.sql → 005_publish.sql → reconciliar →
 confirmar DW, auditoría y watermark. 002_transform.sql queda como referencia del primer flujo.
 `etl.run_initial` ahora usa el mismo motor en modo completo, sin duplicar lógica de carga.
 No se conceden nuevos roles RLS al ejecutar bootstrap sin el flag territorial.
+
+## Abrir la aplicación ya preparada
+
+```powershell
+docker compose --env-file .env -f deployment/compose.yaml up -d
+.\.venv\Scripts\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+```
+
+En otra terminal desde raíz: `Set-Location frontend`, después `npm.cmd run dev`.
+Instalar con `npm.cmd ci` solo en un checkout nuevo o si faltan dependencias.
+Abrir http://127.0.0.1:5173 e introducir DEMO_API_KEY del .env local.
+Swagger: http://127.0.0.1:8000/docs. Revisión de la etapa:
+[revision-dia2.md](documentation/revision-dia2.md).
 
 Para detener la aplicación: Ctrl+C en ambas terminales. SQL Server puede permanecer activo
 o detenerse con Compose; los datos permanecen en el volumen. La reconstrucción desde cero

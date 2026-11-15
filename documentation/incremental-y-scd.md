@@ -15,7 +15,7 @@ temporales. La inspección encontró versiones de clientes, pero sin cambios de 
 no se importaron versiones correspondientes a atributos fuera del alcance.
 
 La extracción de medidas es incremental; la verificación global compara filas en ambos sentidos
-mediante EXCEPT, incluyendo claves naturales, fecha y todas las medidas. Esto cuesta una lectura
+mediante EXCEPT más conteos/importes, incluyendo claves naturales, fecha y todas las medidas. Esto cuesta una lectura
 completa de validación, aceptable para 228.265 líneas y útil para evitar diferencias compensadas
 en sumas. Una actualización con marca fuera del solapamiento provoca fallo explícito y se repara
 con `python -m etl.run_incremental --full`. No se omite silenciosamente.
@@ -82,6 +82,8 @@ Casos: actualización, cabecera, nueva línea retrodatada, repetición sin dupli
 la versión anterior, nulo/orfandad a cuarentena y recuperación, baja/reaparición, modificación fuera
 de ventana y reparación completa. Se inyectan fallas después de raw, después de publicar y antes
 del commit; se comprueban importes, versiones SCD y watermark sin cambios, y recuperación única.
+También se comprueban duplicados idénticos: el incremental detecta la multiplicidad distinta
+en totales y la extracción completa falla por unicidad; no se elige un sobreviviente arbitrario.
 
 ```powershell
 .\.venv\Scripts\python.exe -m deployment.bootstrap

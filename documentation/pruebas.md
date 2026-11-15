@@ -62,3 +62,23 @@
 
 Criterio de cierre del día 1 satisfecho con los datos de ejemplo oficiales de Microsoft.
 No se iniciará día 2 sin indicación del usuario.
+
+## Cierre del día 2 — autorizado el 2026-11-15
+
+- Suite unificada: **42 passed**, una advertencia no bloqueante httpx/Starlette.
+  Reporte actual: evidence/pytest-day2.xml. Los reportes anteriores preservan las etapas previas.
+- Doce casos incrementales: cambios de línea/cabecera/cliente, tardíos, idempotencia, SCD2,
+  tres fallas inyectadas con recuperación, cuarentena y reversión, baja/reaparición, corrección
+  retrodatada, watermark futuro y duplicados idénticos sin supervivencia arbitraria.
+- Veintisiete casos de API: SQL independiente para filtros combinados y comparación; tendencias,
+  paginación, vacío, referencia ausente, entrada inválida, acceso y denegación de escritura.
+- Doce comprobaciones Chrome: acceso incorrecto/correcto, KPI/API, dos dimensiones, drill-down,
+  páginas, operación/rechazos, vacío/error/carga/reintento, móvil 360/390 px y tablas contenidas.
+  Reporte evidence/dashboard-browser.json, cero excepciones JavaScript.
+- La falla visual 503 se intercepta localmente y está expresamente identificada; los cambios
+  operacionales/fallas de pipeline solo ocurren en bases Test con IsSimulated=1.
+- Fuente principal intacta: 228.265 líneas y 172.261.341,20 sin impuestos, últimas ediciones de 2016;
+  evidence/api-measurements.json. No se confundieron pruebas simuladas con datos operacionales reales.
+- Build Vite aprobado con gráficos separados de la entrada; sin ampliar dependencias.
+- Pendiente global: outliers estadísticos del catálogo y etapas 3/4, incluida reconstrucción limpia,
+  ML, GenAI, alertas, validación final y video. No se declaran cumplidas todavía.

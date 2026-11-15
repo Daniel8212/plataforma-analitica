@@ -1,0 +1,42 @@
+{
+  "measurement": "Una solicitud por endpoint v\u00eda HTTP local; no es benchmark ni SLA.",
+  "requests": [
+    {
+      "endpoint": "/api/filters",
+      "status": 200,
+      "elapsed_ms": 90.27
+    },
+    {
+      "endpoint": "/api/kpis?start=2016-03-01&end=2016-05-31",
+      "status": 200,
+      "elapsed_ms": 179.17
+    },
+    {
+      "endpoint": "/api/dashboard?start=2016-03-01&end=2016-05-31",
+      "status": 200,
+      "elapsed_ms": 433.78
+    },
+    {
+      "endpoint": "/api/detail?page_size=20",
+      "status": 200,
+      "elapsed_ms": 202.13
+    },
+    {
+      "endpoint": "/api/operations",
+      "status": 200,
+      "elapsed_ms": 168.4
+    },
+    {
+      "endpoint": "/api/rejections?page_size=10",
+      "status": 200,
+      "elapsed_ms": 111.08
+    }
+  ],
+  "source_main_after_tests": {
+    "line_count": 228265,
+    "sales": "172261341.20",
+    "first_edit": "2013-01-01 12:00:00",
+    "last_edit": "2016-05-31 12:00:00"
+  },
+  "simulated_runs_in_main_dw": 0
+}

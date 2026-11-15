@@ -1,5 +1,6 @@
 """Cambios simulados exclusivamente en dos bases Test únicas; fuente principal intacta."""
 import json
+import os
 from datetime import datetime
 from uuid import uuid4
 import pytest
@@ -130,7 +131,7 @@ def test_quarantine_and_recovery(p,assignment,rule):
     recovered=p['run']()
     assert recovered['updated']==1 and recovered['dw']['rows']==baseline
 
-def test_scd2_preserves_observed_category(p):
+def test_scd2_preserves_observed_category(p,monkeypatch):
     key=scalar(p,'SELECT CustomerKey FROM dw.FactSales WHERE InvoiceLineID=1')
     customer=scalar(p,'SELECT CustomerID FROM Sales.Invoices WHERE InvoiceID=1',source=True)
     versions=scalar(p,'SELECT COUNT(*) FROM dw.DimCustomer WHERE CustomerID=:id',{'id':customer})
@@ -144,6 +145,14 @@ def test_scd2_preserves_observed_category(p):
     late_line(p,line_id=9999998)
     p['run']()
     assert scalar(p,'SELECT CustomerKey FROM dw.FactSales WHERE InvoiceLineID=9999998')!=key
+    # La API también debe conservar el segmento anterior de las facturas ya cargadas.
+    import backend.analytics as analytics
+    from backend.main import app
+    from fastapi.testclient import TestClient
+    monkeypatch.setattr(analytics,'engine',lambda database=None,role='etl':engine(p['dw'],role))
+    with TestClient(app) as client:
+        response=client.get('/api/kpis?category_id=99999',headers={'X-API-Key':os.environ['DEMO_API_KEY']})
+        assert response.status_code==200 and response.json()['line_count']==1
     assert scalar(p,'''SELECT COUNT(*) FROM dw.DimCustomer a JOIN dw.DimCustomer b ON a.CustomerID=b.CustomerID
         AND a.CustomerKey<b.CustomerKey AND a.ObservedFrom<b.ObservedTo AND b.ObservedFrom<a.ObservedTo''')==0
     assert p['run']()['actions']=={}
@@ -172,10 +181,13 @@ def test_outside_overlap_is_detected_and_full_repairs(p):
 
 def test_header_change_updates_all_its_lines(p):
     n=scalar(p,'SELECT COUNT(*) FROM Sales.InvoiceLines WHERE InvoiceID=1',source=True)
-    change(p,'UPDATE Sales.Invoices SET InvoiceDate=DATEADD(day,1,InvoiceDate),LastEditedWhen=SYSUTCDATETIME() WHERE InvoiceID=1')
+    customer=scalar(p,'SELECT TOP(1) CustomerID FROM Sales.Customers WHERE CustomerID<>(SELECT CustomerID FROM Sales.Invoices WHERE InvoiceID=1) ORDER BY CustomerID',source=True)
+    assert customer is not None
+    change(p,'UPDATE Sales.Invoices SET CustomerID=:customer,InvoiceDate=DATEADD(day,1,InvoiceDate),LastEditedWhen=SYSUTCDATETIME() WHERE InvoiceID=1',{'customer':customer})
     result=p['run']()
     assert result['updated']==n
     assert scalar(p,"SELECT MIN(d.FullDate) FROM dw.FactSales f JOIN dw.DimDate d ON d.DateKey=f.DateKey WHERE f.InvoiceID=1 AND f.RecordStatus='ACTIVE'")==scalar(p,'SELECT InvoiceDate FROM Sales.Invoices WHERE InvoiceID=1',source=True)
+    assert scalar(p,"SELECT COUNT(*) FROM dw.FactSales f JOIN dw.DimCustomer c ON c.CustomerKey=f.CustomerKey WHERE f.InvoiceID=1 AND f.RecordStatus='ACTIVE' AND c.CustomerID=:customer",{'customer':customer})==n
 
 def test_future_watermark_never_moves_backwards(p):
     before=scalar(p,"SELECT WatermarkValue FROM audit.Watermark WHERE PipelineName='sales'")
@@ -190,3 +202,21 @@ def test_future_watermark_never_moves_backwards(p):
     finally:
         with engine(p['dw']).begin() as c:
             c.execute(text("UPDATE audit.Watermark SET WatermarkValue=:value WHERE PipelineName='sales'"),{'value':before})
+
+def test_duplicate_source_key_fails_without_arbitrary_survivor(p):
+    before=scalar(p,"SELECT WatermarkValue FROM audit.Watermark WHERE PipelineName='sales'")
+    count=scalar(p,"SELECT COUNT(*) FROM dw.FactSales WHERE RecordStatus='ACTIVE'")
+    columns=PROJECTIONS['InvoiceLines'][1]
+    change(p,f'INSERT Sales.InvoiceLines({columns}) SELECT {columns} FROM Sales.InvoiceLines WHERE InvoiceLineID=1')
+    with pytest.raises(PipelineError) as incremental_error:
+        p['run']()
+    assert incremental_error.value.report['error_code']=='SOURCE_DW_TOTAL_MISMATCH'
+    with pytest.raises(PipelineError) as caught:
+        p['run'](full=True)
+    assert '2627' in caught.value.report['error_code']
+    assert scalar(p,"SELECT WatermarkValue FROM audit.Watermark WHERE PipelineName='sales'")==before
+    assert scalar(p,"SELECT COUNT(*) FROM dw.FactSales WHERE RecordStatus='ACTIVE'")==count
+    change(p,'DELETE FROM Sales.InvoiceLines WHERE InvoiceLineID=1')
+    change(p,f'INSERT Sales.InvoiceLines({columns}) SELECT {columns} FROM WideWorldImporters.Sales.InvoiceLines WHERE InvoiceLineID=1')
+    recovered=p['run']()
+    assert recovered['inserted']==recovered['updated']==0
