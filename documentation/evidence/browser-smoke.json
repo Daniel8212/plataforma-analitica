@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:5173/",
+  "kpi": {
+    "sales": "172261341.20",
+    "invoice_count": 70510,
+    "first_date": "2013-01-01",
+    "last_date": "2016-05-31",
+    "loaded_at": "2026-11-15T00:20:44.410807+00:00",
+    "execution_id": "6DA8442C-94D2-4D9C-98E9-06718342DF80"
+  },
+  "rendered_text": "VENTAS SIN IMPUESTOS\n\n172,261,341.20\n\nImporte en moneda de origen · 2013-01-01 — 2016-05-31"
+}

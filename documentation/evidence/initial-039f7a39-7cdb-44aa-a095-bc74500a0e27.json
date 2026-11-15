@@ -1,0 +1,13 @@
+{
+  "execution_id": "039f7a39-7cdb-44aa-a095-bc74500a0e27",
+  "source": [
+    228265,
+    "172261341.20"
+  ],
+  "raw": [
+    228265,
+    "172261341.20"
+  ],
+  "status": "FAILED",
+  "error_code": "SOURCE_VISIBILITY_OR_EMPTY_DIMENSION"
+}

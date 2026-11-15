@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "execution_id": "6DA8442C-94D2-4D9C-98E9-06718342DF80",
+  "layers": [
+    {
+      "layer": "source",
+      "line_count": 228265,
+      "invoice_count": 70510,
+      "sales": "172261341.20",
+      "units": 8950628
+    },
+    {
+      "layer": "raw",
+      "line_count": 228265,
+      "invoice_count": 70510,
+      "sales": "172261341.20",
+      "units": 8950628
+    },
+    {
+      "layer": "clean",
+      "line_count": 228265,
+      "invoice_count": 70510,
+      "sales": "172261341.20",
+      "units": 8950628
+    },
+    {
+      "layer": "dw",
+      "line_count": 228265,
+      "invoice_count": 70510,
+      "sales": "172261341.20",
+      "units": 8950628
+    }
+  ],
+  "kpi_query_including_connection_ms": 95.48,
+  "scope": "Carga inicial completa, sin rechazos. La consulta fuente usa cantidad por precio; raw usa importe menos impuesto."
+}

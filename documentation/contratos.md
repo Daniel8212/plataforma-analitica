@@ -1,4 +1,4 @@
-# Contratos iniciales — sujetos a validar con fuente
+# Contratos iniciales
 
 ## GET /api/kpis
 
@@ -10,7 +10,7 @@ Respuesta inicial prevista:
 
 | Campo | Tipo | Significado |
 |---|---|---|
-| sales | decimal serializado | Ventas sin impuestos, fórmula pendiente del perfilado |
+| sales | decimal serializado | SUM(SalesAmount), validado contra Quantity × UnitPrice y ExtendedPrice − TaxAmount en fuente |
 | invoice_count | entero | Facturas distintas en el conjunto de líneas válidas |
 | first_date / last_date | fecha o null | Cobertura real del conjunto consultado |
 | loaded_at | fecha/hora UTC o null | Última ejecución confirmada |
@@ -19,7 +19,9 @@ Respuesta inicial prevista:
 No interpretar un fallo de conexión como ventas cero. Sin carga exitosa debe mostrarse
 ausencia de datos o indisponibilidad, nunca un KPI construido con ejemplos.
 
-El endpoint se implementará tras confirmar el grano y la semántica de crédito/impuestos.
+El endpoint está implementado; faltan carga válida y prueba de integración positiva.
+La fuente inspeccionada no contiene notas de crédito; las futuras se ponen en cuarentena
+hasta verificar semántica. No se presenta esta medida como neta de devoluciones.
 
 ## Convenciones operativas
 

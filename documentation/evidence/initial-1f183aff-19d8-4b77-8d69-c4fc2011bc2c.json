@@ -1,0 +1,27 @@
+{
+  "execution_id": "1f183aff-19d8-4b77-8d69-c4fc2011bc2c",
+  "status": "FAILED",
+  "source": [
+    228265,
+    "172261341.20"
+  ],
+  "raw": [
+    228265,
+    "172261341.20"
+  ],
+  "clean": [
+    0,
+    "0.00"
+  ],
+  "quarantine": [
+    228265,
+    "172261341.20"
+  ],
+  "dw": [
+    0,
+    "0.00"
+  ],
+  "inserted": 0,
+  "original_reported_status": "SUCCEEDED",
+  "classification_correction": "Fuente con RLS: extractor sin clientes visibles. No se cargaron hechos. Se agrego control de cobertura."
+}

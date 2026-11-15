@@ -20,12 +20,12 @@
 | Restauración OLTP | VERIFYONLY ejecutado y estado ONLINE confirmado | Primer intento interrumpido por cursor, corregido y repetido |
 | Perfilado | 228.265 líneas únicas; 0 huérfanos de factura; 0 diferencias de fórmula monetaria | Reconciliación DW aún pendiente |
 
-## Pendientes de aceptación
+## Plan de aceptación
 
-1. SQL Server saludable y versión/edición registradas; backup oficial descargado y restore verificado.
-2. Perfilado, grano y relaciones confirmados; prueba de multiplicación de joins.
-3. Inicial: conteos e importes fuente/raw/clean/DW; rechazos explicados.
-4. Endpoint protegido con KPI real y pantalla conectada; valores comparados con SQL independiente.
+1. Completado: SQL Server saludable y versión/edición registradas; backup descargado y restore verificado.
+2. Completado: perfilado, grano y relaciones confirmados; relación muchos-a-muchos excluida del hecho.
+3. Completado: inicial con conteos/importes fuente/raw/clean/DW; rechazos iniciales explicados.
+4. Completado: endpoint protegido, KPI en pantalla y SQL independiente coincidente.
 5. Incremental, idempotencia, tardíos, actualizaciones, SCD, cuarentena y recuperación.
 6. KPIs/filtros combinados, período vacío, errores y latencia.
 7. ML sin fuga temporal, baseline y prueba independiente.
@@ -33,4 +33,32 @@
 9. Alertas: disparo, no disparo, deduplicación, reintentos y entrega web.
 10. Reconstrucción por README, E2E y lote de demo identificable.
 
-No hay pruebas funcionales aprobadas todavía.
+## Diagnóstico y pruebas de acceso/cobertura
+
+- Primer lote `1f183aff-19d8-4b77-8d69-c4fc2011bc2c`: 228.265 líneas a cuarentena Q02_CUSTOMER.
+  RLS ocultó los 663 clientes al extractor; DW quedó vacío. Se corrigió estado de SUCCEEDED a FAILED,
+  conservando en JSON el estado inicialmente reportado y la explicación de la reclasificación.
+- Se añadió comprobación de dimensiones no vacías y rechazo total antes de publicar datos.
+- Lote `039f7a39-7cdb-44aa-a095-bc74500a0e27`: FAILED por SOURCE_VISIBILITY_OR_EMPTY_DIMENSION,
+  comportamiento esperado con los permisos actuales; conserva raw, sin hechos publicados.
+- `pytest tests/test_initial_integration.py::test_reader_has_only_approved_view -q`: **1 passed**.
+  Se comprueba código SQL 229 al intentar leer raw con la cuenta API.
+- Pendiente autorización de los nueve roles territoriales RLS (sin permisos propios).
+  No se han ejecutado las pruebas positivas de reconciliación/API/navegador por falta de clientes visibles.
+
+## Cierre tras autorización del usuario
+
+- Acceso territorial autorizado expresamente; aplicados nueve roles existentes sin desactivar RLS.
+- Carga aceptada: 228.265 líneas, 0 rechazos, 172.261.341,20 sin impuestos en fuente/raw/clean/DW.
+- Repetición sin cambios: 0 hechos insertados, mismas filas e importe. No equivale a incremental probado.
+- `pytest tests/test_initial_integration.py -q`: **3 passed**, una advertencia de deprecación
+  httpx/Starlette; reporte JUnit en evidence/pytest-initial.xml.
+- SQL independiente en database/003_validate.sql: las cuatro capas coinciden también en
+  70.510 facturas y 8.950.628 unidades; evidence/independent-validation.json.
+- Consulta de KPI incluyendo conexión: 95,48 ms en una medición local, no benchmark de rendimiento.
+- Chrome: importe mostrado igual a API; captura y reporte en evidence/day1-dashboard.png
+  y evidence/browser-smoke.json. Se revisó la captura, incluida fecha local Tegucigalpa.
+- Frontend compila. API permite consulta con clave y rechaza acceso ausente/incorrecto.
+
+Criterio de cierre del día 1 satisfecho con los datos de ejemplo oficiales de Microsoft.
+No se iniciará día 2 sin indicación del usuario.
